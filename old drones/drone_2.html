@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<!--
+<script src="https://tonejs.github.io/build/Tone.min.js"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.4.10/Tone.min.js"></script>
+
+<style>
+
+	body {
+		background: #242;
+	}
+
+
+</style>
+
+</head>
+
+<body>
+
+
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+
+
+
+<script>
+
+function remove(array, element) { return array.filter(e => e !== element) }
+
+// var keyToPitch = { " ":" ", "z":"C3", "s":"C#3", "x":"D3", "d":"D#3", "c":"E3", "v":"F3", "g":"F#3", "b":"G3", "h":"G#3", "n":"A3", "j":"A#3", "m":"B3", ",":"C4", "q":"C4", "2":"C#4", "w":"D4", "3":"D#4", "e":"E4", "r":"F4", "5":"F#4", "t":"G4", "6":"G#4", "y":"A4", "7":"A#4", "u":"B4", "i":"C5", "9":"C#5", "o":"D5", "0":"D#5", "p":"E5", "[":"F5", "=":"F#5", "]":"G5", "Backspace":"G#5", "\\":"A5" };
+
+//https://github.com/Tonejs/Tone.js/wiki/Signals
+	// so, setTimeouts for a random time to change a value to a random degree
+		// values such as: gain 
+			// each needs an upper and lower bounds
+	// what is the most abstract you can make the value?
+	// do you want octave/fifth?
+			
+function Synth(){
+	this._note = 'C2';
+	//this._tremolo = new Tone.Tremolo().start();					//
+	this._chorus = new Tone.Chorus();										//
+	this._vibrato = new Tone.Vibrato();									//
+	this._phaser = new Tone.Phaser();   								//
+	this._autoFilter = new Tone.AutoFilter("4n").start();
+	this._synth = new Tone.Synth(4, Tone.Synth).chain(this._vibrato, Tone.Master);
+	this._timeout = 0;
+}
+Synth.prototype.start = function() {
+	this._synth.triggerAttack(this._note);
+}
+Synth.prototype.stop = function() {
+	this._synth.triggerRelease();
+}
+Synth.prototype.setNote = function(note) {
+	this._note = note;
+}
+Synth.prototype.setOscillatorType = function(type) {
+	this._synth.oscillator.type = type;
+}
+/*
+	// started work on these, but see drone_3.html 
+Synth.prototype.startTargets = function(effect) { //minVal, maxVal, mintime, maxtime) {
+	var synth = this
+	var val = Math.random();
+	var time = Math.random()*10000;
+	console.log("value", val)
+	switch(effect){
+		case 'autoFilter': synth._phaser.wet.exponentialRampTo(val, time); break;
+		case 'phaser': synth._phaser.wet.exponentialRampTo(val, time); break;
+		case 'vibrato': synth._phaser.wet.exponentialRampTo(val, time); break;
+		case 'volume': synth._phaser.wet.exponentialRampTo(val, time); break;
+	}
+		synth._timeout = setTimeout(function(){ 
+			synth.startTargets(effect)
+		}, time);
+}
+Synth.prototype.clearTargets = function() {
+	clearTimeout(this._timeout)
+}
+*/	
+	
+function Drone(numberOfSynths) {
+	this._synths = [];
+	this.init = function() {;
+		for(var i=0; i<numberOfSynths; i++){
+			this._synths.push(new Synth())
+			this._synths[i].setOscillatorType(this.pickSynthType() );
+		}
+	}
+}
+Drone.prototype.pickSynthType = function() {
+	var synthTypes = [
+      'sine','triangle','sawtooth','square', 'amsine','amtriangle','amsawtooth','amsquare',
+      'fmsine','fmtriangle','fmsawtooth','fmsquare', 'fatsine','fattriangle','fatsawtooth','fatsquare', 'pwm'
+  ];
+	var type = synthTypes[Math.floor(Math.random() * synthTypes.length)];
+	console.log(type)
+	return type
+}
+Drone.prototype.start = function() {
+	this._synths.forEach(function(synth, index){
+		synth.start()
+	})
+	//this._synth1.startTargets()
+}
+Drone.prototype.stop = function() {
+	this._synths.forEach(function(synth, index){
+		synth.stop()
+	})
+	//this._synth1.clearTargets();
+}
+
+	
+var drone = new Drone(4)
+drone.init();
+
+document.querySelector('#start').addEventListener('click', () => { 
+	drone.start()
+})
+document.querySelector('#stop').addEventListener('click', () => { 
+	drone.stop()
+})
+
+
+
+
+
+// new Synth({ 'oscillator' : { 'type': this.pickSynthType() } } ) );})  // hmmm...
+
+
+// https://github.com/meleyal/drone.coffee
+
+
+
+
+/*
+Ableton question
+I frequently copy & paste clips in the arrangement view - focusing a clip with the mouse, then using ctrl-c, then clicking with the mouse to set the vertical cursor bar along the right side of the clip, then using ctrl-shift-v to splice it.
+Wondering if there is a keyboard shortcut to do the third step?
+
+*/
+
+</script>
+
+
+
+</body>
+
+</html>

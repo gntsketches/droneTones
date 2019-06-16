@@ -35,11 +35,11 @@ var synth = new Tone.Synth({
 	oscillator  : {
 		type  : 'sawtooth'
 	},
-		envelope  : {
-		attack  : 0.5,
+	envelope  : {
+		attack  : 5,
 		decay  : 0,
 		sustain  : 1,
-		release  : 0.2
+		release  : 5
 	} // https://tonejs.github.io/docs/r13/Type#time // can hook to transport
 })
 var vibrato = new Tone.Vibrato()
@@ -52,11 +52,13 @@ lfo.start()
 
 var loop = new Tone.Loop(function (time) {
 	console.log(time)
-	synth.triggerAttackRelease('g1', '4n', time)
-	synth.triggerAttackRelease('d2', '4n', time + 0.5)
+	if (Math.floor(time % 10) === 0 ) {
+	console.log('trig')
+	synth.triggerAttackRelease('g1', 5, time)
+	}
 })
 
-Tone.Transport.bpm.value = 30
+Tone.Transport.bpm.value = 60
 Tone.Transport.start();
 
 

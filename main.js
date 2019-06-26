@@ -7,6 +7,7 @@ var tempo = 15
 var pitches = ['g1', 'g2', 'g2', 'd3']
 
 
+
 // main 
 
 function addSynth() {
@@ -18,8 +19,7 @@ function addSynth() {
 function shiftSynths() {
 	synths[0].dispose() // does this work? doesn't seem like it.
 	synths.shift()
-	addSynth()
-};
+	addSynth()};
 
 
 var loop = new Tone.Loop(function (time) {

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<!--
+<script src="https://tonejs.github.io/build/Tone.min.js"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.4.10/Tone.min.js"></script>
+
+
+
+<style>
+
+	body {
+		background: #242;
+	}
+
+
+</style>
+
+</head>
+
+<body>
+
+
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+
+<script>
+
+var tempo = 160
+var partials = [1]
+
+const envelope = {
+		attack  : 4,		
+		decay  : 0,
+		sustain  : 1,
+		release  : 8,
+		attackCurve: 'linear', // 'exponential' gave error "time constant must be geater than zero at t.Signal.t.Param.setTargetAtTime (Tone.min.js:1) at t.Signal.t.Param.exponentialApproachValueAtTime (Tone.min.js:1)at t.Signal.t.Param.targetRampTo (Tone.min.js:1) at t.AmplitudeEnvelope.t.Envelope.triggerAttack (Tone.min.js:1) at t.Synth._triggerEnvelopeAttack (Tone.min.js:1) at t.Synth.t.Monophonic.triggerAttack (Tone.min.js:1) at t.Synth.t.Instrument.triggerAttackRelease (Tone.min.js:1) at t.Loop.callback (main.js:31) at t.Loop._tick (Tone.min.js:1) at t.Event._tick (Tone.min.js:1)
+		decayCurve: 'exponential',
+		releaseCurve: 'exponential'
+	}
+
+
+
+Tone.Transport.bpm.value = tempo
+Tone.Transport.start();
+
+var synth = new Tone.Synth({
+		oscillator  : {
+			type: 'sine',
+			partials: partials
+		},
+		volume: 20,
+		envelope: envelope
+	}).toMaster()
+
+
+var loop = new Tone.Loop(function(time) {
+
+	var p = Math.round(Math.random()*200)
+	if (partials.includes(p)) {
+		partials = [...partials.filter(el=>el!=p)]	
+	} else {
+		partials = [...partials, p]			
+	}
+	console.log( partials )
+	synth.oscillator.partials = partials
+
+})
+
+
+
+
+document.querySelector('#start').addEventListener('click', () => { 
+	Tone.context.resume()
+	synth.triggerAttack('g1')
+	loop.start(0)
+
+})
+document.querySelector('#stop').addEventListener('click', () => { 
+	loop.stop()
+		synth.triggerRelease()
+
+
+})
+
+
+
+</script>
+
+
+
+<html>

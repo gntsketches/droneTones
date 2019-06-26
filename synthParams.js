@@ -12,27 +12,7 @@ const envelopeSettings = {
 	}
 
 
-// Patrials 
-function PartialBuilder() {
-	let partials = []
-	for (var i=0; i < 20 ; i++) { 
-		if (Math.random()<0.1) {
-			console.log(i)
-			for (var j=0; j<9; j++) {
-				partials = [...partials, i*10 + j]
-			}		
-		}
-	}
-	console.log(partials)
-	return {
-		oscillator  : {
-			type: 'sine',
-			partials: partials
-		},
-		volume: 2,
-		envelope: envelopeSettings
-	}
-};
+
 	
 	
 

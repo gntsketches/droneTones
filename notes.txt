@@ -1,4 +1,5 @@
 
+https://www.reddit.com/r/learnjavascript/comments/c3hvb2/just_ran_into_a_very_wise_noob_thought_id_share/
 
 // https://propa.app/
 // todo: Why is it needed to trigger the synthesizer before the loop?

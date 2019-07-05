@@ -1,20 +1,34 @@
 
-https://www.reddit.com/r/learnjavascript/comments/c3hvb2/just_ran_into_a_very_wise_noob_thought_id_share/
-
-// https://propa.app/
-// todo: Why is it needed to trigger the synthesizer before the loop?
-// todo: Why doesn't it play when release is assigned '8n'
-// todo: caster questions - How fast can you speak/How many commands in a row/Different types of commands? 
-		//commands for: comment, new, press-control-s
-
-// https://codepen.io/gntsketches/pen/KjVdBm?editors=1010
+https://codepen.io/gntsketches/pen/KjVdBm?editors=1010
+crackle tester: https://codepen.io/gntsketches/pen/QXBVdm
 
 
-- todos: 
+TODO
+    - test & post re: crackle tester
+        or at least just ask about if I'm doing .dispose() right
+    - how to adjust base pitch - detune in sequence?
+    - equalize PartialBuilder volume by basing it on partials.length
+    - PartialBuilder types
+        clusters
+        modulo
+        one/two/three etc. notes
 	- id params for each effect
+    waiting for: Envelope 'Release' property does not accept '8n' string. #501 https://github.com/Tonejs/Tone.js/issues/501
+        "you can try using Tone.Time('8n') or Tone.Time('8n').toSeconds() as a work-around for now"
 
-	- picker wheel 
-			https://stackoverflow.com/questions/33157307/how-to-make-a-html5-spinning-list-rotating-wheel-selector-picker
+UI / ADJUSTABLE
+    BasePitch
+    Rests
+    Pattern (detunings)
+    "Tempo" (loop rate)
+    *Drift (time, pitchSet)
 
-
+MISC
 - can SynthBuilder accept an object for testing?
+- Loop not called without TriggerAttackRelease: https://github.com/Tonejs/Tone.js/issues/500
+
+PARKING LOT
+    - https://propa.app/
+	- picker wheel: https://stackoverflow.com/questions/33157307/how-to-make-a-html5-spinning-list-rotating-wheel-selector-picker
+
+

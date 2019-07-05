@@ -58,7 +58,7 @@ var synth = new Tone.Synth({
 
 var loop = new Tone.Loop(function(time) {
 
-	var p = Math.round(Math.random()*200)
+	var p = Math.round(Math.random()*30)
 	if (partials.includes(p)) {
 		partials = [...partials.filter(el=>el!=p)]	
 	} else {
@@ -76,13 +76,10 @@ document.querySelector('#start').addEventListener('click', () => {
 	Tone.context.resume()
 	synth.triggerAttack('g1')
 	loop.start(0)
-
 })
 document.querySelector('#stop').addEventListener('click', () => { 
 	loop.stop()
 		synth.triggerRelease()
-
-
 })
 
 

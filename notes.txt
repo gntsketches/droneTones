@@ -4,24 +4,34 @@ crackle tester: https://codepen.io/gntsketches/pen/QXBVdm
 
 
 TODO
-    - test & post re: crackle tester
+    get some styles on there. mobile-first. start styling before adding more features.
+    test & post re: crackle tester
         or at least just ask about if I'm doing .dispose() right
-    - how to adjust base pitch - detune in sequence?
-    - equalize PartialBuilder volume by basing it on partials.length
-    - PartialBuilder types
+        https://groups.google.com/forum/#!topic/tonejs/zYlQupn-Jic
+    UI rests
+    UI tempo
+    UI tune by cents
+
+TODO Smoothing
+    equalize volumes
+        equalize PartialBuilder volume by basing it on partials.length?
+    PartialBuilder types
         clusters
         modulo
         one/two/three etc. notes
-	- id params for each effect
-    waiting for: Envelope 'Release' property does not accept '8n' string. #501 https://github.com/Tonejs/Tone.js/issues/501
-        "you can try using Tone.Time('8n') or Tone.Time('8n').toSeconds() as a work-around for now"
+	id params for each effect
+    waiting for:
+        Envelope 'Release' property does not accept '8n' string. #501 https://github.com/Tonejs/Tone.js/issues/501
+            "you can try using Tone.Time('8n') or Tone.Time('8n').toSeconds() as a work-around for now"
 
 UI / ADJUSTABLE
+    wave_visualization
     BasePitch
-    Rests
-    Pattern (detunings)
+    Variable Note
+    Tune
     "Tempo" (loop rate)
-    *Drift (time, pitchSet)
+    (Pattern (sub, main, interval, rest))
+    Play/Stop
 
 MISC
 - can SynthBuilder accept an object for testing?
@@ -30,5 +40,6 @@ MISC
 PARKING LOT
     - https://propa.app/
 	- picker wheel: https://stackoverflow.com/questions/33157307/how-to-make-a-html5-spinning-list-rotating-wheel-selector-picker
-
+    - Drift (time, pitchSet)
+    - more complicated (chord/polyphony) options for pitches
 

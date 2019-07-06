@@ -1,5 +1,6 @@
 
 // state
+var started = false
 var synths = []
 var counter = 0
 var rests = 0 //3
@@ -50,15 +51,21 @@ Tone.Transport.start();
 
 // UI
 
-document.querySelector('#start').addEventListener('click', () => { 
-	//synth.triggerAttackRelease('c4', '16n')
-	Tone.context.resume()
-	loop.start(0)
+document.querySelector('#start_stop').addEventListener('click', (e) => {
+	if (started === false) {
+		console.log(e)
+		started = true
+		e.target.innerHTML = 'Stop'
+		Tone.context.resume()
+		loop.start(0)
+	} else {
+		started = false
+		e.target.innerHTML = 'Play'
+		loop.stop()
+	}
 })
 
-document.querySelector('#stop').addEventListener('click', () => { 
-	loop.stop()
-})
+
 
 document.querySelector('#base_pitch').addEventListener('change', (e) => {
 	console.log(e.target.value)

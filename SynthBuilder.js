@@ -1,7 +1,7 @@
 // 
 
 function SynthBuilder() {
-	const synthTypes = [sine, triangle, sawtooth]//, square]
+	const synthTypes = [sine, triangle, sawtooth, square]
 
 	if (Math.random()<0.4) {
 		this._synth = new Tone.Synth(synthTypes[Math.floor(Math.random() * synthTypes.length)])

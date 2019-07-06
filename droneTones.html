@@ -9,44 +9,71 @@
 
 <title>drones</title>
 
-<style>
-
-	body {
-		background: #242;
-	}
-
-
-</style>
+<link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 
 <body>
 
+<div class="wrapper">
 
-<button id="start">Begin</button>
-<button id="stop">Stop</button>
+    <div class="start-stop">
+        <button id="start_stop">Play</button>
+    </div>
 
-<span>Base Pitch</span>
+    <div class="option-item">
+        <div class="option-item__label">Base Pitch</div>
+        <select id="base_pitch">
+            <option>B1</option>
+            <option>A#1</option>
+            <option>A1</option>
+            <option>G#1</option>
+            <option>G1</option>
+            <option>F#1</option>
+            <option>F1</option>
+            <option>E1</option>
+            <option>D#1</option>
+            <option>D1</option>
+            <option>C#1</option>
+            <option selected >C1</option>
+        </select>
+    </div>
 
-<select id="base_pitch">
-    <option>B1</option>
-    <option>A#1</option>
-    <option>A1</option>
-    <option>G#1</option>
-    <option>G1</option>
-    <option>F#1</option>
-    <option>F1</option>
-    <option>E1</option>
-    <option>D#1</option>
-    <option>D1</option>
-    <option>C#1</option>
-    <option selected >C1</option>
+    <div class="option-item">
+        <div class="option-item__label">Interval</div>
+        <select id="interval">
+            <option>M7</option>
+            <option>m7</option>
+            <option>M6</option>
+            <option>m6</option>
+            <option>P5</option>
+            <option>#4/b5</option>
+            <option>P4</option>
+            <option>M3</option>
+            <option>m3</option>
+            <option>M2</option>
+            <option>m2</option>
+            <option>Root</option>
+            <option selected >P5</option>
+        </select>
+    </div>
 
-</select>
+    <div class="option-item">
+        <div class="option-item__label">Tune %</div>
+        <div class="tuning-controls">
+            <div class="tuning-controls__minus">-</div>
+            <div class="tuning-controls__value">0</div>
+            <div class="tuning-controls_plus">+</div>
+        </div>
+    </div>
 
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range -->
+    <div class="option-item">
+        <div class="option-item__label">Speed</div>
+        <input type="range" id="start" name="speed_slider" min="0" max="11" step="1" />
+    </div>
 
-
-
+</div>
 
 <script src="synthParams.js"></script>
 <script src="partialBuilders.js"></script>

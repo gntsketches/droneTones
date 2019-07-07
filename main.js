@@ -1,76 +1,76 @@
+let DroneTones = {
+	// STATE
+	_started: false,
+	_synths: [],
+	_counter: 0,
+	_rests: 0, //3
+	_tempo: 15,
+	_basePitch: 'g1',
+	_tuning: 0,
+	_detunings: [0, 1200, 1200, 1900],
 
-// state
-var started = false
-var synths = []
-var counter = 0
-var rests = 0 //3
-var tempo = 15
-// var pitches = ['g1', 'g2', 'g2', 'd3']
-var basePitch = 'g1'
-var detunings = [0, 1200, 1200, 1900]
+	// MAIN
 
+	addSynth: function() {
+		let synth = new SynthBuilder()
+		this._synths.push(synth)
+	},
 
-// main 
+	shiftSynths: () => {
+		this._synths[0].dispose() // does this work? doesn't seem like it.
+		this._synths.shift()
+		this.addSynth()
+	},
 
-function addSynth() {
-	let synth = new SynthBuilder()
-	synths.push(synth)
-	//console.log(synth)
-};
+	loop: new Tone.Loop((time) => {
+		console.log(this)
+		let  beat = this._counter % (this._synths.length + this._rests)
+		if (beat === 0) {
+			this.shiftSynths()
+		}
+		if (beat < this._synths.length) {
+			this._synths[beat].detune.value = this._tuning + this._detunings[beat] // 400
+			this._synths[beat].triggerAttackRelease(this._basePitch,8) // pitches[beat], 8)
+			console.log(this._synths[beat].oscillator.type)
+		}
+		this._counter++
+	}),
 
-function shiftSynths() {
-	synths[0].dispose() // does this work? doesn't seem like it.
-	synths.shift()
-	addSynth()}
+	init: function() { // arrow function not working here, why?
+		console.log(this)
+		for (let i = 0; i < 4; i++) {
+			this.addSynth()
+		}
 
+		Tone.Transport.bpm.value = this._tempo
+		Tone.Transport.start();
 
-var loop = new Tone.Loop(function (time) {
-	var beat = counter % (synths.length + rests)
-	//console.log(beat, time)
-	var synth = new Tone.Synth()
-	if (beat === 0) {
-		shiftSynths()
-	}
-	if (beat < synths.length) { 
-		synths[beat].detune.value = detunings[beat] // 400
-		synths[beat].triggerAttackRelease(basePitch,8) // pitches[beat], 8)
-		console.log(synths[beat].oscillator.type)
-	}
-	counter++
-})
+		document.querySelector('#start_stop').addEventListener('click', (e) => {
+			if (this._started === false) {
+				console.log(e)
+				this._started = true
+				e.target.innerHTML = 'Stop'
+				Tone.context.resume()
+				this.loop.start(0)
+			} else {
+				this._started = false
+				e.target.innerHTML = 'Play'
+				this.loop.stop()
+			}
+		})
 
+		document.querySelector('#base_pitch').addEventListener('change', (e) => {
+			console.log(e.target.value)
+			this._basePitch = e.target.value
+		})
+		// https://2ality.com/2012/08/ids-are-global.html
+		// https://stackoverflow.com/questions/3434278/do-dom-tree-elements-with-ids-become-global-variables
+	},
 
-// initialize
-
-for (var i=0; i<4; i++) {
-	addSynth()
 }
 
-Tone.Transport.bpm.value = tempo
-Tone.Transport.start();
+console.log(DroneTones)
 
-// UI
-
-document.querySelector('#start_stop').addEventListener('click', (e) => {
-	if (started === false) {
-		console.log(e)
-		started = true
-		e.target.innerHTML = 'Stop'
-		Tone.context.resume()
-		loop.start(0)
-	} else {
-		started = false
-		e.target.innerHTML = 'Play'
-		loop.stop()
-	}
-})
-
-
-
-document.querySelector('#base_pitch').addEventListener('change', (e) => {
-	console.log(e.target.value)
-	basePitch = e.target.value
-})
-// https://2ality.com/2012/08/ids-are-global.html
-// https://stackoverflow.com/questions/3434278/do-dom-tree-elements-with-ids-become-global-variables
-
+window.onload = function() {
+	DroneTones.init()
+}

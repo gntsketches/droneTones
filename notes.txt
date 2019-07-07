@@ -4,7 +4,8 @@ crackle tester: https://codepen.io/gntsketches/pen/QXBVdm
 
 
 TODO
-    get some styles on there. mobile-first. start styling before adding more features.
+    init values in DOM from state
+    unselect on focus
     test & post re: crackle tester
         or at least just ask about if I'm doing .dispose() right
         https://groups.google.com/forum/#!topic/tonejs/zYlQupn-Jic
@@ -42,4 +43,34 @@ PARKING LOT
 	- picker wheel: https://stackoverflow.com/questions/33157307/how-to-make-a-html5-spinning-list-rotating-wheel-selector-picker
     - Drift (time, pitchSet)
     - more complicated (chord/polyphony) options for pitches
+
+
+STUDY
+    why are arrow functions not working on DroneTone object?
+        https://stackoverflow.com/questions/36717376/arrow-function-in-object-literal
+        https://dmitripavlutin.com/when-not-to-use-arrow-functions-in-javascript/
+
+
+function Thing(fun){
+    this.funThing = fun
+}
+let literal = {
+    thing: new Thing(function(){
+        console.log(this)
+    }.bind(this.literal))
+}
+literal.thing.funThing() // Thing
+
+*************************************
+
+function Thing(fun){
+    this.funThing = fun
+}
+let literal = {
+    thing: new Thing(() => {
+        console.log(this)
+    })
+}
+literal.thing.funThing() // Thing {funThing: ƒ}
+
 

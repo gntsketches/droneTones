@@ -4,9 +4,10 @@ crackle tester: https://codepen.io/gntsketches/pen/QXBVdm
 
 
 TODO
-	more flexbox
-	responsive
-	title
+    CSS
+	    more flexbox
+	    responsive
+	    align selects & tuners & range slider
 	"make it sound better"
         investigate why synth entrance sometimes 'pops'
         hook attack & release to tempo
@@ -53,6 +54,7 @@ FUTURE
     - Logo! (picture of waves interacting)
 
 MISC
+    https://www.fonts.com/font/virus-fonts/drone?QueryFontType=Web&src=GoogleWebFonts
     https://thedronetones.bandcamp.com
     can SynthBuilder accept an object for testing?
 

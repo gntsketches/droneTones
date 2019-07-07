@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Text+Me+One&display=swap');
+
 /*https://css-tricks.com/boxes-fill-height-dont-squish/*/
 
 html {
@@ -20,8 +22,20 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
+    justify-content: flex-end;
 }
+
+.header {
+    position: absolute;
+    top: 3vh;
+    left: 5vh;
+    font-family: 'Text Me One', sans-serif;
+    font-size: 6vh;
+    font-weight: bold;
+    color: chocolate;
+
+}
+
 
 .start-stop {
     width: 100%;
@@ -29,17 +43,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .start-stop button {
     margin: 0 auto;
     width: 80%;
-    height: 20vh;
-    font-size: 15vh;
+    height: 15vh;
+    font-size: 10vh;
     border-radius: 30px;
     border: 0;
-    background: chocolate;
+    background: chocolate; /*#d2691e*/
     color: white;
     cursor: pointer;
     font-family: Verdana;
@@ -71,10 +84,10 @@ body {
 .option-item select {
     margin: 0;
     padding: 0;
-    width: 43%;
+    width: 48%;
     height: 7vh;
     font-size: 5vh;
-    border: 1px solid blue;
+    border: 0px solid blue;
     border-radius: 10px;
     text-align: center; /*of course not*/
     /*background: darkolivegreen;*/
@@ -95,9 +108,9 @@ body {
 .option-item .tuning-controls div {
     display: inline-block;
     text-align: center;
-    border: 1px solid blue;
+    /*border: 1px solid blue;*/
     border-radius: 10px;
-    background: darkolivegreen;
+    background: chocolate;
     /*background: #555555;*/
     color: #fcc;
     /*color: white;*/
@@ -123,3 +136,17 @@ body {
     height: 5vh;
     cursor: pointer;
 }
+
+
+/*
+https://www.w3schools.com/cssref/css_websafe_fonts.asp
+https://fonts.google.com/specimen/Text+Me+One
+https://fonts.google.com/specimen/Allerta+Stencil
+https://fonts.google.com/specimen/Federo
+https://fonts.google.com/specimen/Raleway+Dots
+https://fonts.google.com/specimen/Gruppo
+https://fonts.google.com/specimen/Reem+Kufi
+https://fonts.google.com/specimen/Syncopate
+https://fonts.google.com/specimen/Mitr
+https://fonts.google.com/specimen/Monoton
+*/

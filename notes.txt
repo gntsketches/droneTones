@@ -4,23 +4,21 @@ crackle tester: https://codepen.io/gntsketches/pen/QXBVdm
 
 
 TODO
-    space bar to start/stop
-    test & post re: crackle tester
-        or at least just ask about if I'm doing .dispose() right
-        https://groups.google.com/forum/#!topic/tonejs/zYlQupn-Jic
-
-TODO Smoothing
-    /*https://www.google.com/search?q=css+tricks+vertical+align+text&rlz=1C1CHBF_enUS854US854&oq=css+tricks+vertical+align+text&aqs=chrome..69i57.6411j0j4&sourceid=chrome&ie=UTF-8*/
-	responsive
 	more flexbox
+	responsive
 	title
-	hamburger menu w: about, synth type select, pattern select, effects select
-    equalize volumes
-        equalize PartialBuilder volume by basing it on partials.length?
-    PartialBuilder types
-        clusters
-        modulo
-        one/two/three etc. notes
+	"make it sound better"
+        investigate why synth entrance sometimes 'pops'
+        hook attack & release to tempo
+        "you can try using Tone.Time('8n') or Tone.Time('8n').toSeconds() as a work-around for now"
+        equalize volumes
+            equalize PartialBuilder volume by basing it on partials.length?
+        PartialBuilder types
+            clusters
+            modulo
+            one/two/three etc. notes
+        investigate the nature of volume and gain
+        rapid fade with stop
 	id params for each effect
 	? hide elements prior to initialization
 	? use Bootstrap or something, like to make a pretty range slider
@@ -28,21 +26,18 @@ TODO Smoothing
         Envelope 'Release' property does not accept '8n' string. #501 https://github.com/Tonejs/Tone.js/issues/501
             "you can try using Tone.Time('8n') or Tone.Time('8n').toSeconds() as a work-around for now"
 
-UI / ADJUSTABLE
-    wave_visualization
-    BasePitch
-    Variable Note
-    Tune
-    "Tempo" (loop rate)
-    (Pattern )
-    Play/Stop
+TODO REFACTOR
+	more DOM caching
 
-MISC
-- https://thedronetones.bandcamp.com
-- can SynthBuilder accept an object for testing?
-- Loop not called without TriggerAttackRelease: https://github.com/Tonejs/Tone.js/issues/500
+WAITING FOR
+    test & post re: crackle tester
+        or at least just ask about if I'm doing .dispose() right
+        https://groups.google.com/forum/#!topic/tonejs/zYlQupn-Jic
 
-PARKING LOT
+
+FUTURE
+    UI / ADJUSTABLE
+	    hamburger menu w: about, synth type select, pattern select, effects select
     - user picks which synth types
     - user picks pattern?
         drop-down list with a bunch of patterns
@@ -57,11 +52,15 @@ PARKING LOT
     - more complicated (chord/polyphony) options for pitches
     - Logo! (picture of waves interacting)
 
+MISC
+    https://thedronetones.bandcamp.com
+    can SynthBuilder accept an object for testing?
 
 STUDY
     *** architecture questions ***
     accessing something by "going in from Global", eg: DroneTones.synthParams.envelopeSettings
 
+    Loop not called without TriggerAttackRelease: https://github.com/Tonejs/Tone.js/issues/500
 
     why are arrow functions not working on DroneTone object?
         https://stackoverflow.com/questions/36717376/arrow-function-in-object-literal

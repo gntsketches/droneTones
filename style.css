@@ -103,19 +103,18 @@ body {
     /*color: white;*/
     width: 20%;
     height: 7vh;
+    line-height: 7vh; /* https://css-tricks.com/centering-css-complete-guide/ */
     font-size: 5vh;
     margin-right: 2%;
     font-family: Verdana;
     user-select: none;
 }
-.option-item .tuning-controls .tuning-controls__minus {
+.option-item .tuning-controls .tuning-controls__minus,
+.option-item .tuning-controls .tuning-controls_plus {
     cursor: pointer;
 }
 .option-item .tuning-controls .tuning-controls__value {
     width: 40%
-}
-.option-item .tuning-controls .tuning-controls_plus {
-    cursor: pointer;
 }
 
 .option-item input {

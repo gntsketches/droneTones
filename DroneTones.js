@@ -9,9 +9,23 @@ let DroneTones = {
 	_tuning: 0,
 	_speed: 15,
 	_detunings: [0, 1200, 1200, 1900],
+	_startStopButton: null,
 }
 
 // GENERAL FUNCTIONS
+
+DroneTones.setTunings = function(tuning) {
+	if (tuning==='minus') {
+		this._tuning -= 1
+	} else if (tuning==='plus') {
+		this._tuning += 1
+	}
+	document.querySelector('#tuning_value').innerHTML = this._tuning
+}
+
+DroneTones.setSpeed = function() {
+	Tone.Transport.bpm.value = this._speed
+}
 
 DroneTones.addSynth = function() {
 	let synth = new DroneTones.SynthBuilder()
@@ -38,18 +52,20 @@ DroneTones.loop = new Tone.Loop(function (time) {
 	this._counter++
 }.bind(DroneTones))
 
-DroneTones.setTunings = function(tuning) {
-	if (tuning==='minus') {
-		this._tuning -= 1
-	} else if (tuning==='plus') {
-		this._tuning += 1
-	}
-	document.querySelector('#tuning_value').innerHTML = this._tuning
+// consider caching DOM?
+DroneTones.start = function() {
+	this._started = true
+	this._startStopButton.innerHTML = 'Stop'
+	Tone.context.resume()
+	this.loop.start(0)
 }
 
-DroneTones.setSpeed = function() {
-	Tone.Transport.bpm.value = this._speed
+DroneTones.stop = function() {
+	this._started = false
+	this._startStopButton.innerHTML = 'Play'
+	this.loop.stop()
 }
+
 
 // INITIALIZE IT. AND I'LL ADVERTIZE IT.
 
@@ -65,6 +81,9 @@ DroneTones.init = function() { // arrow function not working here, why?
 	this.setSpeed()
 	Tone.Transport.start();
 
+	// CACHE THE DOM
+	this._startStopButton = document.querySelector('#start_stop')
+
 	// SET HTML VALUES FROM STATE
 	document.querySelector('#base_pitch').value = this._basePitch
 	document.querySelector('#interval').value = this._interval
@@ -75,25 +94,17 @@ DroneTones.init = function() { // arrow function not working here, why?
 	// ADD EVENT LISTENERS
 	document.querySelector('#start_stop').addEventListener('click', (e) => {
 		if (this._started === false) {
-			console.log(e)
-			this._started = true
-			e.target.innerHTML = 'Stop'
-			Tone.context.resume()
-			this.loop.start(0)
+			this.start()
 		} else {
-			this._started = false
-			e.target.innerHTML = 'Play'
-			this.loop.stop()
+			this.stop()
 		}
 	})
 
 	document.querySelector('#base_pitch').addEventListener('change', (e) => {
-		console.log(e.target.value)
 		this._basePitch = e.target.value
 	})
 
 	document.querySelector('#interval').addEventListener('change', (e) => {
-		console.log(e.target.value)
 		this._detunings[3] = 1200 + DroneTones.constants.intervals[e.target.value]
 	})
 
@@ -106,11 +117,22 @@ DroneTones.init = function() { // arrow function not working here, why?
 	})
 
 	document.querySelector('#speed').addEventListener('change', (e) => {
-		console.log(e.target.value)
+		// console.log(e.target.value)
 		this._speed = e.target.value
 		this.setSpeed()
 	})
 
-}
 
+	// https://www.reddit.com/r/chrome/comments/ca8uxk/windowaddeventlistener_suddenly_not_working/
+	window.addEventListener('keydown', function(e){
+		console.log('this', this, 'e', e)
+		if (e.key===' ' && this._started) {
+			this.stop()
+		} else if (e.key===' ') {
+			this.start()
+		}
+	}.bind(this)) // .bind and arrow functions both ok :)
+
+
+} //*************************************************************************
 

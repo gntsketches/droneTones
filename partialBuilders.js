@@ -12,7 +12,7 @@ DroneTones.partialBuilders = {
 			}
 		}
 
-		console.log(partials)
+		// console.log(partials)
 		return {
 			oscillator  : {
 				type: 'sine',

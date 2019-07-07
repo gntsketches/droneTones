@@ -43,6 +43,11 @@ body {
     color: white;
     cursor: pointer;
     font-family: Verdana;
+    user-select: none;
+}
+
+.start-stop button:focus {
+    /*https://a11yproject.com/posts/never-remove-css-outlines/*/
 }
 
 .option-item {
@@ -59,13 +64,14 @@ body {
     text-align: right;
     margin: 0 3vw 0 0;
     color: white;
+    user-select: none;
 }
 
 /*https://www.filamentgroup.com/lab/select-css.html*/
 .option-item select {
     margin: 0;
     padding: 0;
-    width: 30%;
+    width: 43%;
     height: 7vh;
     font-size: 5vh;
     border: 1px solid blue;
@@ -75,13 +81,13 @@ body {
     background: #555;
     color: white;
     font-family: Verdana;
+    cursor: pointer;
 }
 
 .option-item .tuning-controls {
     display: inline-block;
     width: 50%;
     height: 7vh;
-
 }
 
 /*lmgtfy:*/
@@ -98,15 +104,23 @@ body {
     width: 20%;
     height: 7vh;
     font-size: 5vh;
-    margin-right: 1%;
+    margin-right: 2%;
     font-family: Verdana;
+    user-select: none;
+}
+.option-item .tuning-controls .tuning-controls__minus {
+    cursor: pointer;
 }
 .option-item .tuning-controls .tuning-controls__value {
     width: 40%
+}
+.option-item .tuning-controls .tuning-controls_plus {
+    cursor: pointer;
 }
 
 .option-item input {
     margin: 0;
     width: 50%;
     height: 5vh;
+    cursor: pointer;
 }

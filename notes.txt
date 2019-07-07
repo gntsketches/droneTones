@@ -4,16 +4,17 @@ crackle tester: https://codepen.io/gntsketches/pen/QXBVdm
 
 
 TODO
-    init values in DOM from state
-    unselect on focus
+    space bar to start/stop
     test & post re: crackle tester
         or at least just ask about if I'm doing .dispose() right
         https://groups.google.com/forum/#!topic/tonejs/zYlQupn-Jic
-    UI rests
-    UI tempo
-    UI tune by cents
 
 TODO Smoothing
+    /*https://www.google.com/search?q=css+tricks+vertical+align+text&rlz=1C1CHBF_enUS854US854&oq=css+tricks+vertical+align+text&aqs=chrome..69i57.6411j0j4&sourceid=chrome&ie=UTF-8*/
+	responsive
+	more flexbox
+	title
+	hamburger menu w: about, synth type select, pattern select, effects select
     equalize volumes
         equalize PartialBuilder volume by basing it on partials.length?
     PartialBuilder types
@@ -21,6 +22,8 @@ TODO Smoothing
         modulo
         one/two/three etc. notes
 	id params for each effect
+	? hide elements prior to initialization
+	? use Bootstrap or something, like to make a pretty range slider
     waiting for:
         Envelope 'Release' property does not accept '8n' string. #501 https://github.com/Tonejs/Tone.js/issues/501
             "you can try using Tone.Time('8n') or Tone.Time('8n').toSeconds() as a work-around for now"
@@ -31,46 +34,42 @@ UI / ADJUSTABLE
     Variable Note
     Tune
     "Tempo" (loop rate)
-    (Pattern (sub, main, interval, rest))
+    (Pattern )
     Play/Stop
 
 MISC
+- https://thedronetones.bandcamp.com
 - can SynthBuilder accept an object for testing?
 - Loop not called without TriggerAttackRelease: https://github.com/Tonejs/Tone.js/issues/500
 
 PARKING LOT
+    - user picks which synth types
+    - user picks pattern?
+        drop-down list with a bunch of patterns
+        rests?
+        (example options: sub, main, interval, rest... remove, add...)
+    - visualization window? (would be awesome with waveforms...)
+    - user sets effects params
+    - volume
     - https://propa.app/
 	- picker wheel: https://stackoverflow.com/questions/33157307/how-to-make-a-html5-spinning-list-rotating-wheel-selector-picker
     - Drift (time, pitchSet)
     - more complicated (chord/polyphony) options for pitches
+    - Logo! (picture of waves interacting)
 
 
 STUDY
+    *** architecture questions ***
+    accessing something by "going in from Global", eg: DroneTones.synthParams.envelopeSettings
+
+
     why are arrow functions not working on DroneTone object?
         https://stackoverflow.com/questions/36717376/arrow-function-in-object-literal
         https://dmitripavlutin.com/when-not-to-use-arrow-functions-in-javascript/
 
+	https://2ality.com/2012/08/ids-are-global.html
+	https://stackoverflow.com/questions/3434278/do-dom-tree-elements-with-ids-become-global-variables
 
-function Thing(fun){
-    this.funThing = fun
-}
-let literal = {
-    thing: new Thing(function(){
-        console.log(this)
-    }.bind(this.literal))
-}
-literal.thing.funThing() // Thing
-
-*************************************
-
-function Thing(fun){
-    this.funThing = fun
-}
-let literal = {
-    thing: new Thing(() => {
-        console.log(this)
-    })
-}
-literal.thing.funThing() // Thing {funThing: ƒ}
+    https://stackoverflow.com/questions/56918088/scope-of-callback-function-in-new-on-js-object-literal/56918339#56918339
 
 

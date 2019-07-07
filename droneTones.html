@@ -28,7 +28,7 @@
             <option>A#1</option>
             <option>A1</option>
             <option>G#1</option>
-            <option selected >G1</option>
+            <option>G1</option>
             <option>F#1</option>
             <option>F1</option>
             <option>E1</option>
@@ -42,41 +42,42 @@
     <div class="option-item">
         <div class="option-item__label">Interval</div>
         <select id="interval">
-            <option>M7</option>
-            <option>m7</option>
-            <option>M6</option>
-            <option>m6</option>
-            <option>P5</option>
-            <option>#4/b5</option>
-            <option>P4</option>
-            <option>M3</option>
-            <option>m3</option>
-            <option>M2</option>
-            <option>m2</option>
+            <option>Octave</option>
+            <option>Major 7</option>
+            <option>minor 7</option>
+            <option>Major 6</option>
+            <option>minor 6</option>
+            <option>Perfect 5</option>
+            <option>Tritone</option>
+            <option>Perfect 4</option>
+            <option>Major 3</option>
+            <option>minor 3</option>
+            <option>Major 2</option>
+            <option>minor 2</option>
             <option>Root</option>
-            <option selected >P5</option>
         </select>
     </div>
 
     <div class="option-item">
         <div class="option-item__label">Tune %</div>
         <div class="tuning-controls">
-            <div class="tuning-controls__minus">-</div>
-            <div class="tuning-controls__value">0</div>
-            <div class="tuning-controls_plus">+</div>
+            <div id="tuning_minus" class="tuning-controls__minus">-</div>
+            <div id="tuning_value" class="tuning-controls__value">0</div>
+            <div id="tuning_plus" class="tuning-controls_plus">+</div>
         </div>
     </div>
 
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range -->
     <div class="option-item">
         <div class="option-item__label">Speed</div>
-        <input type="range" id="start" name="speed_slider" min="0" max="11" step="1" />
+        <input type="range" id="speed" name="speed_slider" min="5" max="100" step="1" />
     </div>
 
 </div>
 
 
 <script src="DroneTones.js"></script>
+<script src="constants.js"></script>
 <script src="synthParams.js"></script>
 <script src="partialBuilders.js"></script>
 <script src="SynthBuilder.js"></script>

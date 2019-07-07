@@ -1,12 +1,12 @@
-// 
+DroneTones.SynthBuilder = function() {
 
-function SynthBuilder() {
+	const { sine, triangle, sawtooth, square } = DroneTones.synthParams
 	const synthTypes = [sine, triangle, sawtooth, square]
 
 	if (Math.random()<0.4) {
 		this._synth = new Tone.Synth(synthTypes[Math.floor(Math.random() * synthTypes.length)])
 	} else {
-		this._synth = new Tone.Synth(new PartialBuilder(30, 30, 5, 0.1))
+		this._synth = new Tone.Synth(DroneTones.partialBuilders.Modulos(30, 30, 5, 0.1))
 	}
 
 	//this._autoFilter = new Tone.AutoFilter("4n").start();

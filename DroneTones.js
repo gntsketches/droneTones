@@ -10,6 +10,23 @@ let DroneTones = {
 	_speed: 15,
 	_detunings: [0, 1200, 1200, 1900],
 	_startStopButton: null,
+	_activeSynthOptions: {
+		'Modulos': true,
+		'Tens': true,
+		'Sine': true,
+		'Triangle': true,
+		'Sawtooth': true,
+		'Square': true,
+	},
+	_envelopeSettings: {
+		attack: 4,
+		decay: 0,
+		sustain: 1,
+		release: 8,
+		attackCurve: 'linear', // 'exponential' gave error "time constant must be geater than zero at t.Signal.t.Param.setTargetAtTime (Tone.min.js:1) at t.Signal.t.Param.exponentialApproachValueAtTime (Tone.min.js:1)at t.Signal.t.Param.targetRampTo (Tone.min.js:1) at t.AmplitudeEnvelope.t.Envelope.triggerAttack (Tone.min.js:1) at t.Synth._triggerEnvelopeAttack (Tone.min.js:1) at t.Synth.t.Monophonic.triggerAttack (Tone.min.js:1) at t.Synth.t.Instrument.triggerAttackRelease (Tone.min.js:1) at t.Loop.callback (DroneTones.js:31) at t.Loop._tick (Tone.min.js:1) at t.Event._tick (Tone.min.js:1)
+		decayCurve: 'exponential',
+		releaseCurve: 'exponential'
+	},
 }
 
 // GENERAL FUNCTIONS
@@ -47,7 +64,7 @@ DroneTones.loop = new Tone.Loop(function (time) {
 	if (beat < this._synths.length) {
 		this._synths[beat].detune.value = this._tuning + this._detunings[beat] // 400
 		this._synths[beat].triggerAttackRelease(this._basePitch,8) // pitches[beat], 8)
-		// console.log(this._synths[beat].oscillator.type)
+		console.log(this._synths[beat].oscillator.type)
 	}
 	this._counter++
 }.bind(DroneTones))
@@ -70,8 +87,6 @@ DroneTones.stop = function() {
 // INITIALIZE IT. AND I'LL ADVERTIZE IT.
 
 DroneTones.init = function() { // arrow function not working here, why?
-	console.log(this)
-
 	// SET UP SYNTHS
 	for (let i = 0; i < 4; i++) {
 		this.addSynth()
@@ -125,7 +140,7 @@ DroneTones.init = function() { // arrow function not working here, why?
 
 	// https://www.reddit.com/r/chrome/comments/ca8uxk/windowaddeventlistener_suddenly_not_working/
 	window.addEventListener('keydown', function(e){
-		console.log('this', this, 'e', e)
+		// console.log('this', this, 'e', e)
 		if (e.key===' ' && this._started) {
 			this.stop()
 		} else if (e.key===' ') {

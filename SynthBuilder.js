@@ -1,13 +1,21 @@
 DroneTones.SynthBuilder = function() {
 
-	const { sine, triangle, sawtooth, square } = DroneTones.synthParams
-	const synthTypes = [sine, triangle, sawtooth, square]
+	const synthOptions = DroneTones._activeSynthOptions
 
-	if (Math.random()<0.4) {
-		this._synth = new Tone.Synth(synthTypes[Math.floor(Math.random() * synthTypes.length)])
-	} else {
-		this._synth = new Tone.Synth(DroneTones.partialBuilders.Modulos(30, 30, 5, 0.1))
+	const chosenSynthOptions = []
+	for (const key in synthOptions) {
+		if (synthOptions[key] === true) { chosenSynthOptions.push(key) }
 	}
+
+	// OR use a do-while loop to randomly select true values from _activeSynthOptions with Object.keys?
+	// OR use .filter()
+		// const chosenSynthOptions = Object.keys(synthOptions)
+		// 	.filter(synthName => synthOptions[synthName] === true) // can reference array as argument
+
+	const synthType = chosenSynthOptions[Math.floor(Math.random() * chosenSynthOptions.length)]
+	const config = DroneTones.synthOptions[synthType]()
+	this._synth = new Tone.Synth(config)
+	console.log("synth type:", this._synth.oscillator.type)
 
 	//this._autoFilter = new Tone.AutoFilter("4n").start();
 	//this._tremolo = new Tone.Tremolo().start();

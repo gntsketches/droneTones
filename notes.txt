@@ -4,6 +4,7 @@ crackle tester: https://codepen.io/gntsketches/pen/QXBVdm
 
 
 TODO
+    delete synthParams & partialBuilder
     CSS
 	    more flexbox
 	    responsive
@@ -29,6 +30,8 @@ TODO
 
 TODO REFACTOR
 	more DOM caching
+
+
 
 WAITING FOR
     test & post re: crackle tester

@@ -4,8 +4,11 @@ crackle tester: https://codepen.io/gntsketches/pen/QXBVdm
 
 
 TODO
-    delete synthParams & partialBuilder
     CSS
+        understand :target
+        https://codepen.io/canis1980/pen/WaEXZz
+        https://www.sitepoint.com/media-queries-width-vs-device-width/
+        https://codepen.io/gntsketches/pen/wLbNqL?editors=0100
 	    more flexbox
 	    responsive
 	    align selects & tuners & range slider
@@ -32,6 +35,8 @@ TODO REFACTOR
 	more DOM caching
 
 
+
+https://blog.box.com/media-queries-things-i-wish-id-known
 
 WAITING FOR
     test & post re: crackle tester

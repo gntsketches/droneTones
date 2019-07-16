@@ -7,19 +7,30 @@
 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.4.10/Tone.min.js"></script>
 
+<meta name="viewport" content="width=device-width">
+<!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
+<!--    https://stackoverflow.com/questions/26888751/chrome-device-mode-emulation-media-queries-not-working-->
+
 <title>drones</title>
 
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="shared.css">
+<link rel="stylesheet" type="text/css" href="style-phone.css">
+<link rel="stylesheet" type="text/css" href="style-med-large.css">
+
 
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="header">
+    DroneTones
+</div>
 
-    <div class="header">
-        DroneTones
-    </div>
+<div id="options" class="wrapper-options page">
+
+</div>
+
+<div id="main" class="wrapper-main page default">
 
     <div class="option-item">
         <div class="option-item__label">Base Pitch</div>
@@ -77,8 +88,19 @@
         <button id="start_stop">Play</button>
     </div>
 
+
+
 </div>
 
+
+
+
+<nav>
+    <a href="#main">Main</a>
+    <a href="#options">Options</a>
+</nav>
+
+<!--*************************************************************************************************-->
 
 <script src="DroneTones.js"></script>
 <script src="constants.js"></script>

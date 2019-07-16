@@ -1,0 +1,20 @@
+
+@media (min-width:500px) {
+    body {
+        flex-direction: row-reverse;
+    }
+
+    .wrapper-main {
+        width: 65%;
+    }
+
+    .wrapper-options {
+        width: 35%;
+        height: 100vh;
+    }
+
+    nav {
+        display: none;
+    }
+
+}

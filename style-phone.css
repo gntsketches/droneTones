@@ -23,7 +23,7 @@ body {
     justify-content: flex-end;
 }
 
-.header {
+.title {
     position: fixed;
     top: 3vh;
     left: 5vh;
@@ -31,6 +31,7 @@ body {
     font-size: 6vh;
     font-weight: bold;
     color: chocolate;
+    background: #224422;
 }
 
 
@@ -144,7 +145,6 @@ body {
     background: #555;
 }
 
-
 nav {
     position: fixed;
     bottom: 0vh;
@@ -156,7 +156,7 @@ nav {
 
 nav a {
     height: 100%;
-    width: 50%;
+    width: 33%;
     text-align: center;
     font-size: 7vw;
     display: flex;
@@ -179,6 +179,20 @@ nav a {
 
     .default, :target {
         display: flex;
+    }
+
+    .toggle-about {
+        display: none;
+    }
+
+    .wrapper-about {
+        width: 100vw;
+        height: 100vh;
+        background: #55f;
+    }
+
+    .close-modal {
+        display: none
     }
 
 }

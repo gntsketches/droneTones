@@ -5,12 +5,14 @@ crackle tester: https://codepen.io/gntsketches/pen/QXBVdm
 
 TODO
     CSS
-        understand :target
+       clean
+            find css which can be "shared".
+            "about" page
+                on larger sizes, us JS to trigger a modal
+            review various units, etc.
         https://codepen.io/canis1980/pen/WaEXZz
         https://www.sitepoint.com/media-queries-width-vs-device-width/
         https://codepen.io/gntsketches/pen/wLbNqL?editors=0100
-	    more flexbox
-	    responsive
 	    align selects & tuners & range slider
 	"make it sound better"
         investigate why synth entrance sometimes 'pops'

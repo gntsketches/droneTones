@@ -21,11 +21,13 @@
         position: fixed;
         top: 3vh;
         right: 5vh;
-        font-family: sans-serif;
-        font-size: 6vh;
-        /*font-weight: bold;*/
+    }
+
+    .toggle-about a {
+        text-decoration: none;
         color: white;
-        background: #224422;
+        font-size: 6vh;
+        font-family: sans-serif;
     }
 
     .wrapper-about {
@@ -33,16 +35,38 @@
     }
 
     .wrapper-about:target {
+        display: flex;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .close-modal-background {
+        background: rgba(255, 255, 255, 0.5);
         display: block;
         position: fixed;
         width: 100vw;
         height: 100vh;
-        background: rgba(100, 100, 100, 0.8);
-        /*z-index: 1;*/
     }
 
-    .close-modal {
-        position: fixed;
+    .about-display {
+        z-index: 1;
+        width: 75vw; height: 75vh;
+        background: #555555;
+        position: relative;
+        border-radius: 10px;
+
+    }
+
+    .about-info {
+        font-size: 3vw;
+    }
+
+
+    .close-modal-x {
+        position: absolute;
         top: 3vh; right: 3vh;
         width: 10vh; height: 10vh;
         font-size: 10vh; text-decoration: none;
@@ -51,6 +75,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        border-radius: 10px;
     }
 
 

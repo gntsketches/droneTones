@@ -1,7 +1,7 @@
 
 @media (min-width:500px) {
     body {
-        flex-direction: row-reverse;
+        flex-direction: row;
     }
 
     .wrapper-main {
@@ -69,29 +69,12 @@
         position: absolute;
         top: 3vh; right: 3vh;
         width: 10vh; height: 10vh;
-        font-size: 10vh; text-decoration: none;
-        background: white;
-        color: black;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 10px;
+        font-size: 10vh;
+        cursor: pointer;
     }
 
 
-
-    /*.wrapper-about, .wrapper-about:target ~ .page {*/
-    /*    display: none*/
-    /*}*/
-
-    /*.page, .wrapper-about:target {*/
-    /*    display: flex;*/
-    /*}*/
-
 }
-
-/*.default, :target { display: flex; }*/
-/*.page, :target ~ .default { display: none }*/
 
 
 

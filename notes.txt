@@ -4,20 +4,24 @@ crackle tester: https://codepen.io/gntsketches/pen/QXBVdm
 
 
 TODO
+    you did cache the dom...: 	this._startStopButton = document.querySelector('#start_stop')
     CSS
        clean
+            checkboxes -
+                https://hackernoon.com/hacking-custom-checkboxes-and-radios-5d48230440d
+                    which used to have some code on the page...!
+                https://medium.com/claritydesignsystem/pure-css-accessible-checkboxes-and-radios-buttons-54063e759bb3
+                https://medium.com/@rjstech/styling-checkboxes-with-css-9c817bc049a0
             find css which can be "shared".
-            "about" page
-                on larger sizes, us JS to trigger a modal
             review various units, etc.
-        https://codepen.io/canis1980/pen/WaEXZz
+        https://dev.to/hakash/100-pure-htmlcss-page-navigation---no-javascript-required-2em5 (apparently doesn't need the part about the default page being last in the html)
         https://www.sitepoint.com/media-queries-width-vs-device-width/
         https://codepen.io/gntsketches/pen/wLbNqL?editors=0100
 	    align selects & tuners & range slider
 	"make it sound better"
-        investigate why synth entrance sometimes 'pops'
         hook attack & release to tempo
-        "you can try using Tone.Time('8n') or Tone.Time('8n').toSeconds() as a work-around for now"
+            "you can try using Tone.Time('8n') or Tone.Time('8n').toSeconds() as a work-around for now"
+        "smoother"?
         equalize volumes
             equalize PartialBuilder volume by basing it on partials.length?
         PartialBuilder types

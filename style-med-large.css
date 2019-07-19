@@ -4,6 +4,10 @@
         flex-direction: row;
     }
 
+    nav {
+        display: none;
+    }
+
     .wrapper-main {
         width: 65%;
     }
@@ -13,9 +17,14 @@
         height: 100vh;
     }
 
-    nav {
-        display: none;
+    label span {
+        font-size: 5vh;
     }
+
+
+
+
+    /*** ABOUT *****************************************************/
 
     .toggle-about{
         position: fixed;

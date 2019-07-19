@@ -44,8 +44,6 @@ nav a {
         display: flex;
     }
 
-
-
     .toggle-about {
         display: none;
     }
@@ -53,7 +51,6 @@ nav a {
     .close-modal-background, .close-modal-x {
         display: none;
     }
-
 
     .wrapper-about {
         width: 100vw;
@@ -63,6 +60,11 @@ nav a {
     .about-info {
         font-size: 6vw;
     }
+
+    label span {
+        font-size: 5vw;
+    }
+
 
 
 }

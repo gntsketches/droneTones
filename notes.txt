@@ -5,6 +5,11 @@ crackle tester: https://codepen.io/gntsketches/pen/QXBVdm
 
 TODO
     you did cache the dom...: 	this._startStopButton = document.querySelector('#start_stop')
+    if (not only one synth) ...
+    hitting space bar to start/stop vs  checkboxes
+        continue to cache the DOM
+    what if user changes checked items before pressing play?
+        build the synths array when play is pressed
     CSS
        clean
             checkboxes -

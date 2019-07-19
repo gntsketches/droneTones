@@ -11,12 +11,12 @@ let DroneTones = {
 	_detunings: [0, 1200, 1200, 1900],
 	_startStopButton: null,
 	_activeSynthOptions: {
-		'Modulos': true,
-		'Tens': true,
 		'Sine': true,
 		'Triangle': true,
 		'Sawtooth': true,
-		'Square': true,
+		'Square': false,
+		'Modulos': false,
+		'Tens': false,
 	},
 	_envelopeSettings: {
 		attack: 4,
@@ -83,71 +83,11 @@ DroneTones.stop = function() {
 	this.loop.stop()
 }
 
-
-// INITIALIZE IT. AND I'LL ADVERTIZE IT.
-
-DroneTones.init = function() { // arrow function not working here, why?
-	// SET UP SYNTHS
-	for (let i = 0; i < 4; i++) {
-		this.addSynth()
+DroneTones.changeActiveSynthOptions = function(e) {
+	if (true) {  // if there's not only one checked
+		this._activeSynthOptions[e.target.name] = e.target.checked
 	}
 
-	// INITIALIZE TRANSPORT
-	this.setSpeed()
-	Tone.Transport.start();
+}
 
-	// CACHE THE DOM
-	this._startStopButton = document.querySelector('#start_stop')
-
-	// SET HTML VALUES FROM STATE
-	document.querySelector('#base_pitch').value = this._basePitch
-	document.querySelector('#interval').value = this._interval
-	this.setTunings()
-	document.querySelector('#speed').value = this._speed
-
-
-	// ADD EVENT LISTENERS
-	document.querySelector('#start_stop').addEventListener('click', (e) => {
-		if (this._started === false) {
-			this.start()
-		} else {
-			this.stop()
-		}
-	})
-
-	document.querySelector('#base_pitch').addEventListener('change', (e) => {
-		this._basePitch = e.target.value
-	})
-
-	document.querySelector('#interval').addEventListener('change', (e) => {
-		this._detunings[3] = 1200 + DroneTones.constants.intervals[e.target.value]
-	})
-
-	document.querySelector('#tuning_minus').addEventListener('click', () => {
-		this.setTunings('minus')
-	})
-
-	document.querySelector('#tuning_plus').addEventListener('click', () => {
-		this.setTunings('plus')
-	})
-
-	document.querySelector('#speed').addEventListener('change', (e) => {
-		// console.log(e.target.value)
-		this._speed = e.target.value
-		this.setSpeed()
-	})
-
-
-	// https://www.reddit.com/r/chrome/comments/ca8uxk/windowaddeventlistener_suddenly_not_working/
-	window.addEventListener('keydown', function(e){
-		// console.log('this', this, 'e', e)
-		if (e.key===' ' && this._started) {
-			this.stop()
-		} else if (e.key===' ') {
-			this.start()
-		}
-	}.bind(this)) // .bind and arrow functions both ok :)
-
-
-} //*************************************************************************
 

@@ -7,19 +7,39 @@
 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.4.10/Tone.min.js"></script>
 
+<meta name="viewport" content="width=device-width">
+<!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
+<!--    https://stackoverflow.com/questions/26888751/chrome-device-mode-emulation-media-queries-not-working-->
+
 <title>drones</title>
 
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="shared.css">
+<link rel="stylesheet" type="text/css" href="style-phone.css">
+<link rel="stylesheet" type="text/css" href="style-med-large.css">
+
 
 </head>
 
 <body>
 
-<div class="wrapper">
 
-    <div class="header">
-        DroneTones
-    </div>
+<!-- HEADER *********************************************************************************************** -->
+
+
+<div class="title">
+    DroneTones
+</div>
+
+<div class="toggle-about">
+    <a href="#about">About</a>
+</div>
+
+
+
+<!-- MAIN *********************************************************************************************** -->
+
+
+<div id="main" class="wrapper-main page default">
 
     <div class="option-item">
         <div class="option-item__label">Base Pitch</div>
@@ -80,7 +100,84 @@
 </div>
 
 
+
+<!-- OPTIONS *********************************************************************************************** -->
+
+
+<div id="options" class="wrapper-options page">
+
+    <div class="options-container">
+        <label htmlFor="toggleSine">
+            <input class="check-custom" type="checkbox" id="toggleSine" name="Sine" />
+            <span class="check-toggle"></span>
+            <span>Sine</span>
+        </label>
+        <br>
+        <label htmlFor="toggleTriangle">
+            <input class="check-custom" type="checkbox" id="toggleTriangle" name="Triangle" />
+            <span class="check-toggle"></span>
+            <span>Triangle</span>
+        </label>
+        <br>
+        <label htmlFor="toggleSawtooth">
+            <input class="check-custom" type="checkbox" id="toggleSawtooth" name="Sawtooth" />
+            <span class="check-toggle"></span>
+            <span>Sawtooth</span>
+        </label>
+        <br>
+        <label htmlFor="toggleSquare">
+            <input class="check-custom" type="checkbox" id="toggleSquare" name="Square" />
+            <span class="check-toggle"></span>
+            <span>Square</span>
+        </label>
+        <br>
+        <label htmlFor="toggleModulos">
+            <input class="check-custom" type="checkbox" id="toggleModulos" name="Modulos" />
+            <span class="check-toggle"></span>
+            <span>Modulos</span>
+        </label>
+        <br>
+        <label htmlFor="toggleTens">
+            <input class="check-custom" type="checkbox" id="toggleTens" name="Tens" />
+            <span class="check-toggle"></span>
+            <span>Tens</span>
+        </label>
+    </div>
+
+</div>
+
+
+<!-- ABOUT *********************************************************************************************** -->
+
+
+<div id="about" class="wrapper-about page">
+    <a href="#main" class="close-modal-background"></a>
+    <div class="about-display">
+        <a href="#main" class="close-modal-x">X</a>
+        <div class="about-info">
+            <p>Creative Commons 2019<br/>Gregory N. Tippett</p>
+            <p><a href="https://gntsketches.com" target="_blank">www.gntsketches.com</a>
+            <p>on <a href="https://www.youtube.com/channel/UCsewkoqCYikz9Iy3fN4S9BA" target="_blank">Youtube</a>
+            <p>on <a href="https://github.com/gntsketches/" target="_blank">Github</a>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- MOBILE-NAVIGATION *********************************************************************************************** -->
+
+
+<nav>
+    <a href="#main">Main</a>
+    <a href="#options">Options</a>
+    <a href="#about">About</a>
+</nav>
+
+<!-- SCRIPTS *************************************************************************************************-->
+
 <script src="DroneTones.js"></script>
+<script src="init.js"></script>
 <script src="constants.js"></script>
 <script src="synthOptions.js"></script>
 <script src="SynthBuilder.js"></script>

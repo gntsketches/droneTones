@@ -13,17 +13,17 @@ let DroneTones = {
 	_activeSynthOptions: {
 		'Sine': false,
 		'Triangle': false,
-		'Sawtooth': true,
+		'Sawtooth': false,
 		'Square': false,
 		'Modulos': true,
 		'Tens': true,
 	},
 	_envelopeSettings: {
-		attack: 4,
+		attack: Tone.Time('4n'),
 		decay: 0,
 		sustain: 1,
-		release: 8,
-		attackCurve: 'linear', // 'exponential' gave error "time constant must be geater than zero at t.Signal.t.Param.setTargetAtTime (Tone.min.js:1) at t.Signal.t.Param.exponentialApproachValueAtTime (Tone.min.js:1)at t.Signal.t.Param.targetRampTo (Tone.min.js:1) at t.AmplitudeEnvelope.t.Envelope.triggerAttack (Tone.min.js:1) at t.Synth._triggerEnvelopeAttack (Tone.min.js:1) at t.Synth.t.Monophonic.triggerAttack (Tone.min.js:1) at t.Synth.t.Instrument.triggerAttackRelease (Tone.min.js:1) at t.Loop.callback (DroneTones.js:31) at t.Loop._tick (Tone.min.js:1) at t.Event._tick (Tone.min.js:1)
+		release: Tone.Time('2n'),
+		attackCurve: 'linear', // was using 'linear because 'exponential' previously gave error "time constant must be geater than zero at t.Signal.t.Param.setTargetAtTime (Tone.min.js:1) at t.Signal.t.Param.exponentialApproachValueAtTime (Tone.min.js:1)at t.Signal.t.Param.targetRampTo (Tone.min.js:1) at t.AmplitudeEnvelope.t.Envelope.triggerAttack (Tone.min.js:1) at t.Synth._triggerEnvelopeAttack (Tone.min.js:1) at t.Synth.t.Monophonic.triggerAttack (Tone.min.js:1) at t.Synth.t.Instrument.triggerAttackRelease (Tone.min.js:1) at t.Loop.callback (DroneTones.js:31) at t.Loop._tick (Tone.min.js:1) at t.Event._tick (Tone.min.js:1)
 		decayCurve: 'exponential',
 		releaseCurve: 'exponential'
 	},
@@ -50,24 +50,29 @@ DroneTones.addSynth = function() {
 }
 
 DroneTones.shiftSynths = function() {
-	this._synths[0].cleanup()
+	const synthToGo = this._synths[0]
+	setTimeout(()=>{
+		console.log('toGo', synthToGo)
+		synthToGo.cleanup()
+	}, 60000)
+	// this._synths[0].cleanup()
 	this._synths.shift()
 	this.addSynth()
 }
 
 DroneTones.loop = new Tone.Loop(function (time) {
-	console.log(time)
+	// console.log(time)
 	let  beat = this._counter % (this._synths.length + this._rests)
 	if (beat === 0) {
 		this.shiftSynths()
 	}
 	if (beat < this._synths.length) {
 		this._synths[beat].synth.detune.value = this._tuning + this._detunings[beat]
-		this._synths[beat].synth.triggerAttackRelease(this._basePitch, 8)
-		console.log(this._synths[beat].synth.oscillator.type)
+		this._synths[beat].synth.triggerAttackRelease(this._basePitch, 2*Tone.Time('4n') )
+		console.log(this._synths[beat].synth.oscillator.type, this._synths[beat].synth.oscillator.partials)
 	}
 	this._counter++
-}.bind(DroneTones))
+}.bind(DroneTones), '4n')
 
 
 DroneTones.start = function() {

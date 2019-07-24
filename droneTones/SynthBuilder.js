@@ -14,7 +14,7 @@ DroneTones.SynthBuilder = function() {
 	const synthType = chosenSynthOptions[Math.floor(Math.random() * chosenSynthOptions.length)]
 	const config = DroneTones.synthOptions[synthType]()
 	this.synth = new Tone.Synth(config)
-	console.log("synth type:", this.synth.oscillator.type)
+	// console.log("synth type:", this.synth.oscillator.type)
 
 	//this._autoFilter = new Tone.AutoFilter("4n").start();
 	//this._tremolo = new Tone.Tremolo().start();

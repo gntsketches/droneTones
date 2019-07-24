@@ -3,7 +3,8 @@
 
 
 TODO
-    cleaup method for SynthBuilder
+    experiment with overriding partials [10, 10, 10 etc], [100,100,100, etc]
+    build the selectable notes interface...
     https://groups.google.com/forum/#!newtopic/tonejs/tonejs/cfOamTAfwd8
     finish caching the dom...: 	this._startStopButton = document.querySelector('#start_stop')
     if (not only one synth) ...

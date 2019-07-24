@@ -13,7 +13,7 @@ DroneTones.synthOptions = {
         }
       }
     }
-    console.log('modulos', partials)
+    // console.log('modulos', partials)
     return {
       oscillator  : {
         type: 'sine',
@@ -28,13 +28,13 @@ DroneTones.synthOptions = {
     let partials = []
     for (var i=0; i < 20 ; i++) {
       if (Math.random()<0.1) {
-        console.log(i)
+        // console.log(i)
         for (var j=0; j<9; j++) {
           partials = [...partials, i*10 + j]
         }
       }
     }
-    console.log('tens', partials)
+    // console.log('tens', partials)
     return {
       oscillator  : {
         type: 'sine',
@@ -63,7 +63,7 @@ DroneTones.synthOptions = {
       oscillator: {
         type: 'sine',
       },
-      volume: 1,
+      volume: 7,
       envelope: DroneTones._envelopeSettings
     }
   },
@@ -73,7 +73,7 @@ DroneTones.synthOptions = {
       oscillator: {
         type: 'triangle',
       },
-      volume: 1,
+      volume: 5,
       envelope: DroneTones._envelopeSettings
     }
   },

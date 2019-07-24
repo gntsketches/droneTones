@@ -1,6 +1,8 @@
 
 DroneTones.init = function() { // arrow function not working here, why?
 
+  // console.log(Tone.Time('4n',4))
+
   // SET UP SYNTHS
   for (let i = 0; i < 4; i++) {
     this.addSynth()
@@ -59,6 +61,7 @@ DroneTones.init = function() { // arrow function not working here, why?
   document.querySelector('#speed').addEventListener('change', (e) => {
     // console.log(e.target.value)
     this._speed = e.target.value
+    console.log('bpm', this._speed)
     this.setSpeed()
   })
 

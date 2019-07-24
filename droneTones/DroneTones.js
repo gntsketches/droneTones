@@ -11,12 +11,12 @@ let DroneTones = {
 	_detunings: [0, 1200, 1200, 1900],
 	_startStopButton: null,
 	_activeSynthOptions: {
-		'Sine': true,
-		'Triangle': true,
+		'Sine': false,
+		'Triangle': false,
 		'Sawtooth': true,
 		'Square': false,
-		'Modulos': false,
-		'Tens': false,
+		'Modulos': true,
+		'Tens': true,
 	},
 	_envelopeSettings: {
 		attack: 4,
@@ -50,7 +50,7 @@ DroneTones.addSynth = function() {
 }
 
 DroneTones.shiftSynths = function() {
-	this._synths[0].dispose() // does this work? doesn't seem like it.
+	this._synths[0].cleanup()
 	this._synths.shift()
 	this.addSynth()
 }
@@ -62,14 +62,14 @@ DroneTones.loop = new Tone.Loop(function (time) {
 		this.shiftSynths()
 	}
 	if (beat < this._synths.length) {
-		this._synths[beat].detune.value = this._tuning + this._detunings[beat] // 400
-		this._synths[beat].triggerAttackRelease(this._basePitch,8) // pitches[beat], 8)
-		console.log(this._synths[beat].oscillator.type)
+		this._synths[beat].synth.detune.value = this._tuning + this._detunings[beat]
+		this._synths[beat].synth.triggerAttackRelease(this._basePitch, 8)
+		console.log(this._synths[beat].synth.oscillator.type)
 	}
 	this._counter++
 }.bind(DroneTones))
 
-// consider caching DOM?
+
 DroneTones.start = function() {
 	this._started = true
 	this._startStopButton.innerHTML = 'Stop'

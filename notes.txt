@@ -1,10 +1,11 @@
 
-https://codepen.io/gntsketches/pen/KjVdBm?editors=1010
-crackle tester: https://codepen.io/gntsketches/pen/QXBVdm
+
 
 
 TODO
-    you did cache the dom...: 	this._startStopButton = document.querySelector('#start_stop')
+    cleaup method for SynthBuilder
+    https://groups.google.com/forum/#!newtopic/tonejs/tonejs/cfOamTAfwd8
+    finish caching the dom...: 	this._startStopButton = document.querySelector('#start_stop')
     if (not only one synth) ...
     hitting space bar to start/stop vs  checkboxes
         continue to cache the DOM
@@ -49,11 +50,12 @@ TODO REFACTOR
 
 https://blog.box.com/media-queries-things-i-wish-id-known
 
-WAITING FOR
+CRACKLES AND STUFF
     test & post re: crackle tester
-        or at least just ask about if I'm doing .dispose() right
         https://groups.google.com/forum/#!topic/tonejs/zYlQupn-Jic
-
+        https://codepen.io/gntsketches/pen/KjVdBm?editors=1010
+        crackle tester: https://codepen.io/gntsketches/pen/QXBVdm
+    Dude, you're not disposing of the Chorus, Vibrato, or Gain...
 
 FUTURE
     UI / ADJUSTABLE

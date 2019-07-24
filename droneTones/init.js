@@ -83,6 +83,7 @@ DroneTones.init = function() { // arrow function not working here, why?
     this.changeActiveSynthOptions(e)
   })
 
+
   // https://www.reddit.com/r/chrome/comments/ca8uxk/windowaddeventlistener_suddenly_not_working/
   window.addEventListener('keydown', function(e){
     // console.log('this', this, 'e', e)

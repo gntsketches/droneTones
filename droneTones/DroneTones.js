@@ -14,9 +14,9 @@ let DroneTones = {
 		'Sine': false,
 		'Triangle': false,
 		'Sawtooth': false,
-		'Square': false,
-		'Modulos': true,
-		'Tens': true,
+		'Singles': true,
+		'Modulos': false,
+		'Tens': false,
 	},
 	_envelopeSettings: {
 		attack: Tone.Time('4n'),

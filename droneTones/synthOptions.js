@@ -2,15 +2,11 @@
 
 DroneTones.synthOptions = {
 
-  Modulos (rangeInTens=20, spread=10, modulo=1, odds=0.1) {
-    let partials = []
-    for (var i=0; i < rangeInTens ; i++) {
-      if (Math.random() < odds) {
-        for (var j=0; j < spread-1; j++) {
-          if (j % modulo === 0) {
-            partials = [...partials, i*10 + j]
-          }
-        }
+  Modulos (modulo=2, range=60) {
+    let partials = [1]
+    for (let i=1; i < range ; i++) {
+      if ((i+1) % modulo === 0) {
+        partials = [...partials, Math.random()]
       }
     }
     // console.log('modulos', partials)
@@ -25,16 +21,16 @@ DroneTones.synthOptions = {
   },
 
   Tens(){
-    let partials = []
-    for (var i=0; i < 20 ; i++) {
-      if (Math.random()<0.1) {
-        // console.log(i)
-        for (var j=0; j<9; j++) {
-          partials = [...partials, i*10 + j]
-        }
+    const rand = Math.random
+    let partials = [rand(), rand(), rand()]
+    for (let i=0; i < 33 ; i++) {
+      let num = 0
+      if (Math.random()<0.2) { num = rand() }
+      for (let j=0; j<3; j++) {
+        partials = [...partials, num]
       }
     }
-    // console.log('tens', partials)
+    console.log('tens', partials)
     return {
       oscillator  : {
         type: 'sine',
@@ -45,12 +41,41 @@ DroneTones.synthOptions = {
     }
   },
 
-  Singles(range=500){
-    let partials = [Math.random()]
+  // Tens(){ // wow, a lot of variety as Fives
+  //   const rand = Math.random
+  //   let partials = [rand(), rand(), rand(), rand(), rand()]
+  //   for (let i=0; i < 20 ; i++) {
+  //     let num = 0
+  //     if (Math.random()<0.2) { num = rand() }
+  //     for (let j=0; j<5; j++) {
+  //       partials = [...partials, num]
+  //     }
+  //   }
+  //   console.log('tens', partials)
+  //   return {
+  //     oscillator  : {
+  //       type: 'sine',
+  //       partials: partials
+  //     },
+  //     volume: -12,
+  //     envelope: DroneTones._envelopeSettings
+  //   }
+  // },
+
+  Singles(range=100){
+    let partials = []
+    for (let i=0; i < Math.floor(Math.random()*range); i++) {
+      partials.push(0)
+    }
+    partials.push(1)
+    partials.push(0)
+    partials.push(1)
+    // partials = [0,0,0,0,0,1,0,1] //nice
+    partials = [0,0,0,0,1,0,0,1]
     console.log('singles', partials)
     return {
       oscillator  : {
-        // type: 'sine',
+        type: 'sine',
         partials: partials
       },
       volume: 1,

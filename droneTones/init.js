@@ -17,7 +17,7 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._toggleSine = document.querySelector('#toggleSine')
   this._toggleTriangle = document.querySelector('#toggleTriangle')
   this._toggleSawtooth = document.querySelector('#toggleSawtooth')
-  this._toggleSquare = document.querySelector('#toggleSquare')
+  this._toggleSingles = document.querySelector('#toggleSingles')
   this._toggleModulos = document.querySelector('#toggleModulos')
   this._toggleTens = document.querySelector('#toggleTens')
 
@@ -29,7 +29,7 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._toggleSine.checked = this._activeSynthOptions.Sine
   this._toggleTriangle.checked = this._activeSynthOptions.Triangle
   this._toggleSawtooth.checked = this._activeSynthOptions.Sawtooth
-  this._toggleSquare.checked = this._activeSynthOptions.Square
+  this._toggleSingles.checked = this._activeSynthOptions.Singles
   this._toggleModulos.checked = this._activeSynthOptions.Modulos
   this._toggleTens.checked = this._activeSynthOptions.Tens
 
@@ -76,7 +76,7 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._toggleSawtooth.addEventListener('change', (e) => {
     this.changeActiveSynthOptions(e)
   })
-  this._toggleSquare.addEventListener('change', (e) => {
+  this._toggleSingles.addEventListener('change', (e) => {
     this.changeActiveSynthOptions(e)
   })
   this._toggleModulos.addEventListener('change', (e) => {

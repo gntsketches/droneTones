@@ -3,7 +3,14 @@
 
 
 TODO
-    experiment with overriding partials [10, 10, 10 etc], [100,100,100, etc]
+    make some better partial builders
+        maybe no sine, triangle, square...
+        Modulos
+        Clusters
+        Full drive
+        Sawtooth
+        Singles
+        OR you could totally specify the SWEEP (range) of the partials in the options section
     build the selectable notes interface...
     https://groups.google.com/forum/#!newtopic/tonejs/tonejs/cfOamTAfwd8
     finish caching the dom...: 	this._startStopButton = document.querySelector('#start_stop')

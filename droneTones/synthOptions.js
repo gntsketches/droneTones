@@ -70,8 +70,8 @@ DroneTones.synthOptions = {
     partials.push(1)
     partials.push(0)
     partials.push(1)
-    // partials = [0,0,0,0,0,1,0,1] //nice
-    partials = [0,0,0,0,1,0,0,1]
+    partials = [0,0,0,0,0,0.5,0,0.5] //nice, kinda distorted
+    // partials = [0,0,0,0,0.5,0.5,0,0,0.5] // also nice, also distorted
     console.log('singles', partials)
     return {
       oscillator  : {

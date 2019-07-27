@@ -146,6 +146,14 @@ body {
 
 
 
+/*** INTERVALS ***************************************************************/
+
+#intervalAddButton, #intervalRemoveButton {
+    background: white;
+    width: 4vw;
+    height: 2vw;
+    border: 1px solid blue;
+}
 
 
 /*** OPTIONS ***************************************************************************/

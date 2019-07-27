@@ -13,6 +13,9 @@ DroneTones.init = function() { // arrow function not working here, why?
   Tone.Transport.start();
 
   // CACHE THE DOM
+  this._intervalChooser = document.querySelector('#interval_chooser')
+  this._intervalAddButton = document.querySelector('#intervalAddButton')
+  this._intervalRemoveButton = document.querySelector('#intervalRemoveButton')
   this._startStopButton = document.querySelector('#start_stop')
   this._toggleSine = document.querySelector('#toggleSine')
   this._toggleTriangle = document.querySelector('#toggleTriangle')
@@ -26,6 +29,10 @@ DroneTones.init = function() { // arrow function not working here, why?
   document.querySelector('#interval').value = this._interval
   this.setTunings()
   document.querySelector('#speed').value = this._speed
+
+  // this.IntervalManager.createSelector()
+  this.IntervalManager.init()
+
   this._toggleSine.checked = this._activeSynthOptions.Sine
   this._toggleTriangle.checked = this._activeSynthOptions.Triangle
   this._toggleSawtooth.checked = this._activeSynthOptions.Sawtooth

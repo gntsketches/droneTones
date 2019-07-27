@@ -5,9 +5,10 @@ let DroneTones = {
 	_counter: 0,
 	_rests: 0, //3
 	_basePitch: 'G1',
-	_interval: 'Perfect 5',
 	_tuning: 0,
 	_speed: 15,
+	_interval: 'Perfect 5',
+	_intervals: ['Root', 'Sub','Root', 'P5'],
 	_detunings: [0, 1200, 1200, 1900],
 	_startStopButton: null,
 	_activeSynthOptions: {

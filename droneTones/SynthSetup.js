@@ -2,6 +2,8 @@
 DroneTones.SynthSetup = {
 
   createSelector(interval, addInterval) {
+    if (DroneTones._intervalChooser.children.length >= 8)
+    { return }
     const select = document.createElement('select')
     DroneTones.constants.selectOptions.forEach((opt) => {
       const option = document.createElement('option')

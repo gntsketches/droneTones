@@ -8,21 +8,25 @@ DroneTones.init = function() { // arrow function not working here, why?
     this.addSynth()
   }
 
+
   // INITIALIZE TRANSPORT
   this.setSpeed()
   Tone.Transport.start();
 
+
   // CACHE THE DOM
+
   this._intervalChooser = document.querySelector('#interval_choosers')
   this._intervalAddButton = document.querySelector('#intervalAddButton')
   this._intervalRemoveButton = document.querySelector('#intervalRemoveButton')
   this._startStopButton = document.querySelector('#start_stop')
-  this._toggleSine = document.querySelector('#toggleSine')
-  this._toggleTriangle = document.querySelector('#toggleTriangle')
+
   this._toggleSawtooth = document.querySelector('#toggleSawtooth')
+  this._toggleFullStops = document.querySelector('#toggleFullStops')
+  this._toggleRandomStops = document.querySelector('#toggleRandomStops')
+  this._toggleClusters = document.querySelector('#toggleClusters')
   this._toggleSingles = document.querySelector('#toggleSingles')
-  this._toggleModulos = document.querySelector('#toggleModulos')
-  this._toggleTens = document.querySelector('#toggleTens')
+
 
   // SET HTML VALUES FROM STATE
   document.querySelector('#base_pitch').value = this._basePitch
@@ -31,12 +35,12 @@ DroneTones.init = function() { // arrow function not working here, why?
 
   this.SynthSetup.init()
 
-  this._toggleSine.checked = this._activeSynthOptions.Sine
-  this._toggleTriangle.checked = this._activeSynthOptions.Triangle
   this._toggleSawtooth.checked = this._activeSynthOptions.Sawtooth
+  this._toggleFullStops.checked = this._activeSynthOptions.FullStops
+  this._toggleRandomStops.checked = this._activeSynthOptions.RandomStops
+  this._toggleClusters.checked = this._activeSynthOptions.Clusters
   this._toggleSingles.checked = this._activeSynthOptions.Singles
-  this._toggleModulos.checked = this._activeSynthOptions.Modulos
-  this._toggleTens.checked = this._activeSynthOptions.Tens
+
 
   // ADD EVENT LISTENERS
   this._startStopButton.addEventListener('click', (e) => {
@@ -63,23 +67,19 @@ DroneTones.init = function() { // arrow function not working here, why?
   })
 
 
-
-  this._toggleSine.addEventListener('change', (e) => {
-    this.changeActiveSynthOptions(e)
-  })
-  this._toggleTriangle.addEventListener('change', (e) => {
-    this.changeActiveSynthOptions(e)
-  })
   this._toggleSawtooth.addEventListener('change', (e) => {
     this.changeActiveSynthOptions(e)
   })
+  this._toggleFullStops.addEventListener('change', (e) => {
+    this.changeActiveSynthOptions(e)
+  })
+  this._toggleRandomStops.addEventListener('change', (e) => {
+    this.changeActiveSynthOptions(e)
+  })
+  this._toggleClusters.addEventListener('change', (e) => {
+    this.changeActiveSynthOptions(e)
+  })
   this._toggleSingles.addEventListener('change', (e) => {
-    this.changeActiveSynthOptions(e)
-  })
-  this._toggleModulos.addEventListener('change', (e) => {
-    this.changeActiveSynthOptions(e)
-  })
-  this._toggleTens.addEventListener('change', (e) => {
     this.changeActiveSynthOptions(e)
   })
 

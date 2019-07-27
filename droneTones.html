@@ -23,7 +23,9 @@
 <body>
 
 
-<!-- HEADER *********************************************************************************************** -->
+<!-- ***********************************************************************************************
+* HEADER
+*************************************************************************************************-->
 
 
 <div class="title">
@@ -36,52 +38,50 @@
 
 
 
-<!-- MAIN *********************************************************************************************** -->
+<!-- ***********************************************************************************************
+* MAIN
+**************************************************************************************************-->
 
 
 <div id="main" class="wrapper-main page default">
 
-    <div class="option-item">
-        <div class="option-item__label">Root Pitch</div>
-        <select id="base_pitch">
-            <option>B1</option>
-            <option>A#1</option>
-            <option>A1</option>
-            <option>G#1</option>
-            <option>G1</option>
-            <option>F#1</option>
-            <option>F1</option>
-            <option>E1</option>
-            <option>D#1</option>
-            <option>D1</option>
-            <option>C#1</option>
-            <option>C1</option>
-        </select>
-    </div>
-
-    <div class="interval-options">
-        <div class="interval-options_header">
-            <div class="interval-options_label">Drone Intervals</div>
-            <div id="intervalAddButton">Add</div>
-            <div id="intervalRemoveButton">Remove</div>
-        </div>
         <div id="interval_choosers"></div>
-    </div>
 
-    <div class="option-item">
-        <div class="option-item__label">Tune %</div>
-        <div class="tuning-controls">
-            <div id="tuning_minus" class="tuning-controls__minus">-</div>
-            <div id="tuning_value" class="tuning-controls__value">0</div>
-            <div id="tuning_plus" class="tuning-controls_plus">+</div>
+        <div class="intervalAddRemove">
+            <div id="intervalAddButton">Add Synth</div>
+            <div id="intervalRemoveButton">Remove Synth</div>
+        </div>
+
+    <div class="pitch-n-tune">
+        <div class="option-item">
+            <div class="option-item__label">Root Pitch</div>
+            <select id="base_pitch">
+                <option>B2</option>
+                <option>A#2</option>
+                <option>A2</option>
+                <option>G#2</option>
+                <option>G2</option>
+                <option>F#2</option>
+                <option>F2</option>
+                <option>E2</option>
+                <option>D#2</option>
+                <option>D2</option>
+                <option>C#2</option>
+                <option>C2</option>
+            </select>
+        </div>
+        <div class="option-item">
+            <div class="option-item__label">Tune %</div>
+            <div class="tuning-controls">
+                <div id="tuning_minus" class="tuning-controls__minus">-</div>
+                <div id="tuning_value" class="tuning-controls__value">0</div>
+                <div id="tuning_plus" class="tuning-controls_plus">+</div>
+            </div>
         </div>
     </div>
 
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range -->
-    <div class="option-item">
-        <div class="option-item__label">Speed</div>
-        <input type="range" id="speed" name="speed_slider" min="1" max="60" step="1" />
-    </div>
+
+
 
     <div class="start-stop">
         <button id="start_stop">Play</button>
@@ -91,48 +91,55 @@
 
 
 
-<!-- OPTIONS *********************************************************************************************** -->
+<!-- **********************************************************************************************
+* OPTIONS
+*********************************************************************************************** -->
 
 
 <div id="options" class="wrapper-options page">
 
     <div class="options-container">
-        <label htmlFor="toggleSine">
-            <input class="check-custom" type="checkbox" id="toggleSine" name="Sine" />
-            <span class="check-toggle"></span>
-            <span>Sine</span>
-        </label>
-        <label htmlFor="toggleTriangle">
-            <input class="check-custom" type="checkbox" id="toggleTriangle" name="Triangle" />
-            <span class="check-toggle"></span>
-            <span>Triangle</span>
-        </label>
+
         <label htmlFor="toggleSawtooth">
             <input class="check-custom" type="checkbox" id="toggleSawtooth" name="Sawtooth" />
             <span class="check-toggle"></span>
             <span>Sawtooth</span>
+        </label>
+        <label htmlFor="toggleFullStops">
+            <input class="check-custom" type="checkbox" id="toggleFullStops" name="FullStops" />
+            <span class="check-toggle"></span>
+            <span>Full Stops</span>
+        </label>
+        <label htmlFor="toggleRandomStops">
+            <input class="check-custom" type="checkbox" id="toggleRandomStops" name="RandomStops" />
+            <span class="check-toggle"></span>
+            <span>Random Stops</span>
+        </label>
+        <label htmlFor="toggleClusters">
+            <input class="check-custom" type="checkbox" id="toggleClusters" name="Clusters" />
+            <span class="check-toggle"></span>
+            <span>Clusters</span>
         </label>
         <label htmlFor="toggleSingles">
             <input class="check-custom" type="checkbox" id="toggleSingles" name="Singles" />
             <span class="check-toggle"></span>
             <span>Singles</span>
         </label>
-        <label htmlFor="toggleModulos">
-            <input class="check-custom" type="checkbox" id="toggleModulos" name="Modulos" />
-            <span class="check-toggle"></span>
-            <span>Modulos</span>
-        </label>
-        <label htmlFor="toggleTens">
-            <input class="check-custom" type="checkbox" id="toggleTens" name="Tens" />
-            <span class="check-toggle"></span>
-            <span>Tens</span>
-        </label>
     </div>
+
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range -->
+    <div class="speed">
+        <div class="speed__label">Speed</div>
+        <input type="range" id="speed" name="speed_slider" min="1" max="60" step="1" />
+    </div>
+
 
 </div>
 
 
-<!-- ABOUT *********************************************************************************************** -->
+<!-- **********************************************************************************************
+* ABOUT
+*********************************************************************************************** -->
 
 
 <div id="about" class="wrapper-about page">

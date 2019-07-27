@@ -7,17 +7,15 @@ let DroneTones = {
 	_basePitch: 'G1',
 	_tuning: 0,
 	_speed: 15,
-	_interval: 'Perfect 5',
 	_intervals: ['Root', 'Sub','Root', 'Rest'],
-	_detunings: [0, 1200, 1200, 1900],
 	_startStopButton: null,
 	_activeSynthOptions: {
 		'Sine': false,
 		'Triangle': false,
 		'Sawtooth': false,
-		'Singles': true,
-		'Modulos': false,
-		'Tens': false,
+		'Singles': false,
+		'Modulos': true,
+		'Tens': true,
 	},
 	_envelopeSettings: {
 		attack: Tone.Time('4n'),
@@ -50,19 +48,19 @@ DroneTones.addSynth = function() {
 	this._synths.push(synth)
 }
 
-DroneTones.popSynth = function() {
-	const synthToGo = this._synths[this._synths.length-1]
+DroneTones.stageCleanup = function(synthToGo) {
 	setTimeout(()=>{
 		synthToGo.cleanup()
-	}, 60000)
+	}, 20000)
+}
+
+DroneTones.popSynth = function() {
+	DroneTones.stageCleanup(DroneTones._synths[DroneTones._synths.length-1])
 	this._synths.pop()
 }
 
 DroneTones.shiftSynths = function() {
-	const synthToGo = this._synths[0]
-	setTimeout(()=>{
-		synthToGo.cleanup()
-	}, 60000)
+	DroneTones.stageCleanup(DroneTones._synths[0])
 	this._synths.shift()
 	this.addSynth()
 }

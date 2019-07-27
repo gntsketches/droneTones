@@ -42,7 +42,7 @@
 <div id="main" class="wrapper-main page default">
 
     <div class="option-item">
-        <div class="option-item__label">Base Pitch</div>
+        <div class="option-item__label">Root Pitch</div>
         <select id="base_pitch">
             <option>B1</option>
             <option>A#1</option>
@@ -59,29 +59,13 @@
         </select>
     </div>
 
-    <div class="option-item">
-        <div class="option-item__label">Interval</div>
-        <select id="interval">
-            <option>Octave</option>
-            <option>Major 7</option>
-            <option>minor 7</option>
-            <option>Major 6</option>
-            <option>minor 6</option>
-            <option>Perfect 5</option>
-            <option>Tritone</option>
-            <option>Perfect 4</option>
-            <option>Major 3</option>
-            <option>minor 3</option>
-            <option>Major 2</option>
-            <option>minor 2</option>
-            <option>Root</option>
-        </select>
-    </div>
-
-    <div class="interval_options">
-        <div id="interval_chooser"></div>
-        <div id="intervalAddButton">+</div>
-        <div id="intervalRemoveButton">-</div>
+    <div class="interval-options">
+        <div class="interval-options_header">
+            <div class="interval-options_label">Drone Intervals</div>
+            <div id="intervalAddButton">Add</div>
+            <div id="intervalRemoveButton">Remove</div>
+        </div>
+        <div id="interval_choosers"></div>
     </div>
 
     <div class="option-item">
@@ -160,6 +144,7 @@
             <p><a href="https://gntsketches.com" target="_blank">www.gntsketches.com</a>
             <p>on <a href="https://www.youtube.com/channel/UCsewkoqCYikz9Iy3fN4S9BA" target="_blank">Youtube</a>
             <p>on <a href="https://github.com/gntsketches/" target="_blank">Github</a>
+            <p>Some description of what is going on would probably be good.</p>
         </div>
     </div>
 </div>
@@ -179,7 +164,7 @@
 
 <script src="droneTones/DroneTones.js"></script>
 <script src="droneTones/constants.js"></script>
-<script src="droneTones/IntervalManager.js"></script>
+<script src="droneTones/SynthSetup.js"></script>
 <script src="droneTones/synthOptions.js"></script>
 <script src="droneTones/SynthBuilder.js"></script>
 <script src="droneTones/init.js"></script>

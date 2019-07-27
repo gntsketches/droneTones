@@ -13,7 +13,7 @@ DroneTones.init = function() { // arrow function not working here, why?
   Tone.Transport.start();
 
   // CACHE THE DOM
-  this._intervalChooser = document.querySelector('#interval_chooser')
+  this._intervalChooser = document.querySelector('#interval_choosers')
   this._intervalAddButton = document.querySelector('#intervalAddButton')
   this._intervalRemoveButton = document.querySelector('#intervalRemoveButton')
   this._startStopButton = document.querySelector('#start_stop')
@@ -26,12 +26,10 @@ DroneTones.init = function() { // arrow function not working here, why?
 
   // SET HTML VALUES FROM STATE
   document.querySelector('#base_pitch').value = this._basePitch
-  document.querySelector('#interval').value = this._interval
   this.setTunings()
   document.querySelector('#speed').value = this._speed
 
-  // this.IntervalManager.createSelector()
-  this.IntervalManager.init()
+  this.SynthSetup.init()
 
   this._toggleSine.checked = this._activeSynthOptions.Sine
   this._toggleTriangle.checked = this._activeSynthOptions.Triangle
@@ -47,14 +45,6 @@ DroneTones.init = function() { // arrow function not working here, why?
     } else {
       this.stop()
     }
-  })
-
-  document.querySelector('#base_pitch').addEventListener('change', (e) => {
-    this._basePitch = e.target.value
-  })
-
-  document.querySelector('#interval').addEventListener('change', (e) => {
-    this._detunings[3] = 1200 + DroneTones.constants.intervalToDetune[e.target.value]
   })
 
   document.querySelector('#tuning_minus').addEventListener('click', () => {

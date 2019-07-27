@@ -3,16 +3,16 @@
 
 
 TODO
+    move tuning and speed to options
     make some better partial builders
-        maybe no sine, triangle, square...
-        Modulos
-        Clusters
-        Full drive
         Sawtooth
-        Singles
-        OR you could totally specify the SWEEP (range) of the partials in the options section
+        Full drive - range
+        Randoms - range
+        Clusters - range
+        Singles - range
     Interval interface:
         seems to need refactoring... vis-a-vis init functions
+        seems like the confusion is about whether an item is in the HTML originally or added with JS
     https://groups.google.com/forum/#!newtopic/tonejs/tonejs/cfOamTAfwd8
     finish caching the dom...: 	this._startStopButton = document.querySelector('#start_stop')
     if (not only one synth) ...

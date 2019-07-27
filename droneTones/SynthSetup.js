@@ -1,5 +1,5 @@
 
-DroneTones.IntervalManager = {
+DroneTones.SynthSetup = {
 
   createSelector(interval, addInterval) {
     const select = document.createElement('select')
@@ -38,7 +38,7 @@ DroneTones.IntervalManager = {
     })
 
     DroneTones._intervalAddButton.addEventListener('click', () => {
-      this.createSelector('Root', true)
+      this.createSelector('Rest', true)
     })
 
     DroneTones._intervalRemoveButton.addEventListener('click', () => {

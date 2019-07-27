@@ -15,7 +15,10 @@ DroneTones.IntervalManager = {
       DroneTones._intervals[index] = e.target.value
     })
     DroneTones._intervalChooser.appendChild(select)
-    if (addInterval) { DroneTones._intervals.push(interval) }
+    if (addInterval) {
+      DroneTones._intervals.push(interval)
+      DroneTones.addSynth()
+    }
     console.log(DroneTones._intervals)
   },
 
@@ -24,6 +27,7 @@ DroneTones.IntervalManager = {
       DroneTones._intervalChooser.removeChild(DroneTones._intervalChooser.lastChild)
       DroneTones._intervals.pop()
       console.log(DroneTones._intervals)
+      DroneTones.popSynth()
     }
   },
 

@@ -54,7 +54,7 @@ DroneTones.init = function() { // arrow function not working here, why?
   })
 
   document.querySelector('#interval').addEventListener('change', (e) => {
-    this._detunings[3] = 1200 + DroneTones.constants.intervals[e.target.value]
+    this._detunings[3] = 1200 + DroneTones.constants.intervalToDetune[e.target.value]
   })
 
   document.querySelector('#tuning_minus').addEventListener('click', () => {

@@ -8,7 +8,7 @@ let DroneTones = {
 	_tuning: 0,
 	_speed: 15,
 	_interval: 'Perfect 5',
-	_intervals: ['Root', 'Sub','Root', 'P5'],
+	_intervals: ['Root', 'Sub','Root', 'Rest'],
 	_detunings: [0, 1200, 1200, 1900],
 	_startStopButton: null,
 	_activeSynthOptions: {
@@ -50,26 +50,34 @@ DroneTones.addSynth = function() {
 	this._synths.push(synth)
 }
 
+DroneTones.popSynth = function() {
+	const synthToGo = this._synths[this._synths.length-1]
+	setTimeout(()=>{
+		synthToGo.cleanup()
+	}, 60000)
+	this._synths.pop()
+}
+
 DroneTones.shiftSynths = function() {
 	const synthToGo = this._synths[0]
 	setTimeout(()=>{
-		console.log('toGo', synthToGo)
 		synthToGo.cleanup()
 	}, 60000)
-	// this._synths[0].cleanup()
 	this._synths.shift()
 	this.addSynth()
 }
 
 DroneTones.loop = new Tone.Loop(function (time) {
 	// console.log(time)
-	let  beat = this._counter % (this._synths.length + this._rests)
+	const beat = this._counter % (this._synths.length + this._rests)
 	if (beat === 0) {
 		this.shiftSynths()
 	}
-	if (beat < this._synths.length) {
-		this._synths[beat].synth.detune.value = this._tuning + this._detunings[beat]
-		this._synths[beat].synth.triggerAttackRelease(this._basePitch, 2*Tone.Time('4n') )
+	const synth = this._synths[beat]
+	const interval = this._intervals[beat]
+	if (beat < this._synths.length && interval !== 'Rest') {
+		synth.synth.detune.value = this._tuning + this.constants.intervalToDetune[this._intervals[beat]]
+		synth.synth.triggerAttackRelease(this._basePitch, 2*Tone.Time('4n') )
 		console.log(this._synths[beat].synth.oscillator.type, this._synths[beat].synth.oscillator.partials)
 	}
 	this._counter++

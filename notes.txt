@@ -11,7 +11,8 @@ TODO
         Sawtooth
         Singles
         OR you could totally specify the SWEEP (range) of the partials in the options section
-    build the selectable notes interface...
+    Interval interface:
+        seems to need refactoring... vis-a-vis init functions
     https://groups.google.com/forum/#!newtopic/tonejs/tonejs/cfOamTAfwd8
     finish caching the dom...: 	this._startStopButton = document.querySelector('#start_stop')
     if (not only one synth) ...

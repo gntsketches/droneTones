@@ -1,10 +1,10 @@
 DroneTones.constants = {
 
   selectOptions: [
-    'Rest', 'Sub', 'Root', 'm2', 'M2', 'm3', 'M3', 'P4', 'b5', 'P5', 'm6', 'M6', 'm7', 'M7', '8va'
+    'Rest', 'Sub', 'Root', 'm2', 'M2', 'm3', 'M3', 'P4', '#4/b5', 'P5', 'm6', 'M6', 'm7', 'M7', '8va'
   ],
 
-  intervals: {
+  intervalToDetune: {
     'Sub': -1200,
     'Root': 0,
     'm2': 100,
@@ -12,7 +12,7 @@ DroneTones.constants = {
     'm3': 300,
     'M3': 400,
     'P4': 500,
-    'b5': 600,
+    '#4/b5': 600,
     'P5': 700,
     'm6': 800,
     'M6': 900,
@@ -22,7 +22,7 @@ DroneTones.constants = {
   }
 }
 
-// intervals: {
+// intervalToDetune: {
 //   'Root': 0,
 //     'minor 2': 100,
 //     'Major 2': 200,

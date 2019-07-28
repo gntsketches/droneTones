@@ -96,6 +96,7 @@ STUDY
     *** architecture questions ***
     accessing something by "going in from Global", eg: DroneTones.synthParams.envelopeSettings
 
+    why: if you don'have the default (Main) page wrapper div first instead of last, you can scroll up (but not) down from Options and About
     Loop not called without TriggerAttackRelease: https://github.com/Tonejs/Tone.js/issues/500
 
     why are arrow functions not working on DroneTone object?

@@ -38,6 +38,147 @@
 
 
 
+
+<!-- **********************************************************************************************
+* OPTIONS
+*********************************************************************************************** -->
+
+<div id="options" class="wrapper-options page">
+
+
+    <div class="options-page__title">Synth Overtone Options</div>
+
+
+    <div class="options-block">
+
+        <div class="options-block__option">
+            <span class="toggle_label">Sawtooth</span>
+            <label class="options-block__checkbox-container" htmlFor="toggleSawtooth">
+                <input class="check-custom" type="checkbox" id="toggleSawtooth" name="Sawtooth" />
+                <span class="check-toggle"></span>
+            </label>
+        </div>
+
+        <div class="options-block__option">
+            <span class="toggle_label">Full</span>
+            <label class="options-block__checkbox-container" htmlFor="toggleFullStops">
+                <input class="check-custom" type="checkbox" id="toggleFullStops" name="FullStops" />
+                <span class="check-toggle"></span>
+            </label>
+            <span class="options-block__input-label">Range:</span>
+            <input class="options-block__number" id="fullStopsRange" type="number" name="fullStops" step="1" min="1" />
+        </div>
+
+        <div class="options-block__option">
+            <span class="toggle_label">Random</span>
+            <label class="options-block__checkbox-container" htmlFor="toggleRandomStops">
+                <input class="check-custom" type="checkbox" id="toggleRandomStops" name="RandomStops" />
+                <span class="check-toggle"></span>
+            </label>
+            <span class="options-block__input-label">Range:</span>
+            <input class="options-block__number" id="randomStopsRange" type="number" name="randomStops" step="1" min="1"/>
+        </div>
+
+        <div class="options-block__option">
+            <span class="toggle_label">Clusters</span>
+            <label class="options-block__checkbox-container" htmlFor="toggleClusters">
+                <input class="check-custom" type="checkbox" id="toggleClusters" name="Clusters" />
+                <span class="check-toggle"></span>
+            </label>
+            <span class="options-block__input-label">Range:</span>
+            <input class="options-block__number" id="clustersRange" type="number" name="clusters" step="1" min="1" />
+        </div>
+
+        <div class="options-block__option">
+            <span class="toggle_label">Singles</span>
+            <label class="options-block__checkbox-container" htmlFor="toggleSingles">
+                <input class="check-custom" type="checkbox" id="toggleSingles" name="Singles" />
+                <span class="check-toggle"></span>
+            </label>
+            <span class="options-block__input-label">Range:</span>
+            <input class="options-block__number" id="singlesRange" type="number" name="singles" step="1" min="1" />
+        </div>
+
+    </div>
+
+
+    <div class="options-page__title">Synth Effects Options</div>
+
+
+    <div class="options-block">
+
+        <div class="options-block__option">
+            <span class="toggle_label">Vibrato</span>
+            <label class="options-block__checkbox-container" htmlFor="toggleRandomStops">
+                <input class="check-custom" type="checkbox" id="toggleRandomStops" name="RandomStops" />
+                <span class="check-toggle"></span>
+            </label>
+            <span class="options-block__input-label">Rate:</span>
+            <input class="options-block__number" id="randomStopsRange" type="number" name="randomStops" step="1" min="1"/>
+            <span class="options-block__input-label">Depth:</span>
+            <input class="options-block__number" id="randomStopsRange" type="number" name="randomStops" step="1" min="1"/>
+        </div>
+
+        <div class="options-block__option">
+            <span class="toggle_label">Chorus</span>
+            <label class="options-block__checkbox-container" htmlFor="toggleClusters">
+                <input class="check-custom" type="checkbox" id="toggleClusters" name="Clusters" />
+                <span class="check-toggle"></span>
+            </label>
+            <span class="options-block__input-label">Rate:</span>
+            <input class="options-block__number" id="clustersRange" type="number" name="clusters" step="1" min="1" />
+            <span class="options-block__input-label">Depth:</span>
+            <input class="options-block__number" id="clustersRange" type="number" name="clusters" step="1" min="1" />
+        </div>
+
+        <div class="options-block__option">
+            <span class="toggle_label">Filter</span>
+            <label class="options-block__checkbox-container" htmlFor="toggleSingles">
+                <input class="check-custom" type="checkbox" id="toggleSingles" name="Singles" />
+                <span class="check-toggle"></span>
+            </label>
+            <span class="options-block__input-label">Rate:</span>
+            <input class="options-block__number" id="singlesRange" type="number" name="singles" step="1" min="1" />
+            <span class="options-block__input-label">Depth:</span>
+            <input class="options-block__number" id="singlesRange" type="number" name="singles" step="1" min="1" />
+        </div>
+
+    </div>
+
+
+    <div class="options-page__title">Speed</div>
+
+
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range -->
+    <div class="speed">
+        <input type="range" id="speed" name="speed_slider" min="1" max="60" step="1" />
+    </div>
+
+
+</div>
+
+
+<!-- **********************************************************************************************
+* ABOUT
+*********************************************************************************************** -->
+
+
+<div id="about" class="wrapper-about page">
+    <a href="#main" class="close-modal-background"></a>
+    <div class="about-display">
+        <a href="#main" class="close-modal-x">X</a>
+        <div class="about-info">
+            <p>Creative Commons 2019<br/>Gregory N. Tippett</p>
+            <p><a href="https://gntsketches.com" target="_blank">www.gntsketches.com</a>
+            <p>on <a href="https://www.youtube.com/channel/UCsewkoqCYikz9Iy3fN4S9BA" target="_blank">Youtube</a>
+            <p>on <a href="https://github.com/gntsketches/" target="_blank">Github</a>
+            <p>Some description of what is going on would probably be good.</p>
+        </div>
+    </div>
+</div>
+
+
+
 <!-- ***********************************************************************************************
 * MAIN
 **************************************************************************************************-->
@@ -83,105 +224,12 @@
     </div>
 
 
-
-
     <div class="start-stop">
         <button id="start_stop">Play</button>
     </div>
 
 </div>
 
-
-
-<!-- **********************************************************************************************
-* OPTIONS
-*********************************************************************************************** -->
-
-
-<div id="options" class="wrapper-options page">
-
-    <div class="synth-partials">
-
-        <div class="synth-partials__title">Synth Overtone Options</div>
-
-        <div class="synth-partials__option">
-            <label class="synth-partials__checkbox-container" htmlFor="toggleSawtooth">
-                <span class="toggle_label">Sawtooth</span>
-                <input class="check-custom" type="checkbox" id="toggleSawtooth" name="Sawtooth" />
-                <span class="check-toggle"></span>
-            </label>
-        </div>
-
-        <div class="synth-partials__option">
-            <label class="synth-partials__checkbox-container" htmlFor="toggleFullStops">
-                <span class="toggle_label">Full</span>
-                <input class="check-custom" type="checkbox" id="toggleFullStops" name="FullStops" />
-                <span class="check-toggle"></span>
-            </label>
-            <span class="synth-partials__input-label">Range:</span>
-            <input class="synth-partials__number" type="number" />
-        </div>
-
-        <div class="synth-partials__option">
-            <label class="synth-partials__checkbox-container" htmlFor="toggleRandomStops">
-                <span class="toggle_label">Random</span>
-                <input class="check-custom" type="checkbox" id="toggleRandomStops" name="RandomStops" />
-                <span class="check-toggle"></span>
-            </label>
-            <span class="synth-partials__input-label">Range:</span>
-            <input class="synth-partials__number" type="number" />
-        </div>
-
-        <div class="synth-partials__option">
-            <label class="synth-partials__checkbox-container" htmlFor="toggleClusters">
-                <span class="toggle_label">Clusters</span>
-                <input class="check-custom" type="checkbox" id="toggleClusters" name="Clusters" />
-                <span class="check-toggle"></span>
-            </label>
-            <span class="synth-partials__input-label">Range:</span>
-            <input class="synth-partials__number" type="number" />
-        </div>
-
-        <div class="synth-partials__option">
-            <label class="synth-partials__checkbox-container" htmlFor="toggleSingles">
-                <span class="toggle_label">Singles</span>
-                <input class="check-custom" type="checkbox" id="toggleSingles" name="Singles" />
-                <span class="check-toggle"></span>
-            </label>
-            <span class="synth-partials__input-label">Range:</span>
-            <input class="synth-partials__number" type="number" />
-        </div>
-
-    </div>
-
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range -->
-    <div class="speed">
-        <div class="speed__label">Speed</div>
-        <input type="range" id="speed" name="speed_slider" min="1" max="60" step="1" />
-    </div>
-
-
-</div>
-
-
-<!-- **********************************************************************************************
-* ABOUT
-*********************************************************************************************** -->
-
-
-<div id="about" class="wrapper-about page">
-    <a href="#main" class="close-modal-background"></a>
-    <div class="about-display">
-        <a href="#main" class="close-modal-x">X</a>
-        <div class="about-info">
-            <p>Creative Commons 2019<br/>Gregory N. Tippett</p>
-            <p><a href="https://gntsketches.com" target="_blank">www.gntsketches.com</a>
-            <p>on <a href="https://www.youtube.com/channel/UCsewkoqCYikz9Iy3fN4S9BA" target="_blank">Youtube</a>
-            <p>on <a href="https://github.com/gntsketches/" target="_blank">Github</a>
-            <p>Some description of what is going on would probably be good.</p>
-        </div>
-    </div>
-</div>
 
 
 

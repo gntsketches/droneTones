@@ -16,8 +16,15 @@ let DroneTones = {
 		'Clusters': false,
 		'Singles': false,
 	},
-	_fullStopsRange: 20,
-	_randomStopsRange: 20,
+	_partialsRanges: {
+		'fullStops': 20,
+		'randomStops': 20,
+		'clusters': 20,
+		'singles': 20,
+	},
+	_effectSettings: {
+		'filter': 5 ,
+	},
 	_envelopeSettings: {
 		attack: Tone.Time('4n'),
 		decay: 0,
@@ -100,7 +107,10 @@ DroneTones.changeActiveSynthOptions = function(e) {
 	if (true) {  // if there's not only one checked
 		this._activeSynthOptions[e.target.name] = e.target.checked
 	}
+}
 
+DroneTones.changePartialsRanges = function(e) {
+	this._partialsRanges[e.target.name] = e.target.value
 }
 
 

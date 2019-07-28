@@ -27,6 +27,11 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._toggleClusters = document.querySelector('#toggleClusters')
   this._toggleSingles = document.querySelector('#toggleSingles')
 
+  this._fullStopsRange = document.querySelector('#fullStopsRange')
+  this._randomStopsRange = document.querySelector('#randomStopsRange')
+  this._clustersRange = document.querySelector('#clustersRange')
+  this._singlesRange = document.querySelector('#singlesRange')
+
 
   // SET HTML VALUES FROM STATE
   document.querySelector('#base_pitch').value = this._basePitch
@@ -41,8 +46,13 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._toggleClusters.checked = this._activeSynthOptions.Clusters
   this._toggleSingles.checked = this._activeSynthOptions.Singles
 
+  this._fullStopsRange.value = this._partialsRanges['fullStops']
+  this._randomStopsRange.value = this._partialsRanges['randomStops']
+  this._clustersRange.value = this._partialsRanges['clusters']
+  this._singlesRange.value = this._partialsRanges['singles']
 
   // ADD EVENT LISTENERS
+
   this._startStopButton.addEventListener('click', (e) => {
     if (this._started === false) {
       this.start()
@@ -82,6 +92,20 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._toggleSingles.addEventListener('change', (e) => {
     this.changeActiveSynthOptions(e)
   })
+
+  this._fullStopsRange.addEventListener('change', (e) => {
+    this.changePartialsRanges(e)
+  })
+  this._randomStopsRange.addEventListener('change', (e) => {
+    this.changePartialsRanges(e)
+  })
+  this._clustersRange.addEventListener('change', (e) => {
+    this.changePartialsRanges(e)
+  })
+  this._singlesRange.addEventListener('change', (e) => {
+    this.changePartialsRanges(e)
+  })
+
 
 
   // https://www.reddit.com/r/chrome/comments/ca8uxk/windowaddeventlistener_suddenly_not_working/

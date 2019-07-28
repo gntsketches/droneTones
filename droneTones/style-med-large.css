@@ -9,16 +9,19 @@
     }
 
     .wrapper-main {
-        width: 65%;
+        width: 50%;
     }
 
     .wrapper-options {
-        width: 35%;
+        width: 50%;
         height: 100vh;
     }
 
-    label span {
-        font-size: 5vh;
+
+    .toggle_label {
+
+        text-align: right;
+        font-size: 3vh;
     }
 
 

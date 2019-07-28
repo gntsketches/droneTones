@@ -55,20 +55,22 @@
     <div class="pitch-n-tune">
         <div class="option-item">
             <div class="option-item__label">Root Pitch</div>
-            <select id="base_pitch">
-                <option>B2</option>
-                <option>A#2</option>
-                <option>A2</option>
-                <option>G#2</option>
-                <option>G2</option>
-                <option>F#2</option>
-                <option>F2</option>
-                <option>E2</option>
-                <option>D#2</option>
-                <option>D2</option>
-                <option>C#2</option>
-                <option>C2</option>
-            </select>
+            <div class="select-container">
+                <select id="base_pitch">
+                    <option>B2</option>
+                    <option>A#2</option>
+                    <option>A2</option>
+                    <option>G#2</option>
+                    <option>G2</option>
+                    <option>F#2</option>
+                    <option>F2</option>
+                    <option>E2</option>
+                    <option>D#2</option>
+                    <option>D2</option>
+                    <option>C#2</option>
+                    <option>C2</option>
+                </select>
+            </div>
         </div>
         <div class="option-item">
             <div class="option-item__label">Tuning %</div>
@@ -98,33 +100,58 @@
 
 <div id="options" class="wrapper-options page">
 
-    <div class="options-container">
+    <div class="synth-partials">
 
-        <label htmlFor="toggleSawtooth">
-            <input class="check-custom" type="checkbox" id="toggleSawtooth" name="Sawtooth" />
-            <span class="check-toggle"></span>
-            <span>Sawtooth</span>
-        </label>
-        <label htmlFor="toggleFullStops">
-            <input class="check-custom" type="checkbox" id="toggleFullStops" name="FullStops" />
-            <span class="check-toggle"></span>
-            <span>Full Stops</span>
-        </label>
-        <label htmlFor="toggleRandomStops">
-            <input class="check-custom" type="checkbox" id="toggleRandomStops" name="RandomStops" />
-            <span class="check-toggle"></span>
-            <span>Random Stops</span>
-        </label>
-        <label htmlFor="toggleClusters">
-            <input class="check-custom" type="checkbox" id="toggleClusters" name="Clusters" />
-            <span class="check-toggle"></span>
-            <span>Clusters</span>
-        </label>
-        <label htmlFor="toggleSingles">
-            <input class="check-custom" type="checkbox" id="toggleSingles" name="Singles" />
-            <span class="check-toggle"></span>
-            <span>Singles</span>
-        </label>
+        <div class="synth-partials__title">Synth Overtone Options</div>
+
+        <div class="synth-partials__option">
+            <label class="synth-partials__checkbox-container" htmlFor="toggleSawtooth">
+                <span class="toggle_label">Sawtooth</span>
+                <input class="check-custom" type="checkbox" id="toggleSawtooth" name="Sawtooth" />
+                <span class="check-toggle"></span>
+            </label>
+        </div>
+
+        <div class="synth-partials__option">
+            <label class="synth-partials__checkbox-container" htmlFor="toggleFullStops">
+                <span class="toggle_label">Full</span>
+                <input class="check-custom" type="checkbox" id="toggleFullStops" name="FullStops" />
+                <span class="check-toggle"></span>
+            </label>
+            <span class="synth-partials__input-label">Range:</span>
+            <input class="synth-partials__number" type="number" />
+        </div>
+
+        <div class="synth-partials__option">
+            <label class="synth-partials__checkbox-container" htmlFor="toggleRandomStops">
+                <span class="toggle_label">Random</span>
+                <input class="check-custom" type="checkbox" id="toggleRandomStops" name="RandomStops" />
+                <span class="check-toggle"></span>
+            </label>
+            <span class="synth-partials__input-label">Range:</span>
+            <input class="synth-partials__number" type="number" />
+        </div>
+
+        <div class="synth-partials__option">
+            <label class="synth-partials__checkbox-container" htmlFor="toggleClusters">
+                <span class="toggle_label">Clusters</span>
+                <input class="check-custom" type="checkbox" id="toggleClusters" name="Clusters" />
+                <span class="check-toggle"></span>
+            </label>
+            <span class="synth-partials__input-label">Range:</span>
+            <input class="synth-partials__number" type="number" />
+        </div>
+
+        <div class="synth-partials__option">
+            <label class="synth-partials__checkbox-container" htmlFor="toggleSingles">
+                <span class="toggle_label">Singles</span>
+                <input class="check-custom" type="checkbox" id="toggleSingles" name="Singles" />
+                <span class="check-toggle"></span>
+            </label>
+            <span class="synth-partials__input-label">Range:</span>
+            <input class="synth-partials__number" type="number" />
+        </div>
+
     </div>
 
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range -->

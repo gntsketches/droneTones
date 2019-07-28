@@ -42,6 +42,7 @@ DroneTones.SynthBuilder = function() {
 	this.cleanup = () => {
 		this.synth.dispose()
 		this._gain.dispose()
+		this._autoFilter.dispose()
 		this._chorus.dispose()
 		this._vibrato.dispose()
 	}

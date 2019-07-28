@@ -1,16 +1,14 @@
 
 TODO
     clean up
+        adjust synth gain to proper synth count
         clean up names: intervalAdd etc. to add synth
         finish caching the dom...: 	this._startStopButton = document.querySelector('#start_stop')
         Interval interface:
             seems to need refactoring... vis-a-vis init functions
             seems like the confusion is about whether an item is in the HTML originally or added with JS
         "Options" page can become "Synths" for New Synthesizer Options (
-    boolean/checkbox for chorus, tremolo, other effects
-        start vibrato? comb over those effects
-        what is phaser?
-    move tuning and speed to options
+    boolean/checkbox for chorus, vibrato, other effects
     make some better partial builders
         Sawtooth
         FullStops - range
@@ -25,6 +23,7 @@ TODO
         build the synths array when play is pressed
     Shows shifting synths in the DOM with highlighting or synth names ... getting into jQ territory with some of this
     CSS
+        why did adding a container div to the select allow it to reach the specified (7vh - observed relative to the tuning divs) properly?
        clean
             checkboxes -
                 https://hackernoon.com/hacking-custom-checkboxes-and-radios-5d48230440d

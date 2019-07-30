@@ -1,6 +1,7 @@
 
 TODO
-    clean up
+    Test effect settings
+        clean up
         clean up names: intervalAdd etc. to add synth
         finish caching the dom...: 	this._startStopButton = document.querySelector('#start_stop')
         Interval interface:
@@ -38,6 +39,7 @@ TODO
     Final Cleanup
         naming conventions everywhere
         refactor - consider changeEffectSettings vs other types of state mod functions and their relation to naming conventions in DOM
+        _toggleFilter and others which use changeEffectSettings could be done with an array and a forEach...
     waiting for:
         Envelope 'Release' property does not accept '8n' string. #501 https://github.com/Tonejs/Tone.js/issues/501
             "you can try using Tone.Time('8n') or Tone.Time('8n').toSeconds() as a work-around for now"

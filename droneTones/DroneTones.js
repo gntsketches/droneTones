@@ -25,18 +25,18 @@ let DroneTones = {
 	_effectSettings: {
 		'vibrato': {
 			'on': true,
-			'rate': 5,
-			'depth': 5,
+			'rate': 1,
+			'depth': 0.5,
 		},
 		'chorus': {
 			'on': true,
-			'rate': 5,
-			'depth': 5,
+			'rate': 1,
+			'depth': 0.5,
 		},
 		'filter': {
 			'on': true,
-			'rate': 5,
-			'depth': 5,
+			'rate': 1,
+			'depth': 0.5,
 		},
 	},
 	_envelopeSettings: {
@@ -124,13 +124,14 @@ DroneTones.changeActiveSynthOptions = function(e) {
 }
 
 DroneTones.changePartialsRanges = function(e) {
-	this._partialsRanges[e.target.name] = e.target.value
+	this._partialsRanges[e.target.name] = parseInt(e.target.value, 10)
 }
 
 DroneTones.changeEffectSetting = function(e) {
 	const effect = e.target.name.split('-')[0]
 	const field = e.target.name.split('-')[1]
-	const value = field === 'on' ? e.target.checked : e.target.value
+	const value = field === 'on' ? e.target.checked : parseFloat(e.target.value)
 	this._effectSettings[effect][field] = value
+	console.log(this._effectSettings)
 }
 

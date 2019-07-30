@@ -359,6 +359,16 @@ input[type='checkbox'].check-custom:checked ~ .check-toggle {
 
 
 
+/*****************************************************************************
+* MISC
+******************************************************************************/
+
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    opacity: 1;
+}
 
 /*
 https://www.thesitewizard.com/css/mobile-friendly-responsive-design.shtml

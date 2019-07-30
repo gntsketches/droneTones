@@ -36,6 +36,15 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._toggleChorus = document.querySelector('#toggleChorus')
   this._toggleFilter = document.querySelector('#toggleFilter')
 
+  this._vibratoRate = document.querySelector('#vibratoRate')
+  this._chorusRate = document.querySelector('#chorusRate')
+  this._filterRate = document.querySelector('#filterRate')
+  this._vibratoDepth = document.querySelector('#vibratoDepth')
+  this._chorusDepth = document.querySelector('#chorusDepth')
+  this._filterDepth = document.querySelector('#filterDepth')
+
+
+
   // SET HTML VALUES FROM STATE
   document.querySelector('#base_pitch').value = this._basePitch
   this.setTunings()
@@ -57,6 +66,13 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._toggleVibrato.checked = this._effectSettings['vibrato']['on']
   this._toggleChorus.checked = this._effectSettings['chorus']['on']
   this._toggleFilter.checked = this._effectSettings['filter']['on']
+
+  this._vibratoRate.value = this._effectSettings['vibrato']['rate']
+  this._chorusRate.value = this._effectSettings['chorus']['rate']
+  this._filterRate.value = this._effectSettings['filter']['rate']
+  this._vibratoDepth.value = this._effectSettings['vibrato']['depth']
+  this._chorusDepth.value = this._effectSettings['chorus']['depth']
+  this._filterDepth.value = this._effectSettings['filter']['depth']
 
 
 
@@ -115,6 +131,7 @@ DroneTones.init = function() { // arrow function not working here, why?
     this.changePartialsRanges(e)
   })
 
+
   this._toggleVibrato.addEventListener('change', (e) => {
     this.changeEffectSetting(e)
   })
@@ -124,6 +141,26 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._toggleFilter.addEventListener('change', (e) => {
     this.changeEffectSetting(e)
   })
+
+  this._vibratoRate.addEventListener('change', (e) => {
+    this.changeEffectSetting(e)
+  })
+  this._chorusRate.addEventListener('change', (e) => {
+    this.changeEffectSetting(e)
+  })
+  this._filterRate.addEventListener('change', (e) => {
+    this.changeEffectSetting(e)
+  })
+  this._vibratoDepth.addEventListener('change', (e) => {
+    this.changeEffectSetting(e)
+  })
+  this._chorusDepth.addEventListener('change', (e) => {
+    this.changeEffectSetting(e)
+  })
+  this._filterDepth.addEventListener('change', (e) => {
+    this.changeEffectSetting(e)
+  })
+
 
 
   // https://www.reddit.com/r/chrome/comments/ca8uxk/windowaddeventlistener_suddenly_not_working/

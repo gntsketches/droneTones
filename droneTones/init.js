@@ -32,6 +32,9 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._clustersRange = document.querySelector('#clustersRange')
   this._singlesRange = document.querySelector('#singlesRange')
 
+  this._toggleVibrato = document.querySelector('#toggleVibrato')
+  this._toggleChorus = document.querySelector('#toggleChorus')
+  this._toggleFilter = document.querySelector('#toggleFilter')
 
   // SET HTML VALUES FROM STATE
   document.querySelector('#base_pitch').value = this._basePitch
@@ -50,6 +53,12 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._randomStopsRange.value = this._partialsRanges['randomStops']
   this._clustersRange.value = this._partialsRanges['clusters']
   this._singlesRange.value = this._partialsRanges['singles']
+
+  this._toggleVibrato.checked = this._effectSettings['vibrato']['on']
+  this._toggleChorus.checked = this._effectSettings['chorus']['on']
+  this._toggleFilter.checked = this._effectSettings['filter']['on']
+
+
 
   // ADD EVENT LISTENERS
 
@@ -106,6 +115,15 @@ DroneTones.init = function() { // arrow function not working here, why?
     this.changePartialsRanges(e)
   })
 
+  this._toggleVibrato.addEventListener('change', (e) => {
+    this.changeEffectSetting(e)
+  })
+  this._toggleChorus.addEventListener('change', (e) => {
+    this.changeEffectSetting(e)
+  })
+  this._toggleFilter.addEventListener('change', (e) => {
+    this.changeEffectSetting(e)
+  })
 
 
   // https://www.reddit.com/r/chrome/comments/ca8uxk/windowaddeventlistener_suddenly_not_working/

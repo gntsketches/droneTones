@@ -23,7 +23,21 @@ let DroneTones = {
 		'singles': 20,
 	},
 	_effectSettings: {
-		'filter': 5 ,
+		'vibrato': {
+			'on': true,
+			'rate': 5,
+			'depth': 5,
+		},
+		'chorus': {
+			'on': true,
+			'rate': 5,
+			'depth': 5,
+		},
+		'filter': {
+			'on': true,
+			'rate': 5,
+			'depth': 5,
+		},
 	},
 	_envelopeSettings: {
 		attack: Tone.Time('4n'),
@@ -84,7 +98,7 @@ DroneTones.loop = new Tone.Loop(function (time) {
 	if (beat < this._synths.length && interval !== 'Rest') {
 		synth.synth.detune.value = this._tuning + this.constants.intervalToDetune[this._intervals[beat]]
 		synth.synth.triggerAttackRelease(this._basePitch, 2*Tone.Time('4n') )
-		console.log(this._synths[beat].synth.oscillator.type, this._synths[beat].synth.oscillator.partials)
+		// console.log(this._synths[beat].synth.oscillator.type, this._synths[beat].synth.oscillator.partials)
 	}
 	this._counter++
 }.bind(DroneTones), '4n')
@@ -113,4 +127,10 @@ DroneTones.changePartialsRanges = function(e) {
 	this._partialsRanges[e.target.name] = e.target.value
 }
 
+DroneTones.changeEffectSetting = function(e) {
+	const effect = e.target.name.split('-')[0]
+	const field = e.target.name.split('-')[1]
+	const value = field === 'on' ? e.target.checked : e.target.value
+	this._effectSettings[effect][field] = value
+}
 

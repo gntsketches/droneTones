@@ -219,7 +219,7 @@ body {
     background: #444;
     display: flex;
     box-sizing: border-box;
-    padding: 5vw;
+    padding: 5vw 5vh;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
@@ -287,8 +287,8 @@ input[type='checkbox'].check-custom {
 }
 
 input[type='checkbox'].check-custom ~ .check-toggle {
-    width: 3vw;
-    height: 3vw;
+    width: 3vh;
+    height: 3vh;
     position: relative;
     display: inline-block;
     vertical-align: middle;

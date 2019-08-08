@@ -17,6 +17,17 @@ body {
     flex-direction: column;
 }
 
+/*https://dev.to/hakash/100-pure-htmlcss-page-navigation---no-javascript-required-2em5 (apparently doesn't need the part about the default page being last in the html. Update: yes it does, because otherwise you can scroll around on other 'pages')*/
+.page, :target ~ .default {
+    display: none
+}
+
+.default, :target {
+    display: flex;
+}
+
+
+
 .title {
     position: fixed;
     top: 3vh;
@@ -26,6 +37,10 @@ body {
     font-weight: bold;
     color: chocolate;
     /*background: #224422;*/
+}
+
+.toggle-about {
+    display: none;
 }
 
 .wrapper-main {
@@ -213,16 +228,23 @@ body {
 * OPTIONS
  **************************************************************************/
 
+label span {
+    font-size: 5vw;
+}
+/*this seems like it would be problematically nonspecific if the app gets much bigger */
+
 .wrapper-options {
     width: 100vw;
     height: 100vh;
     background: #444;
-    display: flex;
-    box-sizing: border-box;
     padding: 5vw 5vh;
+    box-sizing: border-box;
+    display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+    color: wheat;
+
     /*padding: 0 5vw 10vw 5vw;*/
 }
 
@@ -230,48 +252,44 @@ body {
     text-align: center;
     color: wheat;
     font-size: 3vh;
-    margin: 5vh 0 1vh 0;
+    margin: 0 0 1vh 0;
 }
-
 
 .options-block {
     /*width: 100%;*/
     /*height: 30%;*/
     padding: 1vh 5vw;
+    margin: 0 0 5vh 0;
     display: flex;
     flex-direction: column;
-    font-size: 2.5vh;
+    font-size: 1.8vh;
     background: #224422;
     border-radius: 10px;
 }
 
-
 .options-block__option {
     display: flex;
     margin-bottom: 0.5vh;
+    align-items: center;
 }
 
 .toggle_label {
-    display: block;
-    width: 30%;
-    /*background: #000;*/
-    color: wheat;
+    width: 20%;
     text-align: right;
 }
 
 label.options-block__checkbox-container {
-    display: block;
     margin-left: 2%;
 }
 
-
 .options-block__input-label {
     margin-left: 5%;
-    color: wheat;
 }
 
 .options-block__number {
     width: 15%;
+    /*color: black;*/
+        /*why not inheriting color from .wrapper-options?*/
     background: wheat;
 }
 
@@ -315,6 +333,11 @@ input[type='checkbox'].check-custom:checked ~ .check-toggle {
 }
 
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
 
 .speed {
     width: 100%;
@@ -341,6 +364,12 @@ input[type='checkbox'].check-custom:checked ~ .check-toggle {
 
 .wrapper-about {
     display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.close-modal-background, .close-modal-x {
+    display: none;
 }
 
 .about-display {
@@ -357,18 +386,47 @@ input[type='checkbox'].check-custom:checked ~ .check-toggle {
     font-weight: bold;
 }
 
+.about-info {
+    font-size: 6vw;
+}
+
 
 
 /*****************************************************************************
-* MISC
+* MOBILE NAV
 ******************************************************************************/
 
 
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    opacity: 1;
+nav {
+    position: fixed;
+    bottom: 0vh;
+    width: 100vw;
+    height: 10vh;
+    background: #777;
+    display: flex;
 }
+
+nav a {
+    height: 100%;
+    width: 33%;
+    text-align: center;
+    font-size: 7vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+/*nav a:hover {*/
+/*    background-color: rgba(0,0,0,0.1)*/
+/*}*/
+
+
+
+
+
 
 /*
 https://www.thesitewizard.com/css/mobile-friendly-responsive-design.shtml

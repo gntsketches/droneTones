@@ -1,5 +1,8 @@
 
 TODO
+    since you moved those phone styles into shared.css, you'll have to review them for broken things on large/landscape display
+    https://csswizardry.com/2012/06/single-direction-margin-declarations/
+   https://css-tricks.com/boxes-fill-height-dont-squish/
     clean up names: intervalAdd etc. to add synth
     finish caching the dom...: 	this._startStopButton = document.querySelector('#start_stop')
     Interval interface:
@@ -17,7 +20,6 @@ TODO
        clean
             find css which can be "shared".
             review various units, etc.
-        https://dev.to/hakash/100-pure-htmlcss-page-navigation---no-javascript-required-2em5 (apparently doesn't need the part about the default page being last in the html)
         https://www.sitepoint.com/media-queries-width-vs-device-width/
         https://codepen.io/gntsketches/pen/wLbNqL?editors=0100
 	    align selects & tuners & range slider

@@ -1,11 +1,23 @@
 
-@media (min-width:500px) {
+@media (min-width:600px) {
     body {
         flex-direction: row-reverse;
     }
 
+    .page, :target ~ .default {
+        display: flex;
+    }
+
     nav {
         display: none;
+    }
+
+    .toggle-about {
+        display: block;
+    }
+
+    .close-modal-background, .close-modal-x {
+        display: block;
     }
 
     .wrapper-main {
@@ -13,14 +25,12 @@
     }
 
     .wrapper-options {
+        display: flex;
         width: 50%;
         height: 100vh;
     }
 
 
-    .toggle_label {
-
-    }
 
 
 
@@ -73,7 +83,6 @@
     .about-info {
         font-size: 3vw;
     }
-
 
     .close-modal-x {
         position: absolute;

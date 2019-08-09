@@ -49,8 +49,8 @@ body {
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
-    padding: 5vw;
-    display: flex;
+    padding: 5vh 5%;
+    /*display: flex;*/
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
@@ -61,27 +61,28 @@ body {
 #interval_choosers {
     box-sizing: border-box;
     margin-bottom: 3vh;
-    padding: 6% 5%;
+    padding: 3vh 1% 0 2%;
     background: #224422;
     width: 100%;
     height: 20vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    /*align-items: center;*/
     border-radius: 10px;
 }
-
+/* re: width... 1% + 2% + 4(24%+1%) === looks perfect? flex must be smooshing things a bit?  */
 #interval_choosers select {
-    margin: 0 0 1vw 1vw;
+    margin: 0 1% 1vh 0;
     padding: 0;
-    width: 22%;
+    width: 24%;
     height: 7vh;
     font-size: 3vh;
     border: 0px solid blue;
     border-radius: 10px;
     text-align: center; /*of course not*/
     background: #555;
-    color: white;
+    color: wheat;
     font-family: Verdana;
     cursor: pointer;
 }
@@ -117,7 +118,7 @@ body {
 
 .pitch-n-tune {
     width: 100%;
-    margin-bottom: 3vh;
+    margin-bottom: 4vh;
     display: flex;
     justify-content: space-between;
 }
@@ -136,7 +137,7 @@ body {
     font-size: 3vh;
     text-align: right;
     margin: 0 0 1vw 0;
-    color: white;
+    color: wheat;
     user-select: none;
 }
 
@@ -153,7 +154,7 @@ body {
     text-align: center; /*of course not*/
     /*background: darkolivegreen;*/
     background: #555;
-    color: white;
+    color: wheat;
     font-family: Verdana;
     cursor: pointer;
 }
@@ -174,7 +175,7 @@ body {
     text-align: center;
     border-radius: 10px;
     background: chocolate;
-    color: #fcc;
+    color: wheat;
     width: 27%;
     /*height: 7vh;*/
     line-height: 7vh; /* https://css-tricks.com/centering-css-complete-guide/ */
@@ -210,7 +211,7 @@ body {
     border-radius: 20px;
     border: 0;
     background: chocolate; /*#d2691e*/
-    color: white;
+    color: wheat;
     cursor: pointer;
     font-family: Verdana;
     user-select: none;
@@ -237,9 +238,9 @@ label span {
     width: 100vw;
     height: 100vh;
     background: #444;
-    padding: 5vw 5vh;
+    padding: 5vh 5vw;
     box-sizing: border-box;
-    display: flex;
+    /*display: flex;*/
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
@@ -342,8 +343,8 @@ input[type=number]::-webkit-outer-spin-button {
 .speed {
     width: 100%;
     height: 8%;
-    margin: 0 5% 25% 5%;
-    color: white;
+    margin: 0 5% 10vh 5%;
+    color: wheat;
     background: chocolate;
     font-size: 4vh;
     border-radius: 10px;
@@ -354,6 +355,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .speed input {
     width:90%;
+    color: wheat;
 }
 
 
@@ -363,7 +365,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 .wrapper-about {
-    display: flex;
+    /*display: flex;*/
     width: 100vw;
     height: 100vh;
 }
@@ -375,7 +377,7 @@ input[type=number]::-webkit-outer-spin-button {
 .about-display {
     box-sizing: border-box;
     padding: 0 10vw;
-    color: white;
+    color: wheat;
     display: flex;
     align-items: center;
 }

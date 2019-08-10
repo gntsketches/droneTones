@@ -5,10 +5,6 @@ TODO
         change "options" in main page
         comb other css conventions
     JS
-        what if user changes checked items before pressing play?
-            build the synths array when play is pressed
-        glow!
-        https://groups.google.com/forum/#!newtopic/tonejs/tonejs/cfOamTAfwd8
     CSS
         why did adding a container div to the select allow it to reach the specified (7vh - observed relative to the tuning divs) properly?
        clean
@@ -100,6 +96,8 @@ STUDY
     why are arrow functions not working on DroneTone object?
         https://stackoverflow.com/questions/36717376/arrow-function-in-object-literal
         https://dmitripavlutin.com/when-not-to-use-arrow-functions-in-javascript/
+
+    https://groups.google.com/forum/#!newtopic/tonejs/tonejs/cfOamTAfwd8
 
 	https://2ality.com/2012/08/ids-are-global.html
 	https://stackoverflow.com/questions/3434278/do-dom-tree-elements-with-ids-become-global-variables

@@ -19,6 +19,7 @@ DroneTones.SynthSetup = {
     DroneTones._intervalChooser.appendChild(select)
     if (addInterval) {
       DroneTones._intervals.push(interval)
+      // can add selectors while playing
       DroneTones.addSynth()
     }
     // console.log(DroneTones._intervals)
@@ -33,11 +34,14 @@ DroneTones.SynthSetup = {
     }
   },
 
-  init() {
-
-    for (let i = 0; i < 4; i++) {
+  setUpSynths() {
+    DroneTones._synths = []
+    for (let i=0; i < DroneTones._intervals.length; i++) {
       DroneTones.addSynth()
     }
+  },
+
+  init() {
 
     DroneTones._intervals.forEach((interval) => {
       this.createSelector(interval)

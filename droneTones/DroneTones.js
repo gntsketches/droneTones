@@ -105,6 +105,7 @@ DroneTones.loop = new Tone.Loop(function (time) {
 
 
 DroneTones.start = function() {
+	DroneTones.SynthSetup.setUpSynths()
 	this._started = true
 	this._startStopButton.innerHTML = 'Stop'
 	Tone.context.resume()

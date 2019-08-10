@@ -19,8 +19,11 @@ DroneTones.constants = {
     'm7': 1000,
     'M7': 1100,
     '8va': 1200,
-  }
+  },
+
 }
+
+
 
 // intervalToDetune: {
 //   'Root': 0,

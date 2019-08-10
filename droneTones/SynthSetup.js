@@ -21,19 +21,23 @@ DroneTones.SynthSetup = {
       DroneTones._intervals.push(interval)
       DroneTones.addSynth()
     }
-    console.log(DroneTones._intervals)
+    // console.log(DroneTones._intervals)
   },
 
   removeSelector() {
     if (DroneTones._intervalChooser.children.length > 1) {
       DroneTones._intervalChooser.removeChild(DroneTones._intervalChooser.lastChild)
       DroneTones._intervals.pop()
-      console.log(DroneTones._intervals)
+      // console.log(DroneTones._intervals)
       DroneTones.popSynth()
     }
   },
 
   init() {
+
+    for (let i = 0; i < 4; i++) {
+      DroneTones.addSynth()
+    }
 
     DroneTones._intervals.forEach((interval) => {
       this.createSelector(interval)

@@ -115,13 +115,28 @@ DroneTones.stop = function() {
 	this._started = false
 	this._startStopButton.innerHTML = 'Play'
 	this.loop.stop()
+	this._synths.forEach((synth) => {
+		synth.synth.triggerRelease()
+	})
 }
 
 DroneTones.changeActiveSynthOptions = function(e) {
-	if (true) {  // if there's not only one checked
+	// if there's only one checked, prevent it from changing to false and check the toggle DOM element
+	if (DroneTones.getChosenSynthOptions().length === 1 && e.target.checked === false) {
+		DroneTones.constants.synthOptionToggleCorrespondence[e.target.name].checked = true
+	} else {
 		this._activeSynthOptions[e.target.name] = e.target.checked
 	}
 }
+
+DroneTones.getChosenSynthOptions = function() {
+	const synthOptions = DroneTones._activeSynthOptions
+	const chosenSynthOptions = []
+	for (const key in synthOptions) {
+		if (synthOptions[key] === true) { chosenSynthOptions.push(key) }
+	}
+	return chosenSynthOptions
+};
 
 DroneTones.changePartialsRanges = function(e) {
 	this._partialsRanges[e.target.name] = parseInt(e.target.value, 10)

@@ -1,12 +1,6 @@
 DroneTones.SynthBuilder = function() {
 
-	const synthOptions = DroneTones._activeSynthOptions
-
-	const chosenSynthOptions = []
-	for (const key in synthOptions) {
-		if (synthOptions[key] === true) { chosenSynthOptions.push(key) }
-	}
-
+	const chosenSynthOptions = DroneTones.getChosenSynthOptions()
 	const synthType = chosenSynthOptions[Math.floor(Math.random() * chosenSynthOptions.length)]
 	const config = DroneTones.synthOptions[synthType]()
 	this.synth = new Tone.Synth(config)
@@ -54,13 +48,7 @@ DroneTones.SynthBuilder = function() {
 		this._vibrato.dispose()
 	}
 
-
 	return this
 };
 
 
-// re: chosenSynthOptions:
-	// OR use a do-while loop to randomly select true values from _activeSynthOptions with Object.keys?
-	// OR use .filter()
-	// const chosenSynthOptions = Object.keys(synthOptions)
-	// 	.filter(synthName => synthOptions[synthName] === true) // can reference array as argument

@@ -1,13 +1,7 @@
 
 DroneTones.init = function() { // arrow function not working here, why?
 
-  // console.log(Tone.Time('4n',4))
-
-  // SET UP SYNTHS
-  for (let i = 0; i < 4; i++) {
-    this.addSynth()
-  }
-
+  console.log(Tone.Time('4n',4))
 
   // INITIALIZE TRANSPORT
   this.setSpeed()
@@ -15,11 +9,15 @@ DroneTones.init = function() { // arrow function not working here, why?
 
 
   // CACHE THE DOM
-
   this._intervalChooser = document.querySelector('#interval_choosers')
   this._intervalAddButton = document.querySelector('#intervalAddButton')
   this._intervalRemoveButton = document.querySelector('#intervalRemoveButton')
+
+  this._basePitchSelect = document.querySelector('#base_pitch')
+  this._tuningMinus = document.querySelector('#tuning_minus')
+  this._tuningPlus = document.querySelector('#tuning_plus')
   this._startStopButton = document.querySelector('#start_stop')
+  this._speedInput = document.querySelector('#speed')
 
   this._toggleSawtooth = document.querySelector('#toggleSawtooth')
   this._toggleFullStops = document.querySelector('#toggleFullStops')
@@ -44,13 +42,21 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._filterDepth = document.querySelector('#filterDepth')
 
 
+  // ADD A REPRESENTATION STRUCTURE FOR THE TOGGLES TO THE CONSTANTS OBJECT
+  DroneTones.constants.synthOptionToggleCorrespondence = {
+    'Sawtooth': DroneTones._toggleSawtooth,
+    'FullStops': DroneTones._toggleFullStops,
+    'RandomStops': DroneTones._toggleRandomStops,
+    'Clusters': DroneTones._toggleClusters,
+    'Singles': DroneTones._toggleSingles,
+  }
+
 
   // SET HTML VALUES FROM STATE
-  document.querySelector('#base_pitch').value = this._basePitch
+  this._basePitchSelect.value = this._basePitch
   this.setTunings()
-  document.querySelector('#speed').value = this._speed
-
-  this.SynthSetup.init()
+  this._speedInput.value = this._speed
+  this.setSpeed()
 
   this._toggleSawtooth.checked = this._activeSynthOptions.Sawtooth
   this._toggleFullStops.checked = this._activeSynthOptions.FullStops
@@ -75,8 +81,22 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._filterDepth.value = this._effectSettings['filter']['depth']
 
 
+  // SET UP SYNTHS AND SYNTH MANAGEMENT
+  this.SynthSetup.init()
+
 
   // ADD EVENT LISTENERS
+  this._basePitchSelect.addEventListener('change', (e) => {
+    this._basePitch = e.target.value
+  })
+
+  this._tuningMinus.addEventListener('click', () => {
+    this.setTunings('minus')
+  })
+
+  this._tuningPlus.addEventListener('click', () => {
+    this.setTunings('plus')
+  })
 
   this._startStopButton.addEventListener('click', (e) => {
     if (this._started === false) {
@@ -86,21 +106,12 @@ DroneTones.init = function() { // arrow function not working here, why?
     }
   })
 
-  document.querySelector('#tuning_minus').addEventListener('click', () => {
-    this.setTunings('minus')
-  })
-
-  document.querySelector('#tuning_plus').addEventListener('click', () => {
-    this.setTunings('plus')
-  })
-
-  document.querySelector('#speed').addEventListener('change', (e) => {
+  this._speedInput.addEventListener('change', (e) => {
     // console.log(e.target.value)
     this._speed = e.target.value
     console.log('bpm', this._speed)
     this.setSpeed()
   })
-
 
   this._toggleSawtooth.addEventListener('change', (e) => {
     this.changeActiveSynthOptions(e)
@@ -131,7 +142,6 @@ DroneTones.init = function() { // arrow function not working here, why?
     this.changePartialsRanges(e)
   })
 
-
   this._toggleVibrato.addEventListener('change', (e) => {
     this.changeEffectSetting(e)
   })
@@ -161,14 +171,14 @@ DroneTones.init = function() { // arrow function not working here, why?
     this.changeEffectSetting(e)
   })
 
-
-
   // https://www.reddit.com/r/chrome/comments/ca8uxk/windowaddeventlistener_suddenly_not_working/
   window.addEventListener('keydown', function(e){
     // console.log('this', this, 'e', e)
     if (e.key===' ' && this._started) {
+      e.preventDefault()
       this.stop()
     } else if (e.key===' ') {
+      e.preventDefault()
       this.start()
     }
   }.bind(this)) // .bind and arrow functions both ok :)

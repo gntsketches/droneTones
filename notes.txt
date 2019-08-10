@@ -1,20 +1,14 @@
 
 TODO
-    since you moved those phone styles into shared.css, you'll have to review them for broken things on large/landscape display
-    https://csswizardry.com/2012/06/single-direction-margin-declarations/
-   https://css-tricks.com/boxes-fill-height-dont-squish/
-    clean up names: intervalAdd etc. to add synth
-    finish caching the dom...: 	this._startStopButton = document.querySelector('#start_stop')
-    Interval interface:
-        seems to need refactoring... vis-a-vis init functions
-        seems like the confusion is about whether an item is in the HTML originally or added with JS
-    "Options" page can become "Synths" for New Synthesizer Options
-    https://groups.google.com/forum/#!newtopic/tonejs/tonejs/cfOamTAfwd8
-    if (not only one synth) ...
-    hitting space bar to start/stop vs  checkboxes
-        continue to cache the DOM
-    what if user changes checked items before pressing play?
-        build the synths array when play is pressed
+    clean up names:
+        intervalAdd etc. to add synth, both in CSS & JS
+        change "options" in main page
+        comb other css conventions
+    JS
+        what if user changes checked items before pressing play?
+            build the synths array when play is pressed
+        glow!
+        https://groups.google.com/forum/#!newtopic/tonejs/tonejs/cfOamTAfwd8
     CSS
         why did adding a container div to the select allow it to reach the specified (7vh - observed relative to the tuning divs) properly?
        clean
@@ -32,7 +26,6 @@ TODO
             equalize PartialBuilder volume by basing it on partials.length?
             compression?
         investigate the nature of volume and gain
-        rapid fade with stop
 	? hide elements prior to initialization
 	? use Bootstrap or something, like to make a pretty range slider
     ?     Shows shifting synths in the DOM with highlighting or synth names ... getting into jQ territory with some of this
@@ -40,21 +33,24 @@ TODO
         naming conventions everywhere
         refactor - consider changeEffectSettings vs other types of state mod functions and their relation to naming conventions in DOM
         _toggleFilter and others which use changeEffectSettings could be done with an array and a forEach...
+        ? "Options" page can become "Synths" for New Synthesizer Options
     Style Minutia
         Border radius on phone-landscape...
-    waiting for:
-        Envelope 'Release' property does not accept '8n' string. #501 https://github.com/Tonejs/Tone.js/issues/501
-            "you can try using Tone.Time('8n') or Tone.Time('8n').toSeconds() as a work-around for now"
-
 
 
 ALTERNATE VERSION
     all synths fire at once (or timeout to start)
-    rather than speed, there is a max and min timing for the ASDR
+    rather than speed, there is a max and min timing for the attack/release
+        min/max attack/release – one option for attack release or different for each
     once a synth volume goes to zero, it gets a new synthOptions setup
     the select elements representing the synths glow and fade with the volume!
         do you need jQ? can you do that on your own?
         can you do this with just css animation?
+    synth trigger options:
+        choose between synths playing randomly or firing in order (?)
+        random option - different attack release each time? or, synths in steady pulse rhythm - maybe change by increment
+
+
 
 https://blog.box.com/media-queries-things-i-wish-id-known
 
@@ -86,6 +82,13 @@ MISC
     https://www.fonts.com/font/virus-fonts/drone?QueryFontType=Web&src=GoogleWebFonts
     https://thedronetones.bandcamp.com
     can SynthBuilder accept an object for testing?
+
+    re: chosenSynthOptions:
+        OR use a do-while loop to randomly select true values from _activeSynthOptions with Object.keys?
+        OR use .filter()
+            const chosenSynthOptions = Object.keys(synthOptions)
+            .filter(synthName => synthOptions[synthName] === true) // can reference array as argument
+
 
 STUDY
     *** architecture questions ***

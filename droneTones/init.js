@@ -10,6 +10,7 @@ DroneTones.init = function() { // arrow function not working here, why?
 
   // CACHE THE DOM
   this._intervalChooser = document.querySelector('#interval_choosers')
+  this._intervalSelectors = [].slice.call(this._intervalChooser.children)
   this._intervalAddButton = document.querySelector('#intervalAddButton')
   this._intervalRemoveButton = document.querySelector('#intervalRemoveButton')
 
@@ -53,6 +54,11 @@ DroneTones.init = function() { // arrow function not working here, why?
 
 
   // SET HTML VALUES FROM STATE
+
+  this._intervalSelectors.forEach((select, index) => {
+    select.value = DroneTones._synthNests[index].interval
+  })
+
   this._basePitchSelect.value = this._basePitch
   this.setTunings()
   this._speedInput.value = this._speed

@@ -1,7 +1,7 @@
 DroneTones.constants = {
 
   selectOptions: [
-    'Rest', 'Sub', 'Root', 'm2', 'M2', 'm3', 'M3', 'P4', '#4/b5', 'P5', 'm6', 'M6', 'm7', 'M7', '8va'
+    'Off', 'Sub', 'Root', 'm2', 'M2', 'm3', 'M3', 'P4', '#4/b5', 'P5', 'm6', 'M6', 'm7', 'M7', '8va'
   ],
 
   intervalToDetune: {

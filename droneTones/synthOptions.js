@@ -1,7 +1,6 @@
-// unknown: will each synth need different envelope settings?
+// unknown: will each synthObject need different envelope settings?
 
 DroneTones.synthOptions = {
-
 
   Sawtooth() {
     return {
@@ -12,7 +11,6 @@ DroneTones.synthOptions = {
       envelope: DroneTones._envelopeSettings
     }
   },
-
 
   FullStops(){
     let partials = []

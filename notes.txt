@@ -1,37 +1,39 @@
 
 TODO
-    clean up names:
-        intervalAdd etc. to add synth, both in CSS & JS
-        change "options" in main page
-        comb other css conventions
-    JS
-    CSS
-        why did adding a container div to the select allow it to reach the specified (7vh - observed relative to the tuning divs) properly?
-       clean
-            find css which can be "shared".
-            review various units, etc.
-        https://www.sitepoint.com/media-queries-width-vs-device-width/
-        https://codepen.io/gntsketches/pen/wLbNqL?editors=0100
-	    align selects & tuners & range slider
-	"make it sound better"
-	    with that long timeout maybe you can have a longer release tail? (and correlate the timeout with the BPM...)
-        hook attack & release to tempo
-            "you can try using Tone.Time('8n') or Tone.Time('8n').toSeconds() as a work-around for now"
+
+
+    why did adding a container div to the select allow it to reach the specified (7vh - observed relative to the tuning divs) properly?
+    https://www.sitepoint.com/media-queries-width-vs-device-width/
+    https://codepen.io/gntsketches/pen/wLbNqL?editors=0100
+
+
+BETTER "make it sound better"
+
         "smoother"?
         equalize volumes
             equalize PartialBuilder volume by basing it on partials.length?
             compression?
         investigate the nature of volume and gain
+
+MAYBE
 	? hide elements prior to initialization
 	? use Bootstrap or something, like to make a pretty range slider
     ?     Shows shifting synths in the DOM with highlighting or synth names ... getting into jQ territory with some of this
-    Final Cleanup
-        naming conventions everywhere
-        refactor - consider changeEffectSettings vs other types of state mod functions and their relation to naming conventions in DOM
-        _toggleFilter and others which use changeEffectSettings could be done with an array and a forEach...
-        ? "Options" page can become "Synths" for New Synthesizer Options
-    Style Minutia
-        Border radius on phone-landscape...
+
+"FINAL" CLEANUP
+    change "options" naming in main page
+    intervalAdd etc. to add synth, both in CSS & JS
+    comb other css conventions
+    find css which can be "shared".
+    review various units, etc.
+    naming conventions everywhere
+    refactor - consider changeEffectSettings vs other types of state mod functions and their relation to naming conventions in DOM
+    _toggleFilter and others which use changeEffectSettings could be done with an array and a forEach...
+    ? "Options" page can become "Synths" for New Synthesizer Options
+
+
+STYLE MINUTIA
+    Border radius on phone-landscape...
 
 
 ALTERNATE VERSION
@@ -45,6 +47,7 @@ ALTERNATE VERSION
     synth trigger options:
         choose between synths playing randomly or firing in order (?)
         random option - different attack release each time? or, synths in steady pulse rhythm - maybe change by increment
+    HOW?
 
 
 

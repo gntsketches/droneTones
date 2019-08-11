@@ -34,12 +34,12 @@ DroneTones.SynthSetup = {
     }
   },
 
-  setUpSynths() {
-    DroneTones._synths = []
-    for (let i=0; i < DroneTones._intervals.length; i++) {
-      DroneTones.addSynth()
-    }
-  },
+  // setUpSynths() {
+  //   DroneTones._synths = []
+  //   for (let i=0; i < DroneTones._intervals.length; i++) {
+  //     DroneTones.addSynth()
+  //   }
+  // },
 
   init() {
 

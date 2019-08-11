@@ -64,18 +64,18 @@ Synth.prototype.setOscillatorType = function(type) {
 /*
 	// started work on these, but see drone_3.html 
 Synth.prototype.startTargets = function(effect) { //minVal, maxVal, mintime, maxtime) {
-	var synth = this
+	var synthObject = this
 	var val = Math.random();
 	var time = Math.random()*10000;
 	console.log("value", val)
 	switch(effect){
-		case 'autoFilter': synth._phaser.wet.exponentialRampTo(val, time); break;
-		case 'phaser': synth._phaser.wet.exponentialRampTo(val, time); break;
-		case 'vibrato': synth._phaser.wet.exponentialRampTo(val, time); break;
-		case 'volume': synth._phaser.wet.exponentialRampTo(val, time); break;
+		case 'autoFilter': synthObject._phaser.wet.exponentialRampTo(val, time); break;
+		case 'phaser': synthObject._phaser.wet.exponentialRampTo(val, time); break;
+		case 'vibrato': synthObject._phaser.wet.exponentialRampTo(val, time); break;
+		case 'volume': synthObject._phaser.wet.exponentialRampTo(val, time); break;
 	}
-		synth._timeout = setTimeout(function(){ 
-			synth.startTargets(effect)
+		synthObject._timeout = setTimeout(function(){
+			synthObject.startTargets(effect)
 		}, time);
 }
 Synth.prototype.clearTargets = function() {

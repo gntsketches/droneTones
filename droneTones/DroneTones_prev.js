@@ -1,15 +1,13 @@
 let DroneTones = {
 	// STATE
 	_started: false,
-	// _synths: [],
+	_synths: [],
 	_counter: 0,
-	_basePitch: 'B2',
+	_rests: 0, //3
+	_basePitch: 'G2',
 	_tuning: 0,
-	_riseMin: 1,
-	_riseMax: 5,
-	_fallMin: 1,
-	_fallMax: 5,
-	_intervals: ['Root', 'Sub','Root', 'P5', 'Off', 'Off', 'Off', 'Off'],
+	_speed: 15,
+	_intervals: ['Root', 'Sub','Root', 'Rest'],
 	_startStopButton: null,
 	_activeSynthOptions: {
 		'Sawtooth': true,
@@ -48,7 +46,7 @@ let DroneTones = {
 		release: Tone.Time('2n'),
 		attackCurve: 'linear', // was using 'linear because 'exponential' previously gave error "time constant must be geater than zero at t.Signal.t.Param.setTargetAtTime (Tone.min.js:1) at t.Signal.t.Param.exponentialApproachValueAtTime (Tone.min.js:1)at t.Signal.t.Param.targetRampTo (Tone.min.js:1) at t.AmplitudeEnvelope.t.Envelope.triggerAttack (Tone.min.js:1) at t.Synth._triggerEnvelopeAttack (Tone.min.js:1) at t.Synth.t.Monophonic.triggerAttack (Tone.min.js:1) at t.Synth.t.Instrument.triggerAttackRelease (Tone.min.js:1) at t.Loop.callback (DroneTones.js:31) at t.Loop._tick (Tone.min.js:1) at t.Event._tick (Tone.min.js:1)
 		decayCurve: 'exponential',
-		releaseCurve: 'linear' // somehow, linear actually sounds smoother tho...
+		releaseCurve: 'exponential'
 	},
 }
 
@@ -64,7 +62,7 @@ DroneTones.setTunings = function(tuning) {
 }
 
 DroneTones.setSpeed = function() {
-	// Tone.Transport.bpm.value = this._speed
+	Tone.Transport.bpm.value = this._speed
 }
 
 DroneTones.addSynth = function() {
@@ -89,22 +87,37 @@ DroneTones.shiftSynths = function() {
 	this.addSynth()
 }
 
+DroneTones.loop = new Tone.Loop(function (time) {
+	// console.log(time)
+	const beat = this._counter % (this._synths.length + this._rests)
+	if (beat === 0) {
+		this.shiftSynths()
+	}
+	const synth = this._synths[beat]
+	const interval = this._intervals[beat]
+	if (beat < this._synths.length && interval !== 'Rest') {
+		synth.synthObject.detune.value = this._tuning + this.constants.intervalToDetune[this._intervals[beat]]
+		synth.synthObject.triggerAttackRelease(this._basePitch, 2*Tone.Time('4n') )
+		// console.log(this._synths[beat].synthObject.oscillator.type, this._synths[beat].synthObject.oscillator.partials)
+	}
+	this._counter++
+}.bind(DroneTones), '4n')
+
+
 DroneTones.start = function() {
-	DroneTones.setUpSynths()
+	DroneTones.SynthSetup.setUpSynths()
 	this._started = true
 	this._startStopButton.innerHTML = 'Stop'
 	Tone.context.resume()
-	// this.loop.start(0)
-	DroneTones.startTimeouts()
+	this.loop.start(0)
 }
 
 DroneTones.stop = function() {
 	this._started = false
 	this._startStopButton.innerHTML = 'Play'
-	// this.loop.stop()
-	this._synthNests.forEach((nest) => {
-		clearTimeout(nest.timeout)
-		nest.synthObject.synth.triggerRelease()
+	this.loop.stop()
+	this._synths.forEach((synth) => {
+		synth.synthObject.triggerRelease()
 	})
 }
 

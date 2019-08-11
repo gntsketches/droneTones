@@ -80,18 +80,18 @@ Synth.prototype.startTargets = function(effect, minVal, maxVal, minTime, maxTime
 	switch(effect){
 		case 'autoFilter':
 			var val = getRandomArbitrary(minVal, maxVal);
-			synth._autoFilter.wet.exponentialRampTo(val, time); 
+			synthObject._autoFilter.wet.exponentialRampTo(val, time);
 			break;
 		case 'chorus':
 			var val = getRandomArbitrary(minVal, maxVal);
-			synth._chorus.wet.exponentialRampTo(val, time); 
+			synthObject._chorus.wet.exponentialRampTo(val, time);
 			break;
 		case 'vibrato':
-			synth._vibrato.wet.exponentialRampTo(val, time); 
+			synthObject._vibrato.wet.exponentialRampTo(val, time);
 			break;
 		case 'volume':
 			var val = Math.random();		
-			synth.volume.exponentialRampTo(val, time); 
+			synthObject.volume.exponentialRampTo(val, time);
 			break;
 	}*/
 	
@@ -107,7 +107,7 @@ Synth.prototype.clearTargets = function() {
 }
 
 	
-function Drone(numberOfSynths) {   // expand to accept array of synth types
+function Drone(numberOfSynths) {   // expand to accept array of synthObject types
 	this._synths = [];
 	this.init = function() {;
 		for(var i=0; i<numberOfSynths; i++){

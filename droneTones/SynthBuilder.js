@@ -4,7 +4,7 @@ DroneTones.SynthBuilder = function() {
 	const synthType = chosenSynthOptions[Math.floor(Math.random() * chosenSynthOptions.length)]
 	const config = DroneTones.synthOptions[synthType]()
 	this.synth = new Tone.Synth(config)
-	// console.log("synth type:", this.synth.oscillator.type)
+	// console.log("synthObject type:", this.synthObject.oscillator.type)
 
 	const vibratoSettings = DroneTones._effectSettings['vibrato']
 	this._vibrato = new Tone.Vibrato()

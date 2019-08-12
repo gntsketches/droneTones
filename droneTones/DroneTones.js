@@ -5,10 +5,10 @@ let DroneTones = {
 	_counter: 0,
 	_basePitch: 'B2',
 	_tuning: 0,
-	_riseMin: 1,
-	_riseMax: 5,
-	_fallMin: 1,
-	_fallMax: 5,
+	_riseMin: 4,
+	_riseMax: 8,
+	_fallMin: 4,
+	_fallMax: 8,
 	_intervals: ['Root', 'Sub','Root', 'P5', 'Off', 'Off', 'Off', 'Off'],
 	_startStopButton: null,
 	_activeSynthOptions: {
@@ -42,7 +42,7 @@ let DroneTones = {
 		},
 	},
 	_envelopeSettings: {
-		attack: Tone.Time('4n'),
+		rise: Tone.Time('4n'),
 		decay: 0,
 		sustain: 1,
 		release: Tone.Time('2n'),

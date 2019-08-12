@@ -3,8 +3,6 @@ DroneTones._synthNests = [
     interval: 'Root',
     timeout: null,
     synthObject: null,
-    attack: null,
-    release: null,
   },
   {
     interval: 'Sub',
@@ -84,17 +82,18 @@ DroneTones.assignTimeout = (phase, nestNumber, initialDelay) => {
       console.log('timeout in rise', nest.timeout)
       // clearTimeout(nest.timeout)
       DroneTones.switchSynth(nest)
-      nest.attack = getRandomInRange(DroneTones._riseMin, DroneTones._riseMax)
-      nest.release = getRandomInRange(DroneTones._fallMin, DroneTones._fallMax)
+      nest.rise = getRandomInRange(DroneTones._riseMin, DroneTones._riseMax)
+      nest.fall = getRandomInRange(DroneTones._fallMin, DroneTones._fallMax)
       const detune = DroneTones.constants.intervalToDetune[nest.interval] + DroneTones._tuning
       nest.synthObject.synth.detune.value = detune
-      nest.synthObject.synth.envelope.attack = nest.attack
-      nest.synthObject.synth.envelope.release = nest.release
+      nest.synthObject.synth.envelope.attack = nest.rise
+      nest.synthObject.synth.envelope.release = nest.fall
       nest.synthObject.synth.triggerAttack(DroneTones._basePitch)
       nest.timeout = setTimeout(()=>{
         DroneTones.assignTimeout('fall', nestNumber)
-      }, 1000 * nest.attack)
-      // get the corresponding intervalSelector and apply a glow animation
+      }, 1000 * nest.rise)
+      DroneTones._intervalSelectors[nestNumber].style.transitionDuration = nest.rise + 's'
+      DroneTones._intervalSelectors[nestNumber].classList.add('glow')
       break
     case 'fall':
       // clearTimeout(nest.timeout)
@@ -102,7 +101,9 @@ DroneTones.assignTimeout = (phase, nestNumber, initialDelay) => {
       nest.synthObject.synth.triggerRelease()
       nest.timeout = setTimeout(()=>{
         DroneTones.assignTimeout('rise', nestNumber)
-      }, 1000 * nest.release)
+      }, 1000 * nest.fall)
+      DroneTones._intervalSelectors[nestNumber].style.transitionDuration = nest.fall + 's'
+      DroneTones._intervalSelectors[nestNumber].classList.remove('glow')
       break
   }
 }

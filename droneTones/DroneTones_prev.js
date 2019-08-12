@@ -40,7 +40,7 @@ let DroneTones = {
 		},
 	},
 	_envelopeSettings: {
-		attack: Tone.Time('4n'),
+		rise: Tone.Time('4n'),
 		decay: 0,
 		sustain: 1,
 		release: Tone.Time('2n'),

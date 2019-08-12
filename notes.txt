@@ -1,5 +1,11 @@
 
 TODO
+    think twice Ralph Myerz & The Jack Herren Band
+
+GLOW
+   // https://css-tricks.com/controlling-css-animations-transitions-javascript/
+        // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
+          // https://codepen.io/gntsketches/pen/dxgQbr
 
 
     why did adding a container div to the select allow it to reach the specified (7vh - observed relative to the tuning divs) properly?
@@ -8,11 +14,11 @@ TODO
 
 
 BETTER "make it sound better"
-
-        "smoother"?
+        compression?
+        manging the psychology of cRaCKlE
+            https://codepen.io/gntsketches/pen/zgmmQW
         equalize volumes
             equalize PartialBuilder volume by basing it on partials.length?
-            compression?
         investigate the nature of volume and gain
 
 MAYBE
@@ -43,7 +49,10 @@ ALTERNATE VERSION
     once a synth volume goes to zero, it gets a new synthOptions setup
     the select elements representing the synths glow and fade with the volume!
         do you need jQ? can you do that on your own?
+            https://codepen.io/WebIsm/pen/pvVrgj
         can you do this with just css animation?
+            https://css-tricks.com/controlling-css-animations-transitions-javascript/
+                https://codepen.io/gntsketches/pen/KOGGYa
     synth trigger options:
         choose between synths playing randomly or firing in order (?)
         random option - different attack release each time? or, synths in steady pulse rhythm - maybe change by increment

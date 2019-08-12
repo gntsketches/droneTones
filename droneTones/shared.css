@@ -85,6 +85,13 @@ body {
     color: wheat;
     font-family: Verdana;
     cursor: pointer;
+    transition-property: background-color color;
+    transition-timing-function: ease-in-out;
+}
+
+#interval_choosers select.glow {
+    background: #fff;
+    color: #555;
 }
 
 .intervalAddRemove {

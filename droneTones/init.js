@@ -92,6 +92,14 @@ DroneTones.init = function() { // arrow function not working here, why?
 
 
   // ADD EVENT LISTENERS
+
+  this._intervalSelectors.forEach((select, index) => {
+    select.addEventListener('change', (e) => {
+      DroneTones._synthNests[index].interval = e.target.value
+      console.log(DroneTones._synthNests)
+    })
+  })
+
   this._basePitchSelect.addEventListener('change', (e) => {
     this._basePitch = e.target.value
   })

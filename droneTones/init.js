@@ -7,6 +7,8 @@ DroneTones.init = function() { // arrow function not working here, why?
   this.setSpeed()
   Tone.Transport.start();
 
+  // INITIALIZE THE SYNTHS
+  DroneTones.hookUpToneJS()
 
   // CACHE THE DOM
   this._intervalChooser = document.querySelector('#interval_choosers')

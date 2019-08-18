@@ -1,6 +1,8 @@
 
 TODO
     think twice Ralph Myerz & The Jack Herren Band
+    css kerning?
+
 
 GLOW
    // https://css-tricks.com/controlling-css-animations-transitions-javascript/

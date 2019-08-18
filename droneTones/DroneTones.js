@@ -3,7 +3,7 @@ let DroneTones = {
 	_started: false,
 	// _synths: [],
 	_counter: 0,
-	_basePitch: 'B2',
+	_basePitch: 'G2',
 	_tuning: 0,
 	_riseMin: 4,
 	_riseMax: 8,
@@ -42,7 +42,7 @@ let DroneTones = {
 		},
 	},
 	_envelopeSettings: {
-		rise: Tone.Time('4n'),
+		attack: Tone.Time('4n'),
 		decay: 0,
 		sustain: 1,
 		release: Tone.Time('2n'),
@@ -90,7 +90,8 @@ DroneTones.shiftSynths = function() {
 }
 
 DroneTones.start = function() {
-	DroneTones.setUpSynths()
+	// DroneTones.setUpSynths()
+		// don't think this function is actually needed... redundant because each synth is set up at rise
 	this._started = true
 	this._startStopButton.innerHTML = 'Stop'
 	Tone.context.resume()
@@ -104,7 +105,7 @@ DroneTones.stop = function() {
 	// this.loop.stop()
 	this._synthNests.forEach((nest) => {
 		clearTimeout(nest.timeout)
-		nest.synthObject.synth.triggerRelease()
+		nest.synthObject.triggerRelease()
 	})
 }
 

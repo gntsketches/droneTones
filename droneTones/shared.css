@@ -83,6 +83,10 @@ body {
     text-align: center; /*of course not*/
     background: #555;
     color: wheat;
+    text-shadow: -1px 1px 0 #555,
+                 1px 1px 0 #555,
+                 1px -1px 0 #555,
+                 -1px -1px 0 #555;
     font-family: Verdana;
     cursor: pointer;
     transition-property: background-color color;
@@ -91,7 +95,7 @@ body {
 
 #interval_choosers select.glow {
     background: #fff;
-    color: #555;
+    /*color: #555;*/
 }
 
 .intervalAddRemove {

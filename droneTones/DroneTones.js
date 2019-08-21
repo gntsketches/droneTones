@@ -5,11 +5,12 @@ let DroneTones = {
 	_counter: 0,
 	_basePitch: 'G2',
 	_tuning: 0,
+	_restMin: 0,
+	_restMax: 4,
 	_riseMin: 4,
 	_riseMax: 8,
 	_fallMin: 4,
 	_fallMax: 8,
-	_intervals: ['Root', 'Sub','Root', 'P5', 'Off', 'Off', 'Off', 'Off'],
 	_startStopButton: null,
 	_activeSynthOptions: {
 		'Sawtooth': true,
@@ -103,9 +104,13 @@ DroneTones.stop = function() {
 	this._started = false
 	this._startStopButton.innerHTML = 'Play'
 	// this.loop.stop()
-	this._synthNests.forEach((nest) => {
+	this._synthNests.forEach((nest, nestNumber) => {
 		clearTimeout(nest.timeout)
+		// assign a faster release value?
 		nest.synthObject.triggerRelease()
+		// same code as in 'fall' timeout... abstract to a function to make more DRY?
+		DroneTones._intervalSelectors[nestNumber].style.transitionDuration = nest.fall + 's'
+		DroneTones._intervalSelectors[nestNumber].classList.remove('glow')
 	})
 }
 

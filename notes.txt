@@ -1,6 +1,17 @@
 
 TODO
     think twice Ralph Myerz & The Jack Herren Band
+    add 'rest' case
+    remove 'speed' and add rise, fall, rest controls
+    hook up effects options inputs
+    refine the partials options
+    switch the interval selectors to note selectors & make the root pitch options to modulate-by-interval
+    review the styles and all the code in general
+    put it up live
+    get feedback
+
+DETAILS
+    stop pitches more quickly?
     css kerning?
 
 

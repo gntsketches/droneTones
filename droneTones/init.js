@@ -13,8 +13,6 @@ DroneTones.init = function() { // arrow function not working here, why?
   // CACHE THE DOM
   this._intervalChooser = document.querySelector('#interval_choosers')
   this._intervalSelectors = [].slice.call(this._intervalChooser.children)
-  this._intervalAddButton = document.querySelector('#intervalAddButton')
-  this._intervalRemoveButton = document.querySelector('#intervalRemoveButton')
 
   this._basePitchSelect = document.querySelector('#base_pitch')
   this._tuningMinus = document.querySelector('#tuning_minus')
@@ -54,7 +52,6 @@ DroneTones.init = function() { // arrow function not working here, why?
     'Singles': DroneTones._toggleSingles,
   }
 
-
   // SET HTML VALUES FROM STATE
 
   this._intervalSelectors.forEach((select, index) => {
@@ -89,16 +86,21 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._filterDepth.value = this._effectSettings['filter']['depth']
 
 
-  // SET UP SYNTHS AND SYNTH MANAGEMENT
-  this.SynthSetup.init()
-
-
   // ADD EVENT LISTENERS
 
   this._intervalSelectors.forEach((select, index) => {
+    // maybe this function should be described elsewhere...
     select.addEventListener('change', (e) => {
-      DroneTones._synthNests[index].interval = e.target.value
-      console.log(DroneTones._synthNests)
+      const nest = DroneTones._synthNests[index]
+      let toStart = false
+      if (nest.interval === 'Off') { toStart = true }
+      nest.interval = e.target.value
+      if (toStart) {
+        DroneTones.assignTimeout('rise', index)
+      }
+      if (DroneTones._started && e.target.value === 'Off') {
+        DroneTones.assignTimeout('fall', index)
+      }
     })
   })
 

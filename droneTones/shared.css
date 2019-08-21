@@ -80,13 +80,13 @@ body {
     font-size: 3vh;
     border: 0px solid blue;
     border-radius: 10px;
-    text-align: center; /*of course not*/
+    text-align: center; /* I think it's 'middle'... */
     background: #555;
     color: wheat;
-    text-shadow: -1px 1px 0 #555,
-                 1px 1px 0 #555,
-                 1px -1px 0 #555,
-                 -1px -1px 0 #555;
+    text-shadow: -1px 1px 1px #333,
+                 1px 1px 1px #333;
+                 /*1px -1px 0 #555,*/
+                 /*-1px -1px 0 #555;*/
     font-family: Verdana;
     cursor: pointer;
     transition-property: background-color color;
@@ -97,35 +97,6 @@ body {
     background: #fff;
     /*color: #555;*/
 }
-
-.intervalAddRemove {
-    margin-bottom: 3vh;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-
-    /*background: #000;*/
-}
-
-#intervalAddButton,
-#intervalRemoveButton {
-    text-align: center;
-    border-radius: 10px;
-    background: chocolate;
-    color: #fcc;
-    width: 48%;
-    height: 7vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /*line-height: 5vh; !* https://css-tricks.com/centering-css-complete-guide/ *!*/
-    font-size: 3vh;
-    font-family: Verdana;
-    user-select: none;
-    cursor: pointer;
-}
-
-
 
 .pitch-n-tune {
     width: 100%;

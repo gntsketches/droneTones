@@ -116,22 +116,23 @@ DroneTones.switchSynth = function(nest) {
   nest.synthObject.envelope.releaseCurve = 'linear'
 }
 
-DroneTones.setUpSynths = function() {
-  this._synthNests.forEach( nest => {
-    DroneTones.switchSynth(nest)
-  })
-}
 
 DroneTones.startTimeouts = () => {
   // Tone.context.resume()
-
-  // let startingDelay = 0
-  // let nextDelay = 0
-  for (var i=0; i<8; i++) {
-    // DroneTones.assignTimeout('starting', i, startingDelay)
-    DroneTones.assignTimeout('rise', i)
-    // nextDelay = Math.random()*1000
-    // startingDelay += nextDelay
+  const firstActiveSynthNumber = DroneTones._synthNests.findIndex((nest) => {
+    return nest.interval !== 'Off'
+  })
+  console.log('first', firstActiveSynthNumber)
+  if (firstActiveSynthNumber >= 0) {
+    DroneTones.switchSynth(DroneTones._synthNests[firstActiveSynthNumber])
+    DroneTones.assignTimeout('rise', firstActiveSynthNumber)
+  } else {
+    DroneTones.assignTimeout('rest', firstActiveSynthNumber)
+  }
+  for (let i=0; i<8; i++) {
+    if (i !== firstActiveSynthNumber) {
+      DroneTones.assignTimeout('rest', i)
+    }
   }
 }
 
@@ -139,19 +140,21 @@ DroneTones.assignTimeout = (phase, nestNumber) => {
   const nest = DroneTones._synthNests[nestNumber]
   switch (phase) {
     case 'rest':
-      if (nest.interval === 'Off') { return }
-      clearTimeout(nest.timeout) // is this needed here?
-      nest.timeout = setTimeout(()=> {
-        DroneTones.assignTimeout('rise', nestNumber)
-      }, nest.rest)
+      DroneTones.switchSynth(nest)
+      console.log('rest', nest.rest)
+      if (nest.interval === 'Off') {
+        nest.timeout = setTimeout(()=> { DroneTones.assignTimeout('rest', nestNumber) }, 1000 * nest.rest)
+      } else {
+        nest.timeout = setTimeout(()=> { DroneTones.assignTimeout('rise', nestNumber) }, 1000 * nest.rest)
+      }
+
       break
     case 'rise':
       if (nest.interval === 'Off') { return }
-      DroneTones.switchSynth(nest)
+      console.log('rise', nest.rise)
       const detune = DroneTones.constants.intervalToDetune[nest.interval] + DroneTones._tuning
       nest.synthObject.detune.value = detune
       nest.synthObject.envelope.attack = nest.rise
-      console.log(nest.synthObject.envelope.attack)
       nest.synthObject.envelope.release = nest.fall
       nest.synthObject.triggerAttack(DroneTones._basePitch)
       nest.timeout = setTimeout(()=>{
@@ -162,10 +165,10 @@ DroneTones.assignTimeout = (phase, nestNumber) => {
       break
     case 'fall':
       // clearTimeout(nest.timeout)
-      console.log('timeout in fall', nest.timeout)
+      console.log('fall', nest.fall)
       nest.synthObject.triggerRelease()
       nest.timeout = setTimeout(()=>{
-        DroneTones.assignTimeout('rise', nestNumber)
+        DroneTones.assignTimeout('rest', nestNumber)
       }, 1000 * nest.fall)
       DroneTones._intervalSelectors[nestNumber].style.transitionDuration = nest.fall + 's'
       DroneTones._intervalSelectors[nestNumber].classList.remove('glow')

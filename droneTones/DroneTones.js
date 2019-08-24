@@ -105,6 +105,7 @@ DroneTones.stop = function() {
 	this._startStopButton.innerHTML = 'Play'
 	// this.loop.stop()
 	this._synthNests.forEach((nest, nestNumber) => {
+		console.log('timeout in stop', nest.timeout)
 		clearTimeout(nest.timeout)
 		// assign a faster release value?
 		nest.synthObject.triggerRelease()

@@ -85,7 +85,7 @@ DroneTones.hookUpToneJS = function() {
   })
 }
 
-DroneTones.switchSynth = function(nest) {
+DroneTones.setUpSynth = function(nest) {
   console.log('nest', nest)
   nest.rise = getRandomInRange(DroneTones._riseMin, DroneTones._riseMax)
   nest.fall = getRandomInRange(DroneTones._fallMin, DroneTones._fallMax)
@@ -124,7 +124,7 @@ DroneTones.startTimeouts = () => {
   })
   console.log('first', firstActiveSynthNumber)
   if (firstActiveSynthNumber >= 0) {
-    DroneTones.switchSynth(DroneTones._synthNests[firstActiveSynthNumber])
+    DroneTones.setUpSynth(DroneTones._synthNests[firstActiveSynthNumber])
     DroneTones.assignTimeout('rise', firstActiveSynthNumber)
   } else {
     DroneTones.assignTimeout('rest', firstActiveSynthNumber)
@@ -140,7 +140,7 @@ DroneTones.assignTimeout = (phase, nestNumber) => {
   const nest = DroneTones._synthNests[nestNumber]
   switch (phase) {
     case 'rest':
-      DroneTones.switchSynth(nest)
+      DroneTones.setUpSynth(nest)
       console.log('rest', nest.rest)
       if (nest.interval === 'Off') {
         nest.timeout = setTimeout(()=> { DroneTones.assignTimeout('rest', nestNumber) }, 1000 * nest.rest)

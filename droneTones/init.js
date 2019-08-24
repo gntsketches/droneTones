@@ -92,12 +92,7 @@ DroneTones.init = function() { // arrow function not working here, why?
     // maybe this function should be described elsewhere...
     select.addEventListener('change', (e) => {
       const nest = DroneTones._synthNests[index]
-      let toStart = false
-      if (nest.interval === 'Off') { toStart = true }
       nest.interval = e.target.value
-      if (toStart) {
-        DroneTones.assignTimeout('rise', index)
-      }
       if (DroneTones._started && e.target.value === 'Off') {
         DroneTones.assignTimeout('fall', index)
       }

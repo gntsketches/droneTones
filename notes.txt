@@ -4,6 +4,7 @@ TODO
     rename switchSynth to setUpSynth
     let's style the play button with a different color and gentle pulsing when playing
     remove 'speed' and add rise, fall, rest controls
+    "quick stop" checkbox
     hook up effects options inputs
     refine the partials options
     switch the interval selectors to note selectors & make the  root pitch options to modulate-by-interval

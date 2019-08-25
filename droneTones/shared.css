@@ -15,6 +15,8 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    color: wheat;
 }
 
 /*https://dev.to/hakash/100-pure-htmlcss-page-navigation---no-javascript-required-2em5 (apparently doesn't need the part about the default page being last in the html. Update: yes it does, because otherwise you can scroll around on other 'pages')*/
@@ -44,18 +46,14 @@ body {
 }
 
 .wrapper-main {
-    /*margin: 2%;*/
-    /*border: 1px solid black;*/
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
     padding: 5vh 5%;
-    /*display: flex;*/
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
 }
-
 
 
 #interval_choosers {
@@ -219,16 +217,12 @@ label span {
 .wrapper-options {
     width: 100vw;
     height: 100vh;
-    background: #444;
-    padding: 5vh 5vw;
     box-sizing: border-box;
-    /*display: flex;*/
+    padding: 5vh 5%;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    color: wheat;
-
-    /*padding: 0 5vw 10vw 5vw;*/
+    background: #444;
 }
 
 .options-page__title {
@@ -239,7 +233,8 @@ label span {
 }
 
 .options-block {
-    /*width: 100%;*/
+    box-sizing: border-box;
+    width: 100%;
     /*height: 30%;*/
     padding: 1vh 5vw;
     margin: 0 0 5vh 0;
@@ -276,6 +271,48 @@ label.options-block__checkbox-container {
     background: wheat;
 }
 
+
+.options-block.timing {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1vh 3vw;
+    margin: 0 0 7vh 0;
+}
+
+.timing__column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 2%;
+    /*background: chocolate;*/
+}
+
+.timing__stage {
+    font-size: 3vh;
+    padding-left: 2vw;
+    margin-bottom: 0.5vh;
+}
+
+.timing__min-max {
+    display: flex;
+    width: 100%;
+    margin-bottom: 0.5vh;
+}
+
+.timing__input-label {
+    width: 35%;
+    text-align: right;
+}
+
+.timing__number {
+    width: 65%;
+    background: wheat;
+}
+
+
+/******************************************************************************
+* CHECKBOXES just deserve their own special section
+******************************************************************************/
 
 /*https://hackernoon.com/hacking-custom-checkboxes-and-radios-5d48230440d*/
 input[type='checkbox'].check-custom {
@@ -320,12 +357,6 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     opacity: 1;
 }
-
-
-.options-block.timing {
-    flex-direction: row;
-}
-
 
 
 /*****************************************************************************

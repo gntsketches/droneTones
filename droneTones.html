@@ -16,7 +16,7 @@
 <title>drones</title>
 
 <link rel="stylesheet" type="text/css" href="droneTones/shared.css">
-<link rel="stylesheet" type="text/css" href="droneTones/style-med-large.css">
+<link rel="stylesheet" type="text/css" href="droneTones/landscape.css">
 
 
 </head>
@@ -151,43 +151,37 @@
 
     <div class="options-block timing">
 
-        <div>
+        <div class="timing__column">
             <div class="timing__stage">Rise</div>
-            <div>
-                <label class="timing__input-label">Min:
-                    <input class="timing__number" id="riseMin" type="number" name="rise-min" step="0.1" min="0" />
-                </label>
+            <div class="timing__min-max">
+                <label class="timing__input-label">Min:</label>
+                <input class="timing__number" id="riseMin" type="number" name="rise-min" step="0.5" min="0" />
             </div>
-            <div>
-                <label class="timing__input-label">Max:
-                    <input class="timing__number" id="riseMax" type="number" name="rise-max" step="0.05" min="0" max="1" />
-                </label>
+            <div class="timing__min-max">
+                <label class="timing__input-label">Max:</label>
+                <input class="timing__number" id="riseMax" type="number" name="rise-max" step="0.5" min="0" />
             </div>
         </div>
-        <div>
+        <div class="timing__column">
             <div class="timing__stage">Fall</div>
-            <div>
-                <label class="timing__input-label">Min:
-                    <input class="timing__number" id="fallMin" type="number" name="fall-min" step="0.1" min="0" />
-                </label>
+            <div class="timing__min-max">
+                <label class="timing__input-label">Min:</label>
+                <input class="timing__number" id="fallMin" type="number" name="fall-min" step="0.5" min="0" />
             </div>
-            <div>
-                <label class="timing__input-label">Max:
-                    <input class="timing__number" id="fallMax" type="number" name="fall-max" step="0.05" min="0" max="1" />
-                </label>
+            <div class="timing__min-max">
+                <label class="timing__input-label">Max:</label>
+                <input class="timing__number" id="fallMax" type="number" name="fall-max" step="0.5" min="0" />
             </div>
         </div>
-        <div>
+        <div class="timing__column">
             <div class="timing__stage">Rest</div>
-            <div>
-                <label class="timing__input-label">Min:
-                <input class="timing__number" id="restMin" type="number" name="rest-min" step="0.1" min="0" />
-                </label>
+            <div class="timing__min-max">
+                <label class="timing__input-label">Min:</label>
+                <input class="timing__number" id="restMin" type="number" name="rest-min" step="0.5" min="0" />
             </div>
-            <div>
-                <label class="timing__input-label">Max:
-                    <input class="timing__number" id="restMax" type="number" name="rest-max" step="0.05" min="0" max="1" />
-                </label>
+            <div class="timing__min-max">
+                <label class="timing__input-label">Max:</label>
+                <input class="timing__number" id="restMax" type="number" name="rest-max" step="0.5" min="0" />
             </div>
         </div>
 

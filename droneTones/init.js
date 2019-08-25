@@ -60,8 +60,6 @@ DroneTones.init = function() { // arrow function not working here, why?
 
   this._basePitchSelect.value = this._basePitch
   this.setTunings()
-  this._speedInput.value = this._speed
-  this.setSpeed()
 
   this._toggleSawtooth.checked = this._activeSynthOptions.Sawtooth
   this._toggleFullStops.checked = this._activeSynthOptions.FullStops
@@ -117,13 +115,6 @@ DroneTones.init = function() { // arrow function not working here, why?
     } else {
       this.stop()
     }
-  })
-
-  this._speedInput.addEventListener('change', (e) => {
-    // console.log(e.target.value)
-    this._speed = e.target.value
-    console.log('bpm', this._speed)
-    this.setSpeed()
   })
 
   this._toggleSawtooth.addEventListener('change', (e) => {

@@ -22,6 +22,7 @@
     .wrapper-options {
         width: 50%;
         height: 100vh;
+        padding: 5vh 2.5%;
     }
 
     .pitch-n-tune {
@@ -45,6 +46,10 @@
     .start-stop,
     .speed {
         margin-bottom: 1vh;
+    }
+
+    .options-block.timing {
+        margin-bottom: 0;
     }
 
     /*** ABOUT *****************************************************/

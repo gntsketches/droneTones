@@ -8,13 +8,15 @@ TODO
     let's style the play button with a different color and gentle pulsing when playing
     switch the interval selectors to note selectors & make the  root pitch options to modulate-by-interval
     review the styles and all the code in general
+        not a lot of consistency in terms of width / horizontal padding or margin...
+        labeling: why not accessibility?
     put it up live
     get feedback
 
 DETAILS
     stop pitches more quickly?
     css kerning?
-
+    https://webdesign.tutsplus.com/articles/outside-in-ordering-css-properties-by-importance--cms-21685
 
 GLOW
    // https://css-tricks.com/controlling-css-animations-transitions-javascript/

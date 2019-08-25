@@ -322,23 +322,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-.speed {
-    width: 100%;
-    height: 8%;
-    margin: 0 5% 10vh 5%;
-    color: wheat;
-    background: chocolate;
-    font-size: 4vh;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.options-block.timing {
+    flex-direction: row;
 }
 
-.speed input {
-    width:90%;
-    color: wheat;
-}
 
 
 /*****************************************************************************

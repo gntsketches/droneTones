@@ -18,7 +18,6 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._tuningMinus = document.querySelector('#tuning_minus')
   this._tuningPlus = document.querySelector('#tuning_plus')
   this._startStopButton = document.querySelector('#start_stop')
-  this._speedInput = document.querySelector('#speed')
 
   this._toggleSawtooth = document.querySelector('#toggleSawtooth')
   this._toggleFullStops = document.querySelector('#toggleFullStops')
@@ -32,16 +31,19 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._singlesRange = document.querySelector('#singlesRange')
 
   this._toggleVibrato = document.querySelector('#toggleVibrato')
-  this._toggleChorus = document.querySelector('#toggleChorus')
   this._toggleFilter = document.querySelector('#toggleFilter')
 
   this._vibratoRate = document.querySelector('#vibratoRate')
-  this._chorusRate = document.querySelector('#chorusRate')
   this._filterRate = document.querySelector('#filterRate')
   this._vibratoDepth = document.querySelector('#vibratoDepth')
-  this._chorusDepth = document.querySelector('#chorusDepth')
   this._filterDepth = document.querySelector('#filterDepth')
 
+  this._riseMin = document.querySelector('#riseMin')
+  this._riseMax = document.querySelector('#riseMax')
+  this._fallMin = document.querySelector('#fallMin')
+  this._fallMax = document.querySelector('#fallMax')
+  this._restMin = document.querySelector('#restMin')
+  this._restMax = document.querySelector('#restMax')
 
   // ADD A REPRESENTATION STRUCTURE FOR THE TOGGLES TO THE CONSTANTS OBJECT
   DroneTones.constants.synthOptionToggleCorrespondence = {
@@ -73,16 +75,19 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._singlesRange.value = this._partialsRanges['singles']
 
   this._toggleVibrato.checked = this._effectSettings['vibrato']['on']
-  this._toggleChorus.checked = this._effectSettings['chorus']['on']
   this._toggleFilter.checked = this._effectSettings['filter']['on']
 
   this._vibratoRate.value = this._effectSettings['vibrato']['rate']
-  this._chorusRate.value = this._effectSettings['chorus']['rate']
   this._filterRate.value = this._effectSettings['filter']['rate']
   this._vibratoDepth.value = this._effectSettings['vibrato']['depth']
-  this._chorusDepth.value = this._effectSettings['chorus']['depth']
   this._filterDepth.value = this._effectSettings['filter']['depth']
 
+  this._riseMin.value = this._timing.riseMin
+  this._riseMax.value = this._timing.riseMax
+  this._fallMin.value = this._timing.fallMin
+  this._fallMax.value = this._timing.fallMax
+  this._restMin.value = this._timing.restMin
+  this._restMax.value = this._timing.restMax
 
   // ADD EVENT LISTENERS
 
@@ -149,17 +154,11 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._toggleVibrato.addEventListener('change', (e) => {
     this.changeEffectSetting(e)
   })
-  this._toggleChorus.addEventListener('change', (e) => {
-    this.changeEffectSetting(e)
-  })
   this._toggleFilter.addEventListener('change', (e) => {
     this.changeEffectSetting(e)
   })
 
   this._vibratoRate.addEventListener('change', (e) => {
-    this.changeEffectSetting(e)
-  })
-  this._chorusRate.addEventListener('change', (e) => {
     this.changeEffectSetting(e)
   })
   this._filterRate.addEventListener('change', (e) => {
@@ -168,11 +167,27 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._vibratoDepth.addEventListener('change', (e) => {
     this.changeEffectSetting(e)
   })
-  this._chorusDepth.addEventListener('change', (e) => {
-    this.changeEffectSetting(e)
-  })
   this._filterDepth.addEventListener('change', (e) => {
     this.changeEffectSetting(e)
+  })
+
+  this._riseMin.addEventListener('change', (e) => {
+    this.changeTimingSettings(e)
+  })
+  this._riseMax.addEventListener('change', (e) => {
+    this.changeTimingSettings(e)
+  })
+  this._fallMin.addEventListener('change', (e) => {
+    this.changeTimingSettings(e)
+  })
+  this._fallMax.addEventListener('change', (e) => {
+    this.changeTimingSettings(e)
+  })
+  this._restMin.addEventListener('change', (e) => {
+    this.changeTimingSettings(e)
+  })
+  this._restMax.addEventListener('change', (e) => {
+    this.changeTimingSettings(e)
   })
 
   // https://www.reddit.com/r/chrome/comments/ca8uxk/windowaddeventlistener_suddenly_not_working/

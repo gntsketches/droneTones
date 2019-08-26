@@ -4,7 +4,6 @@ DroneTones._synthNests = [
     timeout: null,
     synthObject: new Tone.Synth(),
     vibrato: new Tone.Vibrato(),
-    chorus: new Tone.Chorus(),
     filter: new Tone.AutoFilter(),
     gain: new Tone.Gain(),
   },
@@ -13,7 +12,6 @@ DroneTones._synthNests = [
     timeout: null,
     synthObject: new Tone.Synth(),
     vibrato: new Tone.Vibrato(),
-    chorus: new Tone.Chorus(),
     filter: new Tone.AutoFilter(),
     gain: new Tone.Gain(),
   },
@@ -22,7 +20,6 @@ DroneTones._synthNests = [
     timeout: null,
     synthObject: new Tone.Synth(),
     vibrato: new Tone.Vibrato(),
-    chorus: new Tone.Chorus(),
     filter: new Tone.AutoFilter(),
     gain: new Tone.Gain(),
   },
@@ -31,7 +28,6 @@ DroneTones._synthNests = [
     timeout: null,
     synthObject: new Tone.Synth(),
     vibrato: new Tone.Vibrato(),
-    chorus: new Tone.Chorus(),
     filter: new Tone.AutoFilter(),
     gain: new Tone.Gain(),
   },
@@ -40,7 +36,6 @@ DroneTones._synthNests = [
     timeout: null,
     synthObject: new Tone.Synth(),
     vibrato: new Tone.Vibrato(),
-    chorus: new Tone.Chorus(),
     filter: new Tone.AutoFilter(),
     gain: new Tone.Gain(),
   },
@@ -49,7 +44,6 @@ DroneTones._synthNests = [
     timeout: null,
     synthObject: new Tone.Synth(),
     vibrato: new Tone.Vibrato(),
-    chorus: new Tone.Chorus(),
     filter: new Tone.AutoFilter(),
     gain: new Tone.Gain(),
   },
@@ -58,7 +52,6 @@ DroneTones._synthNests = [
     timeout: null,
     synthObject: new Tone.Synth(),
     vibrato: new Tone.Vibrato(),
-    chorus: new Tone.Chorus(),
     filter: new Tone.AutoFilter(),
     gain: new Tone.Gain(),
   },
@@ -67,7 +60,6 @@ DroneTones._synthNests = [
     timeout: null,
     synthObject: new Tone.Synth(),
     vibrato: new Tone.Vibrato(),
-    chorus: new Tone.Chorus(),
     filter: new Tone.AutoFilter(),
     gain: new Tone.Gain(),
   },
@@ -78,18 +70,41 @@ DroneTones.hookUpToneJS = function() {
   DroneTones._synthNests.forEach( nest => {
     nest.synthObject.connect(nest.vibrato)
     nest.vibrato.connect(nest.filter)
-    // nest.chorus.connect(nest.gain)
     nest.filter.connect(nest.gain)
     nest.gain.toMaster()
     nest.gain.gain.value = 0.125
+    nest.filter.start()
   })
 }
 
 DroneTones.setUpSynth = function(nest) {
   console.log('nest', nest)
-  nest.rise = getRandomInRange(DroneTones._riseMin, DroneTones._riseMax)
-  nest.fall = getRandomInRange(DroneTones._fallMin, DroneTones._fallMax)
-  nest.rest = getRandomInRange(DroneTones._restMin, DroneTones._restMax)
+  nest.rise = getRandomInRange(DroneTones._timing.riseMin, DroneTones._timing.riseMax)
+  nest.fall = getRandomInRange(DroneTones._timing.fallMin, DroneTones._timing.fallMax)
+  nest.rest = getRandomInRange(DroneTones._timing.restMin, DroneTones._timing.restMax)
+
+  const vibratoSettings = DroneTones._effectSettings['vibrato']
+  nest.vibrato.frequency.value = Math.random() * vibratoSettings.rate // frequency, 5
+  nest.vibrato.depth.value = Math.random() * vibratoSettings.depth // normal range, 0.1, is fine.
+  nest.vibrato.wet.value = vibratoSettings['on'] ? Math.random() : 0 // Math.random() // /2 + 0.5 // normal range
+
+  console.log('vibrato')
+  console.log(nest.vibrato.frequency.value)
+  console.log(nest.vibrato.depth.value)
+  console.log(nest.vibrato.wet.value)
+
+  const filterSettings = DroneTones._effectSettings['filter']
+  nest.filter.frequency.value = Math.random() * filterSettings.rate
+  nest.filter.depth.value = Math.random() * filterSettings.depth // normal range
+  nest.filter.octaves = Math.random() * 5 // different?
+  nest.filter.wet.value = filterSettings['on'] ? Math.random() : 0 //  /2 + 0.5// normal range
+
+  console.log('filter')
+  console.log(nest.filter.frequency.value)
+  console.log(nest.filter.depth.value)
+  console.log(nest.filter.octaves)
+  console.log(nest.filter.wet.value)
+
   const chosenSynthOptions = DroneTones.getChosenSynthOptions()
   const synthType = chosenSynthOptions[Math.floor(Math.random() * chosenSynthOptions.length)]
   switch (synthType) {
@@ -147,7 +162,6 @@ DroneTones.assignTimeout = (phase, nestNumber) => {
       } else {
         nest.timeout = setTimeout(()=> { DroneTones.assignTimeout('rise', nestNumber) }, 1000 * nest.rest)
       }
-
       break
     case 'rise':
       if (nest.interval === 'Off') { return }

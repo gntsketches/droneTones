@@ -1,10 +1,16 @@
 
 TODO
     think twice Ralph Myerz & The Jack Herren Band
-    remove 'speed' and add rise, fall, rest controls
-    "quick stop" checkbox
+    dreams the Cranberries
     hook up effects options inputs
+        test 'em!
+    hook up rise, fall, rest controls
+        test 'em!
+    adjust titles in effects UI
+    ?? //ADD A REPRESENTATION STRUCTURE FOR THE TOGGLES TO THE CONSTANTS OBJECT
+        shouldn't this be in 'constants'?
     refine the partials options
+    "quick stop" checkbox
     let's style the play button with a different color and gentle pulsing when playing
     switch the interval selectors to note selectors & make the  root pitch options to modulate-by-interval
     review the styles and all the code in general
@@ -17,6 +23,7 @@ DETAILS
     stop pitches more quickly?
     css kerning?
     https://webdesign.tutsplus.com/articles/outside-in-ordering-css-properties-by-importance--cms-21685
+    https://stackoverflow.com/questions/1696864/naming-class-and-id-html-attributes-dashes-vs-underlines
 
 GLOW
    // https://css-tricks.com/controlling-css-animations-transitions-javascript/

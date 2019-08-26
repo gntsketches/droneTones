@@ -1,16 +1,17 @@
 let DroneTones = {
 	// STATE
 	_started: false,
-	// _synths: [],
 	_counter: 0,
 	_basePitch: 'G2',
 	_tuning: 0,
-	_restMin: 1,
-	_restMax: 5,
-	_riseMin: 4,
-	_riseMax: 8,
-	_fallMin: 8,
-	_fallMax: 8,
+	_timing: {
+		'riseMin': 4,
+		'riseMax': 8,
+		'restMax': 5,
+		'restMin': 1,
+		'fallMin': 4,
+		'fallMax': 8,
+	},
 	_startStopButton: null,
 	_activeSynthOptions: {
 		'Sawtooth': true,
@@ -27,11 +28,6 @@ let DroneTones = {
 	},
 	_effectSettings: {
 		'vibrato': {
-			'on': true,
-			'rate': 1,
-			'depth': 0.5,
-		},
-		'chorus': {
 			'on': true,
 			'rate': 1,
 			'depth': 0.5,
@@ -145,3 +141,6 @@ DroneTones.changeEffectSetting = function(e) {
 	console.log(this._effectSettings)
 }
 
+DroneTones.changeTimingSettings = function(e) {
+	this._timing[e.target.name] = e.target.value
+}

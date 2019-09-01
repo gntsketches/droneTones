@@ -7,10 +7,10 @@ let DroneTones = {
 	_timing: {
 		'riseMin': 4,
 		'riseMax': 8,
-		'restMax': 5,
-		'restMin': 1,
 		'fallMin': 4,
 		'fallMax': 8,
+		'restMin': 2,
+		'restMax': 6,
 	},
 	_startStopButton: null,
 	_activeSynthOptions: {
@@ -29,23 +29,14 @@ let DroneTones = {
 	_effectSettings: {
 		'vibrato': {
 			'on': true,
-			'rate': 1,
+			'rate': 0.5,
 			'depth': 0.5,
 		},
 		'filter': {
 			'on': true,
-			'rate': 1,
+			'rate': 0.5,
 			'depth': 0.5,
 		},
-	},
-	_envelopeSettings: {
-		attack: Tone.Time('4n'),
-		decay: 0,
-		sustain: 1,
-		release: Tone.Time('2n'),
-		attackCurve: 'linear', // was using 'linear because 'exponential' previously gave error "time constant must be geater than zero at t.Signal.t.Param.setTargetAtTime (Tone.min.js:1) at t.Signal.t.Param.exponentialApproachValueAtTime (Tone.min.js:1)at t.Signal.t.Param.targetRampTo (Tone.min.js:1) at t.AmplitudeEnvelope.t.Envelope.triggerAttack (Tone.min.js:1) at t.Synth._triggerEnvelopeAttack (Tone.min.js:1) at t.Synth.t.Monophonic.triggerAttack (Tone.min.js:1) at t.Synth.t.Instrument.triggerAttackRelease (Tone.min.js:1) at t.Loop.callback (DroneTones.js:31) at t.Loop._tick (Tone.min.js:1) at t.Event._tick (Tone.min.js:1)
-		decayCurve: 'exponential',
-		releaseCurve: 'linear' // somehow, linear actually sounds smoother tho...
 	},
 }
 
@@ -101,7 +92,7 @@ DroneTones.stop = function() {
 	this._startStopButton.innerHTML = 'Play'
 	// this.loop.stop()
 	this._synthNests.forEach((nest, nestNumber) => {
-		console.log('timeout in stop', nest.timeout)
+		// console.log('timeout in stop', nest.timeout)
 		clearTimeout(nest.timeout)
 		// assign a faster release value?
 		nest.synthObject.triggerRelease()
@@ -138,9 +129,38 @@ DroneTones.changeEffectSetting = function(e) {
 	const field = e.target.name.split('-')[1]
 	const value = field === 'on' ? e.target.checked : parseFloat(e.target.value)
 	this._effectSettings[effect][field] = value
-	console.log(this._effectSettings)
+	// console.log(this._effectSettings)
 }
 
 DroneTones.changeTimingSettings = function(e) {
-	this._timing[e.target.name] = e.target.value
+	const timingEl = e.target.name
+	console.log(timingEl);
+
+	this._timing[timingEl] = parseFloat(e.target.value)
+	console.log(this._timing)
+
+	if (timingEl==='riseMin' && this._timing['riseMin'] > this._timing['riseMax']) {
+		this._timing['riseMax'] = this._timing['riseMin']
+		this._riseMax.value = this._timing.riseMax
+	}
+	if (timingEl==='riseMax' && this._timing['riseMax'] < this._timing['riseMin']) {
+		this._timing['riseMin'] = this._timing['riseMax']
+		this._riseMin.value = this._timing.riseMin
+	}
+	if (timingEl==='fallMin' && this._timing['fallMin'] > this._timing['fallMax']) {
+		this._timing['fallMax'] = this._timing['fallMin']
+		this._fallMax.value = this._timing.fallMax
+	}
+	if (timingEl==='fallMax' && this._timing['fallMax'] < this._timing['fallMin']) {
+		this._timing['fallMin'] = this._timing['fallMax']
+		this._fallMin.value = this._timing.fallMin
+	}
+	if (timingEl==='restMin' && this._timing['restMin'] > this._timing['restMax']) {
+		this._timing['restMax'] = this._timing['restMin']
+		this._restMax.value = this._timing.restMax
+	}
+	if (timingEl==='restMax' && this._timing['restMax'] < this._timing['restMin']) {
+		this._timing['restMin'] = this._timing['restMax']
+		this._restMin.value = this._timing.restMin
+	}
 }

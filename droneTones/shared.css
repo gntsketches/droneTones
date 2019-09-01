@@ -390,6 +390,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 .about-info {
     font-size: 6vw;
+    overflow-y: auto;
+    max-height: 78vh;
+    padding: 1vh 1vw;
 }
 
 

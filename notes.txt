@@ -1,13 +1,21 @@
 
 TODO
     think twice Ralph Myerz & The Jack Herren Band
-    dreams the Cranberries
+    todoTodo
+        - basic tests of synth options & merge
+        - branch for history of current state with effects
+        - new branch to remove or minimize effects & simplify UI
+    hook up rise, fall, rest controls
+        do min/max not exceed functioning
+        finer step for rise
+        "actual" rise minimum of 0.005 (or other default)
+        actually it's easy to max out CPU with 8 synths...
+        what if max is less than min...
+
     hook up effects options inputs
         test 'em!
-    hook up rise, fall, rest controls
-        test 'em!
     adjust titles in effects UI
-    ?? //ADD A REPRESENTATION STRUCTURE FOR THE TOGGLES TO THE CONSTANTS OBJECT
+    ?? init: //ADD A REPRESENTATION STRUCTURE FOR THE TOGGLES TO THE CONSTANTS OBJECT
         shouldn't this be in 'constants'?
     refine the partials options
     "quick stop" checkbox
@@ -18,6 +26,9 @@ TODO
         labeling: why not accessibility?
     put it up live
     get feedback
+
+ABOUT
+    very short rise fall & rest maxes out CPU...
 
 DETAILS
     stop pitches more quickly?
@@ -140,4 +151,20 @@ STUDY
 
     https://stackoverflow.com/questions/56918088/scope-of-callback-function-in-new-on-js-object-literal/56918339#56918339
 
+
+
+
+Maybe:
+
+DroneTones.hookUpToneJS = function() {
+  DroneTones._synthNests.forEach( nest => {
+    nest.synthObject.connect(nest.gain)
+    nest.gain.gain.value = 0.125
+    nest.gain.connect(DroneTones._vibrato)
+  })
+  DroneTones._vibrato.connect(DroneTones._filter)
+  DroneTones._filter.connect(DroneTones._chorus)
+  DroneTones._chorus.toMaster()
+  DroneTones._filter.start()
+}
 

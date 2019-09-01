@@ -143,11 +143,11 @@
             <div class="timing__stage">Rise</div>
             <div class="timing__min-max">
                 <label class="timing__input-label">Min:</label>
-                <input class="timing__number" id="riseMin" type="number" name="riseMin" step="0.5" min="0" />
+                <input class="timing__number" id="riseMin" type="number" name="riseMin" step="0.1" min="0.1" />
             </div>
             <div class="timing__min-max">
                 <label class="timing__input-label">Max:</label>
-                <input class="timing__number" id="riseMax" type="number" name="riseMax" step="0.5" min="0" />
+                <input class="timing__number" id="riseMax" type="number" name="riseMax" step="0.1" min="0.1" />
             </div>
         </div>
         <div class="timing__column">
@@ -193,7 +193,36 @@
             <p><a href="https://gntsketches.com" target="_blank">www.gntsketches.com</a>
             <p>on <a href="https://www.youtube.com/channel/UCsewkoqCYikz9Iy3fN4S9BA" target="_blank">Youtube</a>
             <p>on <a href="https://github.com/gntsketches/" target="_blank">Github</a>
-            <p>Some description of what is going on would probably be good.</p>
+            <br><br>
+            <p>About the app:</p>
+            <p>DroneTones plays up to 8 synthesizers by swelling and fading
+                their volumes in a randomized pattern. The pitch of each synth is chosen by
+                <a href="https://en.wikipedia.org/wiki/Interval_(music)" target="_blank">interval </a>
+                relative to the root pitch.
+            </p>
+            <p>Just before each synth volume rises, its tone color is randomly chosen
+                from the selections in "Synth Overtone Options". These settings manipulate the
+                <a href="http://teropa.info/harmonics-explorer/" target="_blank">partials </a>
+                of the synth's
+                <a href="http://teropa.info/blog/2016/09/20/additive-synthesis.html" target="_blank">overtone series </a>
+                in various ways.
+            </p>
+            <p>Each synth is also assigned a
+                <a href="https://en.wikipedia.org/wiki/Vibrato" target="_blank">vibrato </a>
+                and
+                <a href="https://en.wikipedia.org/wiki/Audio_filter" target="_blank">auto-filter </a>
+                effect.
+                The rate and depth of these effects are assigned a random value between
+                zero and the chosen settings in "Synth Effects Options".
+            </p>
+            <p>The randomized timing for the rise and fall of synth volumes,
+                and the rest between, can be adjusted in "Timing".
+                Setting the min  above the max causes the max to track accordingly
+                (and vice-versa).
+                Note that running the app too "quickly"
+                (with very fast rise, fall, and rest times) may overload the computer's
+                processor, causing the sound to skip and cut out.
+            </p>
         </div>
     </div>
 </div>

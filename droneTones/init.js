@@ -1,7 +1,7 @@
 
 DroneTones.init = function() { // arrow function not working here, why?
 
-  console.log(Tone.Time('4n',4))
+  // console.log(Tone.Time('4n',4))
 
   // INITIALIZE TRANSPORT
   this.setSpeed()

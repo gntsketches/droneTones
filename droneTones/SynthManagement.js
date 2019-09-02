@@ -24,14 +24,6 @@ DroneTones._synthNests = [
     gain: new Tone.Gain(),
   },
   {
-    interval: 'M6',
-    timeout: null,
-    synthObject: new Tone.Synth(),
-    vibrato: new Tone.Vibrato(),
-    filter: new Tone.AutoFilter(),
-    gain: new Tone.Gain(),
-  },
-  {
     interval: 'P5',
     timeout: null,
     synthObject: new Tone.Synth(),
@@ -40,7 +32,7 @@ DroneTones._synthNests = [
     gain: new Tone.Gain(),
   },
   {
-    interval: 'm7',
+    interval: 'Off',
     timeout: null,
     synthObject: new Tone.Synth(),
     vibrato: new Tone.Vibrato(),
@@ -48,7 +40,15 @@ DroneTones._synthNests = [
     gain: new Tone.Gain(),
   },
   {
-    interval: '8va',
+    interval: 'Off',
+    timeout: null,
+    synthObject: new Tone.Synth(),
+    vibrato: new Tone.Vibrato(),
+    filter: new Tone.AutoFilter(),
+    gain: new Tone.Gain(),
+  },
+  {
+    interval: 'Off',
     timeout: null,
     synthObject: new Tone.Synth(),
     vibrato: new Tone.Vibrato(),
@@ -66,6 +66,7 @@ DroneTones._synthNests = [
 ]
 
 // that's pretty. Root Sub P5 M2 P4 M6 with vibrato and filter
+// semi-neutral bittersweet Root Sub Root P5 M6 m7 8va Off
 DroneTones.hookUpToneJS = function() {
   DroneTones._synthNests.forEach( nest => {
     nest.synthObject.connect(nest.vibrato)
@@ -107,21 +108,31 @@ DroneTones.setUpSynth = function(nest) {
 
   const chosenSynthOptions = DroneTones.getChosenSynthOptions()
   const synthType = chosenSynthOptions[Math.floor(Math.random() * chosenSynthOptions.length)]
+  console.log('setUpSynth synthType', synthType)
   switch (synthType) {
     case 'Sawtooth':
       nest.synthObject.oscillator.type = 'sawtooth'
       // nest.synthObject.volume = -12
       break
-    case 'Whatever':
-      // just to get that error to shut up.
-      nest.synthObject.volume = -12
+    case 'FullStops':
+      nest.synthObject.oscillator.partials = DroneTones.partialsOptions[synthType]()
+      // nest.synthObject.volume = -12
+      break
+    case 'RandomStops':
+      nest.synthObject.oscillator.partials = DroneTones.partialsOptions[synthType]()
+      // nest.synthObject.volume = -12
+      break
+    case 'Clusters':
+      nest.synthObject.oscillator.partials = DroneTones.partialsOptions[synthType]()
+      // nest.synthObject.volume = -12
       break
     default:
       nest.oscillator.partials = DroneTones.partialsOptions(synthType)
       nest.synthObject.volume = -12
       break
   }
-  // BUT VOLUME. maybe other stuff too
+
+  console.log(nest.synthObject.oscillator.partials)
 
   // pass these in with new rather than define them each time:
   nest.synthObject.envelope.decay = 0

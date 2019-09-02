@@ -1,12 +1,6 @@
 
 DroneTones.init = function() { // arrow function not working here, why?
 
-  // console.log(Tone.Time('4n',4))
-
-  // INITIALIZE TRANSPORT
-  this.setSpeed()
-  Tone.Transport.start();
-
   // INITIALIZE THE SYNTHS
   DroneTones.hookUpToneJS()
 
@@ -23,7 +17,6 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._toggleFullStops = document.querySelector('#toggleFullStops')
   this._toggleRandomStops = document.querySelector('#toggleRandomStops')
   this._toggleClusters = document.querySelector('#toggleClusters')
-  this._toggleSingles = document.querySelector('#toggleSingles')
 
   this._fullStopsRange = document.querySelector('#fullStopsRange')
   this._randomStopsRange = document.querySelector('#randomStopsRange')
@@ -51,7 +44,6 @@ DroneTones.init = function() { // arrow function not working here, why?
     'FullStops': DroneTones._toggleFullStops,
     'RandomStops': DroneTones._toggleRandomStops,
     'Clusters': DroneTones._toggleClusters,
-    'Singles': DroneTones._toggleSingles,
   }
 
   // SET HTML VALUES FROM STATE
@@ -67,12 +59,10 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._toggleFullStops.checked = this._activeSynthOptions.FullStops
   this._toggleRandomStops.checked = this._activeSynthOptions.RandomStops
   this._toggleClusters.checked = this._activeSynthOptions.Clusters
-  this._toggleSingles.checked = this._activeSynthOptions.Singles
 
   this._fullStopsRange.value = this._partialsRanges['fullStops']
   this._randomStopsRange.value = this._partialsRanges['randomStops']
   this._clustersRange.value = this._partialsRanges['clusters']
-  this._singlesRange.value = this._partialsRanges['singles']
 
   this._toggleVibrato.checked = this._effectSettings['vibrato']['on']
   this._toggleFilter.checked = this._effectSettings['filter']['on']
@@ -134,9 +124,6 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._toggleClusters.addEventListener('change', (e) => {
     this.changeActiveSynthOptions(e)
   })
-  this._toggleSingles.addEventListener('change', (e) => {
-    this.changeActiveSynthOptions(e)
-  })
 
   this._fullStopsRange.addEventListener('change', (e) => {
     this.changePartialsRanges(e)
@@ -145,9 +132,6 @@ DroneTones.init = function() { // arrow function not working here, why?
     this.changePartialsRanges(e)
   })
   this._clustersRange.addEventListener('change', (e) => {
-    this.changePartialsRanges(e)
-  })
-  this._singlesRange.addEventListener('change', (e) => {
     this.changePartialsRanges(e)
   })
 

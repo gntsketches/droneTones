@@ -18,13 +18,11 @@ let DroneTones = {
 		'FullStops': false,
 		'RandomStops': false,
 		'Clusters': false,
-		'Singles': false,
 	},
 	_partialsRanges: {
 		'fullStops': 20,
 		'randomStops': 20,
 		'clusters': 20,
-		'singles': 20,
 	},
 	_effectSettings: {
 		'vibrato': {
@@ -51,39 +49,10 @@ DroneTones.setTunings = function(tuning) {
 	document.querySelector('#tuning_value').innerHTML = this._tuning
 }
 
-DroneTones.setSpeed = function() {
-	// Tone.Transport.bpm.value = this._speed
-}
-
-DroneTones.addSynth = function() {
-	let synth = new DroneTones.SynthBuilder()
-	this._synths.push(synth)
-}
-
-DroneTones.stageCleanup = function(synthToGo) {
-	setTimeout(()=>{
-		synthToGo.cleanup()
-	}, 20000)
-}
-
-DroneTones.popSynth = function() {
-	DroneTones.stageCleanup(DroneTones._synths[DroneTones._synths.length-1])
-	this._synths.pop()
-}
-
-DroneTones.shiftSynths = function() {
-	DroneTones.stageCleanup(DroneTones._synths[0])
-	this._synths.shift()
-	this.addSynth()
-}
-
 DroneTones.start = function() {
-	// DroneTones.setUpSynths()
-		// don't think this function is actually needed... redundant because each synth is set up at rise
 	this._started = true
 	this._startStopButton.innerHTML = 'Stop'
 	Tone.context.resume()
-	// this.loop.start(0)
 	DroneTones.startTimeouts()
 }
 

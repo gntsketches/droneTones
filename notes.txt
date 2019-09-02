@@ -1,6 +1,7 @@
 
 TODO
     think twice Ralph Myerz & The Jack Herren Band
+    checkbox on vibrato and filter?
     todoTodo
         - basic tests of synth options & merge
         - branch for history of current state with effects

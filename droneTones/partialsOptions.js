@@ -38,20 +38,6 @@ DroneTones.partialsOptions = {
     return partials
   },
 
-  Singles(){
-    let partials = []
-    const range = DroneTones._partialsRanges['singles']
-    for (let i=0; i < Math.floor(Math.random()* range); i++) {
-      partials.push(0)
-    }
-    partials.push(1)
-    partials = [0,0,0,0,0,0,0,0.5] //
-    // partials = [0,0,0,0,0,0.5,0,0.5] //nice, kinda distorted
-    // partials = [0,0,0,0,0.5,0.5,0,0,0.5] // also nice, also distorted
-    console.log('singles', partials)
-    return partials
-  },
-
 
 
 

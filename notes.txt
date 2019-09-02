@@ -1,68 +1,25 @@
 
 TODO
-    think twice Ralph Myerz & The Jack Herren Band
-    checkbox on vibrato and filter?
-    todoTodo
-        - basic tests of synth options & merge
-        - branch for history of current state with effects
-        - new branch to remove or minimize effects & simplify UI
-    hook up rise, fall, rest controls
-        do min/max not exceed functioning
-        finer step for rise
-        "actual" rise minimum of 0.005 (or other default)
-        actually it's easy to max out CPU with 8 synths...
-        what if max is less than min...
-
-    hook up effects options inputs
-        test 'em!
-    adjust titles in effects UI
-    ?? init: //ADD A REPRESENTATION STRUCTURE FOR THE TOGGLES TO THE CONSTANTS OBJECT
-        shouldn't this be in 'constants'?
-    refine the partials options
+    get synth options nice
     "quick stop" checkbox
+    more descriptives on options page?
     let's style the play button with a different color and gentle pulsing when playing
-    switch the interval selectors to note selectors & make the  root pitch options to modulate-by-interval
     review the styles and all the code in general
-        not a lot of consistency in terms of width / horizontal padding or margin...
-        labeling: why not accessibility?
+    merge
     put it up live
     get feedback
 
-ABOUT
-    very short rise fall & rest maxes out CPU...
 
 DETAILS
-    stop pitches more quickly?
     css kerning?
     https://webdesign.tutsplus.com/articles/outside-in-ordering-css-properties-by-importance--cms-21685
     https://stackoverflow.com/questions/1696864/naming-class-and-id-html-attributes-dashes-vs-underlines
+    Border radius on phone-landscape...
 
-GLOW
-   // https://css-tricks.com/controlling-css-animations-transitions-javascript/
-        // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
-          // https://codepen.io/gntsketches/pen/dxgQbr
-
-
-    why did adding a container div to the select allow it to reach the specified (7vh - observed relative to the tuning divs) properly?
-    https://www.sitepoint.com/media-queries-width-vs-device-width/
-    https://codepen.io/gntsketches/pen/wLbNqL?editors=0100
-
-
-BETTER "make it sound better"
-        compression?
-        manging the psychology of cRaCKlE
-            https://codepen.io/gntsketches/pen/zgmmQW
-        equalize volumes
-            equalize PartialBuilder volume by basing it on partials.length?
-        investigate the nature of volume and gain
-
-MAYBE
-	? hide elements prior to initialization
-	? use Bootstrap or something, like to make a pretty range slider
-    ?     Shows shifting synths in the DOM with highlighting or synth names ... getting into jQ territory with some of this
 
 "FINAL" CLEANUP
-
+    not a lot of consistency in terms of width / horizontal padding or margin...
+    labeling: why not accessibility?
     change "options" naming in main page
     intervalAdd etc. to add synth, both in CSS & JS
     comb other css conventions
@@ -74,69 +31,28 @@ MAYBE
     ? "Options" page can become "Synths" for New Synthesizer Options
 
 
-STYLE MINUTIA
-    Border radius on phone-landscape...
 
 
-ALTERNATE VERSION
-    all synths fire at once (or timeout to start)
-    rather than speed, there is a max and min timing for the attack/release
-        min/max attack/release – one option for attack release or different for each
-    once a synth volume goes to zero, it gets a new synthOptions setup
-    the select elements representing the synths glow and fade with the volume!
-        do you need jQ? can you do that on your own?
-            https://codepen.io/WebIsm/pen/pvVrgj
-        can you do this with just css animation?
-            https://css-tricks.com/controlling-css-animations-transitions-javascript/
-                https://codepen.io/gntsketches/pen/KOGGYa
-    synth trigger options:
-        choose between synths playing randomly or firing in order (?)
-        random option - different attack release each time? or, synths in steady pulse rhythm - maybe change by increment
-    HOW?
+FUTURE PLAN
+    Study design patterns to develop some sort of framework
+    Which seems like it would be needed to manage:
+        persistence of app state via local storage (and a 'reset to defaults' option)
 
-
-
-https://blog.box.com/media-queries-things-i-wish-id-known
-
-CRACKLES AND STUFF
-    test & post re: crackle tester
-        https://groups.google.com/forum/#!topic/tonejs/zYlQupn-Jic
-        https://codepen.io/gntsketches/pen/KjVdBm?editors=1010
-        crackle tester: https://codepen.io/gntsketches/pen/QXBVdm
-    Dude, you're not disposing of the Chorus, Vibrato, or Gain...
-
-FUTURE
-    UI / ADJUSTABLE
-	    hamburger menu w: about, synth type select, pattern select, effects select
-    - user picks which synth types
-    - user picks pattern?
-        drop-down list with a bunch of patterns
-        rests?
-        (example options: sub, main, interval, rest... remove, add...)
-    - visualization window? (would be awesome with waveforms...)
-    - user sets effects params
-    - volume
-    - https://propa.app/
-	- picker wheel: https://stackoverflow.com/questions/33157307/how-to-make-a-html5-spinning-list-rotating-wheel-selector-picker
-    - Drift (time, pitchSet)
-    - more complicated (chord/polyphony) options for pitches
-    - Logo! (picture of waves interacting)
-
-MISC
-    https://www.fonts.com/font/virus-fonts/drone?QueryFontType=Web&src=GoogleWebFonts
-    https://thedronetones.bandcamp.com
-    can SynthBuilder accept an object for testing?
-
-    re: chosenSynthOptions:
-        OR use a do-while loop to randomly select true values from _activeSynthOptions with Object.keys?
-        OR use .filter()
-            const chosenSynthOptions = Object.keys(synthOptions)
-            .filter(synthName => synthOptions[synthName] === true) // can reference array as argument
+MAYBE/SOMEDAY/IDEAS
+	? hide elements prior to initialization
+	? use Bootstrap or something, like to make a pretty range slider
+    ? pick specific pitches rather than intervals, then option to adjust everything by interval
+    ? visualization window? (would be awesome with waveforms...)
+    ? volume
+	? picker wheel: https://stackoverflow.com/questions/33157307/how-to-make-a-html5-spinning-list-rotating-wheel-selector-picker
+    ? Drift (time, pitchSet)
+        ? more complicated (chord/polyphony) options for pitches
+    ? Logo! (picture of waves interacting)
 
 
 STUDY
     *** architecture questions ***
-    accessing something by "going in from Global", eg: DroneTones.synthParams.envelopeSettings
+    is it bad to access something by "going in from Global", eg: DroneTones.constants.whatever
 
     why: if you don'have the default (Main) page wrapper div first instead of last, you can scroll up (but not) down from Options and About
     Loop not called without TriggerAttackRelease: https://github.com/Tonejs/Tone.js/issues/500
@@ -145,27 +61,28 @@ STUDY
         https://stackoverflow.com/questions/36717376/arrow-function-in-object-literal
         https://dmitripavlutin.com/when-not-to-use-arrow-functions-in-javascript/
 
-    https://groups.google.com/forum/#!newtopic/tonejs/tonejs/cfOamTAfwd8
+    why did adding a container div to the select allow it to reach the specified (7vh - observed relative to the tuning divs) properly?
+        https://www.sitepoint.com/media-queries-width-vs-device-width/
+        https://codepen.io/gntsketches/pen/wLbNqL?editors=0100
 
+    https://groups.google.com/forum/#!newtopic/tonejs/tonejs/cfOamTAfwd8
 	https://2ality.com/2012/08/ids-are-global.html
 	https://stackoverflow.com/questions/3434278/do-dom-tree-elements-with-ids-become-global-variables
-
     https://stackoverflow.com/questions/56918088/scope-of-callback-function-in-new-on-js-object-literal/56918339#56918339
+    https://blog.box.com/media-queries-things-i-wish-id-known
 
 
 
+MISC
+    https://propa.app/
+    https://www.fonts.com/font/virus-fonts/drone?QueryFontType=Web&src=GoogleWebFonts
+    https://thedronetones.bandcamp.com
 
-Maybe:
 
-DroneTones.hookUpToneJS = function() {
-  DroneTones._synthNests.forEach( nest => {
-    nest.synthObject.connect(nest.gain)
-    nest.gain.gain.value = 0.125
-    nest.gain.connect(DroneTones._vibrato)
-  })
-  DroneTones._vibrato.connect(DroneTones._filter)
-  DroneTones._filter.connect(DroneTones._chorus)
-  DroneTones._chorus.toMaster()
-  DroneTones._filter.start()
-}
+CODE ALTERNATIVES
+    re: chosenSynthOptions:
+        OR use a do-while loop to randomly select true values from _activeSynthOptions with Object.keys?
+        OR use .filter()
+            const chosenSynthOptions = Object.keys(synthOptions)
+            .filter(synthName => synthOptions[synthName] === true) // can reference array as argument
 

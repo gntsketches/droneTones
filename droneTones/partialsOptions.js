@@ -7,7 +7,7 @@ DroneTones.partialsOptions = {
     for (let i=0; i < range; i++) {
       partials.push(1)
     }
-    console.log('FullStops', partials)
+    // console.log('FullStops', partials)
     return partials
   },
 
@@ -17,7 +17,7 @@ DroneTones.partialsOptions = {
     for (let i=0; i < range; i++) {
       partials.push(Math.random())
     }
-    console.log('RandomStops', partials)
+    // console.log('RandomStops', partials)
     return partials
   },
 
@@ -34,7 +34,7 @@ DroneTones.partialsOptions = {
         partials = [...partials, num]
       }
     }
-    console.log('tens', partials)
+    // console.log('tens', partials)
     return partials
   },
 

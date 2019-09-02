@@ -92,7 +92,7 @@ DroneTones.setUpSynth = function(nest) {
   // console.log('vibrato')
   // console.log(nest.vibrato.frequency.value)
   // console.log(nest.vibrato.depth.value)
-  // console.log(nest.vibrato.wet.value)
+  // console.log('vibrato on?', nest.vibrato.wet.value)
 
   const filterSettings = DroneTones._effectSettings['filter']
   nest.filter.frequency.value = Math.random() * filterSettings.rate
@@ -104,11 +104,11 @@ DroneTones.setUpSynth = function(nest) {
   // console.log(nest.filter.frequency.value)
   // console.log(nest.filter.depth.value)
   // console.log(nest.filter.octaves)
-  // console.log(nest.filter.wet.value)
+  // console.log('filter on?', nest.filter.wet.value)
 
   const chosenSynthOptions = DroneTones.getChosenSynthOptions()
   const synthType = chosenSynthOptions[Math.floor(Math.random() * chosenSynthOptions.length)]
-  console.log('setUpSynth synthType', synthType)
+  // console.log('setUpSynth synthType', synthType)
   switch (synthType) {
     case 'Sawtooth':
       nest.synthObject.oscillator.type = 'sawtooth'

@@ -4,6 +4,7 @@ DroneTones.init = function() { // arrow function not working here, why?
   // INITIALIZE THE SYNTHS
   DroneTones.hookUpToneJS()
 
+
   // CACHE THE DOM
   this._intervalChooser = document.querySelector('#interval_choosers')
   this._intervalSelectors = [].slice.call(this._intervalChooser.children)
@@ -21,7 +22,6 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._fullStopsRange = document.querySelector('#fullStopsRange')
   this._randomStopsRange = document.querySelector('#randomStopsRange')
   this._clustersRange = document.querySelector('#clustersRange')
-  this._singlesRange = document.querySelector('#singlesRange')
 
   this._toggleVibrato = document.querySelector('#toggleVibrato')
   this._toggleFilter = document.querySelector('#toggleFilter')
@@ -38,13 +38,6 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._restMin = document.querySelector('#restMin')
   this._restMax = document.querySelector('#restMax')
 
-  // ADD A REPRESENTATION STRUCTURE FOR THE TOGGLES TO THE CONSTANTS OBJECT
-  DroneTones.constants.synthOptionToggleCorrespondence = {
-    'Sawtooth': DroneTones._toggleSawtooth,
-    'FullStops': DroneTones._toggleFullStops,
-    'RandomStops': DroneTones._toggleRandomStops,
-    'Clusters': DroneTones._toggleClusters,
-  }
 
   // SET HTML VALUES FROM STATE
 
@@ -78,6 +71,7 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._fallMax.value = this._timing.fallMax
   this._restMin.value = this._timing.restMin
   this._restMax.value = this._timing.restMax
+
 
   // ADD EVENT LISTENERS
 

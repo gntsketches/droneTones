@@ -21,9 +21,10 @@ let DroneTones = {
 	},
 	_partialsRanges: {
 		'fullStops': 20,
-		'randomStops': 20,
-		'clusters': 20,
+		'randomStops': 3,
+		'clusters': 5,
 	},
+	_clustersDensitySetting: 0.2,
 	_effectSettings: {
 		'vibrato': {
 			'on': true,
@@ -91,6 +92,10 @@ DroneTones.getChosenSynthOptions = function() {
 
 DroneTones.changePartialsRanges = function(e) {
 	this._partialsRanges[e.target.name] = parseInt(e.target.value, 10)
+}
+
+DroneTones.changeClustersDensitySetting = function(e) {
+	this._clustersDensitySetting = parseFloat(e.target.value)
 }
 
 DroneTones.changeEffectSetting = function(e) {

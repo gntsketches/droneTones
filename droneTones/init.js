@@ -22,6 +22,7 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._fullStopsRange = document.querySelector('#fullStopsRange')
   this._randomStopsRange = document.querySelector('#randomStopsRange')
   this._clustersRange = document.querySelector('#clustersRange')
+  this._clustersDensity = document.querySelector('#clustersDensity')
 
   this._toggleVibrato = document.querySelector('#toggleVibrato')
   this._toggleFilter = document.querySelector('#toggleFilter')
@@ -56,6 +57,7 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._fullStopsRange.value = this._partialsRanges['fullStops']
   this._randomStopsRange.value = this._partialsRanges['randomStops']
   this._clustersRange.value = this._partialsRanges['clusters']
+  this._clustersDensity.value = this._clustersDensitySetting
 
   this._toggleVibrato.checked = this._effectSettings['vibrato']['on']
   this._toggleFilter.checked = this._effectSettings['filter']['on']
@@ -127,6 +129,9 @@ DroneTones.init = function() { // arrow function not working here, why?
   })
   this._clustersRange.addEventListener('change', (e) => {
     this.changePartialsRanges(e)
+  })
+  this._clustersDensity.addEventListener('change', (e) => {
+    this.changeClustersDensitySetting(e)
   })
 
   this._toggleVibrato.addEventListener('change', (e) => {

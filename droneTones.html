@@ -61,22 +61,22 @@
         </div>
 
         <div class="options-block__option">
-            <span class="toggle_label">Full</span>
+            <span class="toggle_label">Full Vol</span>
             <label class="options-block__checkbox-container" htmlFor="toggleFullStops">
                 <input class="check-custom" type="checkbox" id="toggleFullStops" name="FullStops" />
                 <span class="check-toggle"></span>
             </label>
-            <span class="options-block__input-label">Range:</span>
+            <span class="options-block__input-label">#:</span>
             <input class="options-block__number" id="fullStopsRange" type="number" name="fullStops" step="1" min="1" />
         </div>
 
         <div class="options-block__option">
-            <span class="toggle_label">Random</span>
+            <span class="toggle_label">Random Vol</span>
             <label class="options-block__checkbox-container" htmlFor="toggleRandomStops">
                 <input class="check-custom" type="checkbox" id="toggleRandomStops" name="RandomStops" />
                 <span class="check-toggle"></span>
             </label>
-            <span class="options-block__input-label">Range:</span>
+            <span class="options-block__input-label">#:</span>
             <input class="options-block__number" id="randomStopsRange" type="number" name="randomStops" step="1" min="1"/>
         </div>
 
@@ -86,8 +86,10 @@
                 <input class="check-custom" type="checkbox" id="toggleClusters" name="Clusters" />
                 <span class="check-toggle"></span>
             </label>
-            <span class="options-block__input-label">Range:</span>
+            <span class="options-block__input-label">#: </span>
             <input class="options-block__number" id="clustersRange" type="number" name="clusters" step="1" min="1" />
+            <span class="options-block__input-label clusters-density">Density:</span>
+            <input class="options-block__number clusters-density" id="clustersDensity" type="number" name="clusters" step="0.1" min="0.1" max="1" />
         </div>
 
     </div>
@@ -194,8 +196,7 @@
                 from the selections in "Synth Overtone Options". These settings manipulate the
                 <a href="http://teropa.info/harmonics-explorer/" target="_blank">partials </a>
                 of the synth's
-                <a href="http://teropa.info/blog/2016/09/20/additive-synthesis.html" target="_blank">overtone series </a>
-                in various ways.
+                <a href="http://teropa.info/blog/2016/09/20/additive-synthesis.html" target="_blank">overtone series (* see below). </a>
             </p>
             <p>Each synth is also assigned a
                 <a href="https://en.wikipedia.org/wiki/Vibrato" target="_blank">vibrato </a>
@@ -212,6 +213,13 @@
                 Note that running the app too "quickly"
                 (with very fast rise, fall, and rest times) may overload the computer's
                 processor, causing the sound to skip and cut out.
+            </p>
+            <p>
+                (* Options include a Sawtooth wave (all overtones at decreasing volumes),
+                with a specified number of overtones at maximum volume,
+                with a number of overtones at randomly chosen volumes (only distinct with a few),
+                and with a number of clusters of 3-5 overtones at random volumes,
+                    with 'empty patches' in the overtone series chosen by 'density'.)
             </p>
         </div>
     </div>

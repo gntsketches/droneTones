@@ -43,9 +43,12 @@
         font-family: sans-serif;
     }
 
-    .start-stop,
-    .speed {
+    .start-stop {
         margin-bottom: 1vh;
+    }
+
+    .options-block__input-label {
+        width: 8%;
     }
 
     .options-block.timing {

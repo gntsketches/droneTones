@@ -22,7 +22,7 @@ let DroneTones = {
 	_partialsRanges: {
 		'fullStops': 20,
 		'randomStops': 3,
-		'clusters': 5,
+		'clusters': 20,
 	},
 	_clustersDensitySetting: 0.2,
 	_effectSettings: {

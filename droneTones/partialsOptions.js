@@ -27,15 +27,17 @@ DroneTones.partialsOptions = {
     const range = DroneTones._partialsRanges['clusters']
     for (let i = 0; i < range; i++) {
       let num = 0
-      if (Math.random() < DroneTones._clustersDensity) {
+
+      if (Math.random() < DroneTones._clustersDensitySetting) {
         num = rand()
+        console.log('num', num)
       }
       // for (let j = 0; j < Math.round[getRandomInRange(3,5)]; j++) {
       for (let j = 0; j < 5; j++) {
         partials = [...partials, num]
       }
     }
-    // console.log('Clusters', partials)
+    console.log('Clusters', partials)
     return partials
   },
 

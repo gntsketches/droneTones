@@ -121,6 +121,13 @@ DroneTones.init = function() { // arrow function not working here, why?
     this.changeActiveSynthOptions(e)
   })
 
+  DroneTones._synthOptionToggleCorrespondence = {
+    'Sawtooth': DroneTones._toggleSawtooth,
+    'FullStops': DroneTones._toggleFullStops,
+    'RandomStops': DroneTones._toggleRandomStops,
+    'Clusters': DroneTones._toggleClusters,
+  },
+
   this._fullStopsRange.addEventListener('change', (e) => {
     this.changePartialsRanges(e)
   })

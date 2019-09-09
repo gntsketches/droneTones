@@ -1,10 +1,7 @@
 
 TODO
-     Could not resolve hostname github.com: No address associated with hostname
-    "dept": depth lol - review input labels
     get synth options nice
-    let's style the play button with a different color and gentle pulsing when playing
-    "quick stop" checkbox
+    "quick stop" checkbox (could add to UI next to a volume control)
     review the styles and all the code in general
     merge
     put it up live

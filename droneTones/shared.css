@@ -98,7 +98,7 @@ body {
 
 .pitch-n-tune {
     width: 100%;
-    margin-bottom: 4vh;
+    margin-bottom: 6vh;
     display: flex;
     justify-content: space-between;
 }
@@ -199,8 +199,15 @@ body {
 
 .start-stop button:focus { /*https://a11yproject.com/posts/never-remove-css-outlines/*/ }
 
+@keyframes shadow-pulse
+{
+    0% { box-shadow: 0 0 0 0 rgba(255, 200, 200, 0.5); }
+    100% { box-shadow: 0 0 0 3vh rgba(0, 0, 0, 0); }
+}
 
-
+.pulse {
+    animation: shadow-pulse 2.5s infinite;
+}
 
 
 
@@ -468,4 +475,7 @@ https://fonts.google.com/specimen/Reem+Kufi
 https://fonts.google.com/specimen/Syncopate
 https://fonts.google.com/specimen/Mitr
 https://fonts.google.com/specimen/Monoton
+
+@import url('https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed');
+
 */

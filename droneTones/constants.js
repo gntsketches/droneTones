@@ -21,13 +21,6 @@ DroneTones.constants = {
     '8va': 1200,
   },
 
-  synthOptionToggleCorrespondence: {
-    'Sawtooth': DroneTones._toggleSawtooth,
-    'FullStops': DroneTones._toggleFullStops,
-    'RandomStops': DroneTones._toggleRandomStops,
-    'Clusters': DroneTones._toggleClusters,
-  },
-
 }
 
 

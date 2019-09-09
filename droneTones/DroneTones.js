@@ -53,6 +53,7 @@ DroneTones.setTunings = function(tuning) {
 DroneTones.start = function() {
 	this._started = true
 	this._startStopButton.innerHTML = 'Stop'
+	this._startStopButton.classList.add('pulse')
 	Tone.context.resume()
 	DroneTones.startTimeouts()
 }
@@ -60,6 +61,7 @@ DroneTones.start = function() {
 DroneTones.stop = function() {
 	this._started = false
 	this._startStopButton.innerHTML = 'Play'
+	this._startStopButton.classList.remove('pulse')
 	// this.loop.stop()
 	this._synthNests.forEach((nest, nestNumber) => {
 		// console.log('timeout in stop', nest.timeout)
@@ -75,7 +77,7 @@ DroneTones.stop = function() {
 DroneTones.changeActiveSynthOptions = function(e) {
 	// if there's only one checked, prevent it from changing to false and check the toggle DOM element
 	if (DroneTones.getChosenSynthOptions().length === 1 && e.target.checked === false) {
-		DroneTones.constants.synthOptionToggleCorrespondence[e.target.name].checked = true
+		DroneTones._synthOptionToggleCorrespondence[e.target.name].checked = true
 	} else {
 		this._activeSynthOptions[e.target.name] = e.target.checked
 	}

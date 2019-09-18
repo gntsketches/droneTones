@@ -120,7 +120,7 @@ DroneTones.setUpSynth = function(nest) {
       break
     case 'RandomStops':
       nest.synthObject.oscillator.partials = DroneTones.partialsOptions[synthType]()
-      nest.synthObject.volume = -2
+      nest.synthObject.volume = 0
       break
     case 'Clusters':
       nest.synthObject.oscillator.partials = DroneTones.partialsOptions[synthType]()

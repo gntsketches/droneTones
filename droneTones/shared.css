@@ -103,7 +103,7 @@ body {
     justify-content: space-between;
 }
 
-.option-item {
+.main-block {
     width: 48%;
     height: 10vh;
     display: flex;
@@ -111,7 +111,7 @@ body {
     align-items: center;
 }
 
-.option-item__label {
+.main-block__label {
     display: inline-block;
     /*width: 40%;*/
     font-size: 3vh;
@@ -123,7 +123,7 @@ body {
 
 
 /*https://www.filamentgroup.com/lab/select-css.html*/
-.option-item select {
+.main-block select {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -139,8 +139,8 @@ body {
     cursor: pointer;
 }
 
-.option-item .tuning-controls,
-.option-item .select-container {
+.main-block .tuning-controls,
+.main-block .select-container {
     display: flex;
     width: 100%;
     height: 7vh;
@@ -150,7 +150,7 @@ body {
 
 /*lmgtfy:*/
 /*https://www.google.com/search?q=css+tricks+vertical+align+text&rlz=1C1CHBF_enUS854US854&oq=css+tricks+vertical+align+text&aqs=chrome..69i57.6411j0j4&sourceid=chrome&ie=UTF-8*/
-.option-item .tuning-controls div {
+.main-block .tuning-controls div {
     display: inline-block;
     text-align: center;
     border-radius: 10px;
@@ -163,11 +163,11 @@ body {
     font-family: Verdana;
     user-select: none;
 }
-.option-item .tuning-controls .tuning-controls__minus,
-.option-item .tuning-controls .tuning-controls_plus {
+.main-block .tuning-controls .tuning-controls__minus,
+.main-block .tuning-controls .tuning-controls_plus {
     cursor: pointer;
 }
-.option-item .tuning-controls .tuning-controls__value {
+.main-block .tuning-controls .tuning-controls__value {
     width: 38%;
     background: #555555;
 }

@@ -1,11 +1,10 @@
 
 TODO
-    get synth options nice
-    "quick stop" checkbox (could add to UI next to a volume control)
-    review the styles and all the code in general
     merge
-    put it up live
+    mvc it
     get feedback
+    put it up live
+    ? "quick stop" checkbox (could add to UI next to a volume control)
 
 
 DETAILS

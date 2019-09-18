@@ -6,6 +6,8 @@
 <script src="https://tonejs.github.io/build/Tone.min.js"></script>
 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.4.10/Tone.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.0.13/Tone.min.js"></script>-->
+    <!--says Vibrato is not a constructor-->
 
 <meta name="viewport" content="width=device-width">
 <!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
@@ -14,7 +16,7 @@
 <title>drones</title>
 
 <link rel="stylesheet" type="text/css" href="droneTones/shared.css">
-<link rel="stylesheet" type="text/css" href="droneTones/style-med-large.css">
+<link rel="stylesheet" type="text/css" href="droneTones/landscape.css">
 
 
 </head>
@@ -47,7 +49,6 @@
 
     <div class="options-page__title">Synth Overtone Options</div>
 
-
     <div class="options-block">
 
         <div class="options-block__option">
@@ -59,22 +60,22 @@
         </div>
 
         <div class="options-block__option">
-            <span class="toggle_label">Full</span>
+            <span class="toggle_label">Full Vol</span>
             <label class="options-block__checkbox-container" htmlFor="toggleFullStops">
                 <input class="check-custom" type="checkbox" id="toggleFullStops" name="FullStops" />
                 <span class="check-toggle"></span>
             </label>
-            <span class="options-block__input-label">Range:</span>
+            <span class="options-block__input-label overtone-ranges">#:</span>
             <input class="options-block__number" id="fullStopsRange" type="number" name="fullStops" step="1" min="1" />
         </div>
 
         <div class="options-block__option">
-            <span class="toggle_label">Random</span>
+            <span class="toggle_label">Random Vol</span>
             <label class="options-block__checkbox-container" htmlFor="toggleRandomStops">
                 <input class="check-custom" type="checkbox" id="toggleRandomStops" name="RandomStops" />
                 <span class="check-toggle"></span>
             </label>
-            <span class="options-block__input-label">Range:</span>
+            <span class="options-block__input-label overtone-ranges">#:</span>
             <input class="options-block__number" id="randomStopsRange" type="number" name="randomStops" step="1" min="1"/>
         </div>
 
@@ -84,18 +85,10 @@
                 <input class="check-custom" type="checkbox" id="toggleClusters" name="Clusters" />
                 <span class="check-toggle"></span>
             </label>
-            <span class="options-block__input-label">Range:</span>
+            <span class="options-block__input-label overtone-ranges">#: </span>
             <input class="options-block__number" id="clustersRange" type="number" name="clusters" step="1" min="1" />
-        </div>
-
-        <div class="options-block__option">
-            <span class="toggle_label">Singles</span>
-            <label class="options-block__checkbox-container" htmlFor="toggleSingles">
-                <input class="check-custom" type="checkbox" id="toggleSingles" name="Singles" />
-                <span class="check-toggle"></span>
-            </label>
-            <span class="options-block__input-label">Range:</span>
-            <input class="options-block__number" id="singlesRange" type="number" name="singles" step="1" min="1" />
+            <span class="options-block__input-label clusters-density">Density:</span>
+            <input class="options-block__number clusters-density" id="clustersDensity" type="number" name="clusters" step="0.1" min="0.1" max="1" />
         </div>
 
     </div>
@@ -107,7 +100,7 @@
     <div class="options-block">
 
         <div class="options-block__option">
-            <span class="toggle_label">Vibrato</span>
+            <span class="toggle_label synth-effects">Vibrato</span>
             <label class="options-block__checkbox-container" htmlFor="toggleVibrato">
                 <input class="check-custom" type="checkbox" id="toggleVibrato" name="vibrato-on" />
                 <span class="check-toggle"></span>
@@ -119,19 +112,7 @@
         </div>
 
         <div class="options-block__option">
-            <span class="toggle_label">Chorus</span>
-            <label class="options-block__checkbox-container" htmlFor="toggleChorus">
-                <input class="check-custom" type="checkbox" id="toggleChorus" name="chorus-on" />
-                <span class="check-toggle"></span>
-            </label>
-            <span class="options-block__input-label">Rate:</span>
-            <input class="options-block__number" id="chorusRate" type="number" name="chorus-rate" step="0.1" min="0" />
-            <span class="options-block__input-label">Depth:</span>
-            <input class="options-block__number" id="chorusDepth" type="number" name="chorus-depth" step="0.05" min="0" max="1" />
-        </div>
-
-        <div class="options-block__option">
-            <span class="toggle_label">Filter</span>
+            <span class="toggle_label synth-effects">Filter</span>
             <label class="options-block__checkbox-container" htmlFor="toggleFilter">
                 <input class="check-custom" type="checkbox" id="toggleFilter" name="filter-on" />
                 <span class="check-toggle"></span>
@@ -145,12 +126,44 @@
     </div>
 
 
-    <div class="options-page__title">Speed</div>
+    <div class="options-page__title">Timing</div>
 
+    <div class="options-block timing">
 
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range -->
-    <div class="speed">
-        <input type="range" id="speed" name="speed_slider" min="1" max="60" step="1" />
+        <div class="timing__column">
+            <div class="timing__stage">Rise</div>
+            <div class="timing__min-max">
+                <label class="timing__input-label">Min:</label>
+                <input class="timing__number" id="riseMin" type="number" name="riseMin" step="0.1" min="0.1" />
+            </div>
+            <div class="timing__min-max">
+                <label class="timing__input-label">Max:</label>
+                <input class="timing__number" id="riseMax" type="number" name="riseMax" step="0.1" min="0.1" />
+            </div>
+        </div>
+        <div class="timing__column">
+            <div class="timing__stage">Fall</div>
+            <div class="timing__min-max">
+                <label class="timing__input-label">Min:</label>
+                <input class="timing__number" id="fallMin" type="number" name="fallMin" step="0.5" min="0" />
+            </div>
+            <div class="timing__min-max">
+                <label class="timing__input-label">Max:</label>
+                <input class="timing__number" id="fallMax" type="number" name="fallMax" step="0.5" min="0" />
+            </div>
+        </div>
+        <div class="timing__column">
+            <div class="timing__stage">Rest</div>
+            <div class="timing__min-max">
+                <label class="timing__input-label">Min:</label>
+                <input class="timing__number" id="restMin" type="number" name="restMin" step="0.5" min="0" />
+            </div>
+            <div class="timing__min-max">
+                <label class="timing__input-label">Max:</label>
+                <input class="timing__number" id="restMax" type="number" name="restMax" step="0.5" min="0" />
+            </div>
+        </div>
+
     </div>
 
 
@@ -171,11 +184,45 @@
             <p><a href="https://gntsketches.com" target="_blank">www.gntsketches.com</a>
             <p>on <a href="https://www.youtube.com/channel/UCsewkoqCYikz9Iy3fN4S9BA" target="_blank">Youtube</a>
             <p>on <a href="https://github.com/gntsketches/" target="_blank">Github</a>
-            <p>Some description of what is going on would probably be good.</p>
+            <br><br>
+            <p>About the app:</p>
+            <p>DroneTones plays up to 8 synthesizers by swelling and fading
+                their volumes in a randomized pattern. The pitch of each synth is chosen by
+                <a href="https://en.wikipedia.org/wiki/Interval_(music)" target="_blank">interval </a>
+                relative to the root pitch.
+            </p>
+            <p>Just before each synth volume rises, its tone color is randomly chosen
+                from the selections in "Synth Overtone Options". These settings manipulate the
+                <a href="http://teropa.info/harmonics-explorer/" target="_blank">partials </a>
+                of the synth's
+                <a href="http://teropa.info/blog/2016/09/20/additive-synthesis.html" target="_blank">overtone series (* see below). </a>
+            </p>
+            <p>Each synth is also assigned a
+                <a href="https://en.wikipedia.org/wiki/Vibrato" target="_blank">vibrato </a>
+                and
+                <a href="https://en.wikipedia.org/wiki/Audio_filter" target="_blank">auto-filter </a>
+                effect.
+                The rate and depth of these effects are assigned a random value between
+                zero and the chosen settings in "Synth Effects Options".
+            </p>
+            <p>The randomized timing for the rise and fall of synth volumes,
+                and the rest between, can be adjusted in "Timing".
+                Setting the min above the max causes the max to track accordingly
+                (and vice-versa).
+                Note that running the app too "quickly"
+                (with very fast rise, fall, and rest times) may overload the computer's
+                processor, causing the sound to skip and cut out.
+            </p>
+            <p>
+                (* Options include: a Sawtooth wave (all overtones at decreasing volumes);
+                a specified number of overtones at maximum volume,
+                with a number of overtones at randomly chosen volumes (this is only distinct with a small number),
+                and with a number of clusters overtones at random volumes,
+                spread across the overtone series by 'density'.)
+            </p>
         </div>
     </div>
 </div>
-
 
 
 <!-- ***********************************************************************************************
@@ -185,16 +232,20 @@
 
 <div id="main" class="wrapper-main page default">
 
-    <div id="interval_choosers"></div>
-
-    <div class="intervalAddRemove">
-        <div id="intervalAddButton">Add Synth</div>
-        <div id="intervalRemoveButton">Remove Synth</div>
+    <div id="interval_choosers">
+        <select><option>Off</option><option>Sub</option><option>Root</option><option>m2</option><option>M2</option><option>m3</option><option>M3</option><option>P4</option><option>#4/b5</option><option>P5</option><option>m6</option><option>M6</option><option>m7</option><option>M7</option><option>8va</option></select>
+        <select><option>Off</option><option>Sub</option><option>Root</option><option>m2</option><option>M2</option><option>m3</option><option>M3</option><option>P4</option><option>#4/b5</option><option>P5</option><option>m6</option><option>M6</option><option>m7</option><option>M7</option><option>8va</option></select>
+        <select><option>Off</option><option>Sub</option><option>Root</option><option>m2</option><option>M2</option><option>m3</option><option>M3</option><option>P4</option><option>#4/b5</option><option>P5</option><option>m6</option><option>M6</option><option>m7</option><option>M7</option><option>8va</option></select>
+        <select><option>Off</option><option>Sub</option><option>Root</option><option>m2</option><option>M2</option><option>m3</option><option>M3</option><option>P4</option><option>#4/b5</option><option>P5</option><option>m6</option><option>M6</option><option>m7</option><option>M7</option><option>8va</option></select>
+        <select><option>Off</option><option>Sub</option><option>Root</option><option>m2</option><option>M2</option><option>m3</option><option>M3</option><option>P4</option><option>#4/b5</option><option>P5</option><option>m6</option><option>M6</option><option>m7</option><option>M7</option><option>8va</option></select>
+        <select><option>Off</option><option>Sub</option><option>Root</option><option>m2</option><option>M2</option><option>m3</option><option>M3</option><option>P4</option><option>#4/b5</option><option>P5</option><option>m6</option><option>M6</option><option>m7</option><option>M7</option><option>8va</option></select>
+        <select><option>Off</option><option>Sub</option><option>Root</option><option>m2</option><option>M2</option><option>m3</option><option>M3</option><option>P4</option><option>#4/b5</option><option>P5</option><option>m6</option><option>M6</option><option>m7</option><option>M7</option><option>8va</option></select>
+        <select><option>Off</option><option>Sub</option><option>Root</option><option>m2</option><option>M2</option><option>m3</option><option>M3</option><option>P4</option><option>#4/b5</option><option>P5</option><option>m6</option><option>M6</option><option>m7</option><option>M7</option><option>8va</option></select>
     </div>
 
     <div class="pitch-n-tune">
-        <div class="option-item">
-            <div class="option-item__label">Root Pitch</div>
+        <div class="main-block">
+            <div class="main-block__label">Root Pitch</div>
             <div class="select-container">
                 <select id="base_pitch">
                     <option>B2</option>
@@ -212,8 +263,8 @@
                 </select>
             </div>
         </div>
-        <div class="option-item">
-            <div class="option-item__label">Tuning %</div>
+        <div class="main-block">
+            <div class="main-block__label">Tuning %</div>
             <div class="tuning-controls">
                 <div id="tuning_minus" class="tuning-controls__minus">-</div>
                 <div id="tuning_value" class="tuning-controls__value">0</div>
@@ -231,7 +282,6 @@
 
 
 
-
 <!-- MOBILE-NAVIGATION *********************************************************************************************** -->
 
 
@@ -243,11 +293,11 @@
 
 <!-- SCRIPTS *************************************************************************************************-->
 
+<script src="droneTones/helpers.js"></script>
 <script src="droneTones/DroneTones.js"></script>
 <script src="droneTones/constants.js"></script>
-<script src="droneTones/SynthSetup.js"></script>
-<script src="droneTones/synthOptions.js"></script>
-<script src="droneTones/SynthBuilder.js"></script>
+<script src="droneTones/partialsOptions.js"></script>
+<script src="droneTones/SynthManagement.js"></script>
 <script src="droneTones/init.js"></script>
 
 <script>

@@ -68,7 +68,7 @@ Synth.prototype.startTargets = function(min, max, timerange) {
 	console.log("value", val)
 	console.log(synth._gain.gain)
 	synth._gain.gain.exponentialRampTo(val, 4)  
-	//synth._gain.gain.exponentialRampTo(val, 4)  // timeout time should be a little more than the rampTo time, otherwise it pops...
+	//synthObject._gain.gain.exponentialRampTo(val, 4)  // timeout time should be a little more than the rampTo time, otherwise it pops...
 	synth._timeout = setTimeout(function(){ 
 		synth.startTargets()
 	}, 4500);

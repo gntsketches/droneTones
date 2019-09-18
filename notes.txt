@@ -1,94 +1,55 @@
 
 TODO
-    clean up names:
-        intervalAdd etc. to add synth, both in CSS & JS
-        change "options" in main page
-        comb other css conventions
-    JS
-    CSS
-        why did adding a container div to the select allow it to reach the specified (7vh - observed relative to the tuning divs) properly?
-       clean
-            find css which can be "shared".
-            review various units, etc.
-        https://www.sitepoint.com/media-queries-width-vs-device-width/
-        https://codepen.io/gntsketches/pen/wLbNqL?editors=0100
-	    align selects & tuners & range slider
-	"make it sound better"
-	    with that long timeout maybe you can have a longer release tail? (and correlate the timeout with the BPM...)
-        hook attack & release to tempo
-            "you can try using Tone.Time('8n') or Tone.Time('8n').toSeconds() as a work-around for now"
-        "smoother"?
-        equalize volumes
-            equalize PartialBuilder volume by basing it on partials.length?
-            compression?
-        investigate the nature of volume and gain
+    merge
+    mvc it
+    get feedback
+    put it up live
+    ? "quick stop" checkbox (could add to UI next to a volume control)
+
+
+DETAILS
+    css kerning?
+    https://webdesign.tutsplus.com/articles/outside-in-ordering-css-properties-by-importance--cms-21685
+    https://stackoverflow.com/questions/1696864/naming-class-and-id-html-attributes-dashes-vs-underlines
+    Border radius on phone-landscape...
+
+
+"FINAL" CLEANUP
+    not a lot of consistency in terms of width / horizontal padding or margin...
+    labeling: why not accessibility?
+    change "options" naming in main page
+    intervalAdd etc. to add synth, both in CSS & JS
+    comb other css conventions
+    find css which can be "shared".
+    review various units, etc.
+    naming conventions everywhere
+    refactor - consider changeEffectSettings vs other types of state mod functions and their relation to naming conventions in DOM
+    _toggleFilter and others which use changeEffectSettings could be done with an array and a forEach...
+    ? "Options" page can become "Synths" for New Synthesizer Options
+
+
+
+
+FUTURE PLAN
+    Study design patterns to develop some sort of framework
+    Which seems like it would be needed to manage:
+        persistence of app state via local storage (and a 'reset to defaults' option)
+
+MAYBE/SOMEDAY/IDEAS
 	? hide elements prior to initialization
 	? use Bootstrap or something, like to make a pretty range slider
-    ?     Shows shifting synths in the DOM with highlighting or synth names ... getting into jQ territory with some of this
-    Final Cleanup
-        naming conventions everywhere
-        refactor - consider changeEffectSettings vs other types of state mod functions and their relation to naming conventions in DOM
-        _toggleFilter and others which use changeEffectSettings could be done with an array and a forEach...
-        ? "Options" page can become "Synths" for New Synthesizer Options
-    Style Minutia
-        Border radius on phone-landscape...
-
-
-ALTERNATE VERSION
-    all synths fire at once (or timeout to start)
-    rather than speed, there is a max and min timing for the attack/release
-        min/max attack/release – one option for attack release or different for each
-    once a synth volume goes to zero, it gets a new synthOptions setup
-    the select elements representing the synths glow and fade with the volume!
-        do you need jQ? can you do that on your own?
-        can you do this with just css animation?
-    synth trigger options:
-        choose between synths playing randomly or firing in order (?)
-        random option - different attack release each time? or, synths in steady pulse rhythm - maybe change by increment
-
-
-
-https://blog.box.com/media-queries-things-i-wish-id-known
-
-CRACKLES AND STUFF
-    test & post re: crackle tester
-        https://groups.google.com/forum/#!topic/tonejs/zYlQupn-Jic
-        https://codepen.io/gntsketches/pen/KjVdBm?editors=1010
-        crackle tester: https://codepen.io/gntsketches/pen/QXBVdm
-    Dude, you're not disposing of the Chorus, Vibrato, or Gain...
-
-FUTURE
-    UI / ADJUSTABLE
-	    hamburger menu w: about, synth type select, pattern select, effects select
-    - user picks which synth types
-    - user picks pattern?
-        drop-down list with a bunch of patterns
-        rests?
-        (example options: sub, main, interval, rest... remove, add...)
-    - visualization window? (would be awesome with waveforms...)
-    - user sets effects params
-    - volume
-    - https://propa.app/
-	- picker wheel: https://stackoverflow.com/questions/33157307/how-to-make-a-html5-spinning-list-rotating-wheel-selector-picker
-    - Drift (time, pitchSet)
-    - more complicated (chord/polyphony) options for pitches
-    - Logo! (picture of waves interacting)
-
-MISC
-    https://www.fonts.com/font/virus-fonts/drone?QueryFontType=Web&src=GoogleWebFonts
-    https://thedronetones.bandcamp.com
-    can SynthBuilder accept an object for testing?
-
-    re: chosenSynthOptions:
-        OR use a do-while loop to randomly select true values from _activeSynthOptions with Object.keys?
-        OR use .filter()
-            const chosenSynthOptions = Object.keys(synthOptions)
-            .filter(synthName => synthOptions[synthName] === true) // can reference array as argument
+    ? pick specific pitches rather than intervals, then option to adjust everything by interval
+    ? visualization window? (would be awesome with waveforms...)
+    ? volume
+	? picker wheel: https://stackoverflow.com/questions/33157307/how-to-make-a-html5-spinning-list-rotating-wheel-selector-picker
+    ? Drift (time, pitchSet)
+        ? more complicated (chord/polyphony) options for pitches
+    ? Logo! (picture of waves interacting)
 
 
 STUDY
     *** architecture questions ***
-    accessing something by "going in from Global", eg: DroneTones.synthParams.envelopeSettings
+    is it bad to access something by "going in from Global", eg: DroneTones.constants.whatever
 
     why: if you don'have the default (Main) page wrapper div first instead of last, you can scroll up (but not) down from Options and About
     Loop not called without TriggerAttackRelease: https://github.com/Tonejs/Tone.js/issues/500
@@ -97,11 +58,28 @@ STUDY
         https://stackoverflow.com/questions/36717376/arrow-function-in-object-literal
         https://dmitripavlutin.com/when-not-to-use-arrow-functions-in-javascript/
 
-    https://groups.google.com/forum/#!newtopic/tonejs/tonejs/cfOamTAfwd8
+    why did adding a container div to the select allow it to reach the specified (7vh - observed relative to the tuning divs) properly?
+        https://www.sitepoint.com/media-queries-width-vs-device-width/
+        https://codepen.io/gntsketches/pen/wLbNqL?editors=0100
 
+    https://groups.google.com/forum/#!newtopic/tonejs/tonejs/cfOamTAfwd8
 	https://2ality.com/2012/08/ids-are-global.html
 	https://stackoverflow.com/questions/3434278/do-dom-tree-elements-with-ids-become-global-variables
-
     https://stackoverflow.com/questions/56918088/scope-of-callback-function-in-new-on-js-object-literal/56918339#56918339
+    https://blog.box.com/media-queries-things-i-wish-id-known
 
+
+
+MISC
+    https://propa.app/
+    https://www.fonts.com/font/virus-fonts/drone?QueryFontType=Web&src=GoogleWebFonts
+    https://thedronetones.bandcamp.com
+
+
+CODE ALTERNATIVES
+    re: chosenSynthOptions:
+        OR use a do-while loop to randomly select true values from _activeSynthOptions with Object.keys?
+        OR use .filter()
+            const chosenSynthOptions = Object.keys(synthOptions)
+            .filter(synthName => synthOptions[synthName] === true) // can reference array as argument
 

@@ -22,10 +22,11 @@
     .wrapper-options {
         width: 50%;
         height: 100vh;
+        padding: 5vh 2.5%;
     }
 
     .pitch-n-tune {
-        margin-bottom: 5vh;
+        margin-bottom: 7vh;
     }
 
     .toggle-about{
@@ -42,9 +43,16 @@
         font-family: sans-serif;
     }
 
-    .start-stop,
-    .speed {
+    .start-stop {
         margin-bottom: 1vh;
+    }
+
+    .options-block__input-label {
+        width: 15%;
+    }
+
+    .options-block.timing {
+        margin-bottom: 0;
     }
 
     /*** ABOUT *****************************************************/
@@ -82,6 +90,8 @@
 
     .about-info {
         font-size: 3vw;
+        max-height: 70vh;
+        padding: 1vh 1vw;
     }
 
     .close-modal-x {

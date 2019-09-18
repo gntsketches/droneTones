@@ -15,6 +15,8 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    color: wheat;
 }
 
 /*https://dev.to/hakash/100-pure-htmlcss-page-navigation---no-javascript-required-2em5 (apparently doesn't need the part about the default page being last in the html. Update: yes it does, because otherwise you can scroll around on other 'pages')*/
@@ -44,18 +46,14 @@ body {
 }
 
 .wrapper-main {
-    /*margin: 2%;*/
-    /*border: 1px solid black;*/
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
     padding: 5vh 5%;
-    /*display: flex;*/
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
 }
-
 
 
 #interval_choosers {
@@ -80,50 +78,32 @@ body {
     font-size: 3vh;
     border: 0px solid blue;
     border-radius: 10px;
-    text-align: center; /*of course not*/
+    text-align: center; /* I think it's 'middle'... */
     background: #555;
     color: wheat;
+    text-shadow: -1px 1px 1px #333,
+                 1px 1px 1px #333;
+                 /*1px -1px 0 #555,*/
+                 /*-1px -1px 0 #555;*/
     font-family: Verdana;
     cursor: pointer;
+    transition-property: background-color color;
+    transition-timing-function: ease-in-out;
 }
 
-.intervalAddRemove {
-    margin-bottom: 3vh;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-
-    /*background: #000;*/
+#interval_choosers select.glow {
+    background: #fff;
+    /*color: #555;*/
 }
-
-#intervalAddButton,
-#intervalRemoveButton {
-    text-align: center;
-    border-radius: 10px;
-    background: chocolate;
-    color: #fcc;
-    width: 48%;
-    height: 7vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /*line-height: 5vh; !* https://css-tricks.com/centering-css-complete-guide/ *!*/
-    font-size: 3vh;
-    font-family: Verdana;
-    user-select: none;
-    cursor: pointer;
-}
-
-
 
 .pitch-n-tune {
     width: 100%;
-    margin-bottom: 4vh;
+    margin-bottom: 6vh;
     display: flex;
     justify-content: space-between;
 }
 
-.option-item {
+.main-block {
     width: 48%;
     height: 10vh;
     display: flex;
@@ -131,7 +111,7 @@ body {
     align-items: center;
 }
 
-.option-item__label {
+.main-block__label {
     display: inline-block;
     /*width: 40%;*/
     font-size: 3vh;
@@ -143,7 +123,7 @@ body {
 
 
 /*https://www.filamentgroup.com/lab/select-css.html*/
-.option-item select {
+.main-block select {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -159,8 +139,8 @@ body {
     cursor: pointer;
 }
 
-.option-item .tuning-controls,
-.option-item .select-container {
+.main-block .tuning-controls,
+.main-block .select-container {
     display: flex;
     width: 100%;
     height: 7vh;
@@ -170,7 +150,7 @@ body {
 
 /*lmgtfy:*/
 /*https://www.google.com/search?q=css+tricks+vertical+align+text&rlz=1C1CHBF_enUS854US854&oq=css+tricks+vertical+align+text&aqs=chrome..69i57.6411j0j4&sourceid=chrome&ie=UTF-8*/
-.option-item .tuning-controls div {
+.main-block .tuning-controls div {
     display: inline-block;
     text-align: center;
     border-radius: 10px;
@@ -183,11 +163,11 @@ body {
     font-family: Verdana;
     user-select: none;
 }
-.option-item .tuning-controls .tuning-controls__minus,
-.option-item .tuning-controls .tuning-controls_plus {
+.main-block .tuning-controls .tuning-controls__minus,
+.main-block .tuning-controls .tuning-controls_plus {
     cursor: pointer;
 }
-.option-item .tuning-controls .tuning-controls__value {
+.main-block .tuning-controls .tuning-controls__value {
     width: 38%;
     background: #555555;
 }
@@ -219,8 +199,15 @@ body {
 
 .start-stop button:focus { /*https://a11yproject.com/posts/never-remove-css-outlines/*/ }
 
+@keyframes shadow-pulse
+{
+    0% { box-shadow: 0 0 0 0 rgba(255, 200, 200, 0.5); }
+    100% { box-shadow: 0 0 0 3vh rgba(0, 0, 0, 0); }
+}
 
-
+.pulse {
+    animation: shadow-pulse 2.5s infinite;
+}
 
 
 
@@ -237,16 +224,12 @@ label span {
 .wrapper-options {
     width: 100vw;
     height: 100vh;
-    background: #444;
-    padding: 5vh 5vw;
     box-sizing: border-box;
-    /*display: flex;*/
+    padding: 5vh 5%;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    color: wheat;
-
-    /*padding: 0 5vw 10vw 5vw;*/
+    background: #444;
 }
 
 .options-page__title {
@@ -257,9 +240,10 @@ label span {
 }
 
 .options-block {
-    /*width: 100%;*/
+    box-sizing: border-box;
+    width: 100%;
     /*height: 30%;*/
-    padding: 1vh 5vw;
+    padding: 1vh 2vw;
     margin: 0 0 5vh 0;
     display: flex;
     flex-direction: column;
@@ -275,8 +259,12 @@ label span {
 }
 
 .toggle_label {
-    width: 20%;
+    width: 25%;
     text-align: right;
+}
+
+.toggle_label.synth-effects {
+    width: 18%
 }
 
 label.options-block__checkbox-container {
@@ -284,16 +272,76 @@ label.options-block__checkbox-container {
 }
 
 .options-block__input-label {
-    margin-left: 5%;
+    margin-left: 2%;
+    width: 13%;
+    text-align: right;
+}
+
+.options-block__input-label.overtone-ranges {
+    width: 5%
+}
+
+.options-block__input-label.clusters-density {
+    /*margin-left: 0;*/
+    width: 16%;
 }
 
 .options-block__number {
-    width: 15%;
+    margin-left: 1%;
+    width: 12%;
     /*color: black;*/
         /*why not inheriting color from .wrapper-options?*/
     background: wheat;
 }
 
+.options-block__number.clusters-density {
+    width: 12%;
+    background: wheat;
+}
+
+
+.options-block.timing {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1vh 3vw;
+    margin: 0 0 7vh 0;
+}
+
+.timing__column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 1%;
+    /*background: chocolate;*/
+}
+
+.timing__stage {
+    font-size: 3vh;
+    padding-left: 2vw;
+    margin-bottom: 0.5vh;
+}
+
+.timing__min-max {
+    display: flex;
+    width: 100%;
+    margin-bottom: 0.5vh;
+}
+
+.timing__input-label {
+    width: 40%;
+    text-align: right;
+}
+
+.timing__number {
+    margin-left: 1%;
+    width: 45%;
+    background: wheat;
+}
+
+
+/******************************************************************************
+* CHECKBOXES just deserve their own special section
+******************************************************************************/
 
 /*https://hackernoon.com/hacking-custom-checkboxes-and-radios-5d48230440d*/
 input[type='checkbox'].check-custom {
@@ -340,25 +388,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-.speed {
-    width: 100%;
-    height: 8%;
-    margin: 0 5% 10vh 5%;
-    color: wheat;
-    background: chocolate;
-    font-size: 4vh;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.speed input {
-    width:90%;
-    color: wheat;
-}
-
-
 /*****************************************************************************
 * ABOUT
 ******************************************************************************/
@@ -390,6 +419,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 .about-info {
     font-size: 6vw;
+    overflow-y: auto;
+    max-height: 78vh;
+    padding: 1vh 1vw;
 }
 
 
@@ -443,4 +475,7 @@ https://fonts.google.com/specimen/Reem+Kufi
 https://fonts.google.com/specimen/Syncopate
 https://fonts.google.com/specimen/Mitr
 https://fonts.google.com/specimen/Monoton
+
+@import url('https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed');
+
 */

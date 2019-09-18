@@ -1,18 +1,5 @@
-// unknown: will each synth need different envelope settings?
 
-DroneTones.synthOptions = {
-
-
-  Sawtooth() {
-    return {
-      oscillator: {
-        type: 'sawtooth'
-      },
-      volume: -12,
-      envelope: DroneTones._envelopeSettings
-    }
-  },
-
+DroneTones.partialsOptions = {
 
   FullStops(){
     let partials = []
@@ -20,15 +7,8 @@ DroneTones.synthOptions = {
     for (let i=0; i < range; i++) {
       partials.push(1)
     }
-    console.log('FullStops', partials)
-    return {
-      oscillator  : {
-        type: 'sine',
-        partials: partials
-      },
-      volume: -12,
-      envelope: DroneTones._envelopeSettings
-    }
+    // console.log('FullStops', partials)
+    return partials
   },
 
   RandomStops(){
@@ -37,58 +17,28 @@ DroneTones.synthOptions = {
     for (let i=0; i < range; i++) {
       partials.push(Math.random())
     }
-    console.log('RandomStops', partials)
-    return {
-      oscillator  : {
-        type: 'sine',
-        partials: partials
-      },
-      volume: -12,
-      envelope: DroneTones._envelopeSettings
-    }
+    // console.log('RandomStops', partials)
+    return partials
   },
 
-  Clusters(){
+  Clusters() {
     const rand = Math.random
     let partials = [rand(), rand(), rand(), rand(), rand()]
-    const range = DroneTones._partialsRanges['singles']
-    for (let i=0; i < range ; i++) {
+    const range = DroneTones._partialsRanges['clusters']
+    for (let i = 0; i < range; i++) {
       let num = 0
-      if (Math.random()<0.2) { num = rand() }
-      for (let j=0; j<5; j++) {
+
+      if (Math.random() < DroneTones._clustersDensitySetting) {
+        num = rand()
+        console.log('num', num)
+      }
+      // for (let j = 0; j < Math.round[getRandomInRange(3,5)]; j++) {
+      for (let j = 0; j < 5; j++) {
         partials = [...partials, num]
       }
     }
-    console.log('tens', partials)
-    return {
-      oscillator  : {
-        type: 'sine',
-        partials: partials
-      },
-      volume: -12,
-      envelope: DroneTones._envelopeSettings
-    }
-  },
-
-  Singles(){
-    let partials = []
-    const range = DroneTones._partialsRanges['singles']
-    for (let i=0; i < Math.floor(Math.random()* range); i++) {
-      partials.push(0)
-    }
-    partials.push(1)
-    partials = [0,0,0,0,0,0,0,0.5] //
-    // partials = [0,0,0,0,0,0.5,0,0.5] //nice, kinda distorted
-    // partials = [0,0,0,0,0.5,0.5,0,0,0.5] // also nice, also distorted
-    console.log('singles', partials)
-    return {
-      oscillator  : {
-        type: 'sine',
-        partials: partials
-      },
-      volume: 1,
-      envelope: DroneTones._envelopeSettings
-    }
+    console.log('Clusters', partials)
+    return partials
   },
 
 

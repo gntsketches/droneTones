@@ -36,7 +36,7 @@ var synth = new Tone.Synth({
 		type  : 'sawtooth'
 	},
 	envelope  : {
-		attack  : 5,
+		rise  : 5,
 		decay  : 0,
 		sustain  : 1,
 		release  : 5
@@ -76,19 +76,19 @@ document.querySelector('#stop').addEventListener('click', () => {
 
 
 /*
-var synth = new Tone.DuoSynth().toMaster()
-synth.voice0.oscillator.type = 'sawtooth'
-synth.voice1.oscillator.type = 'sawtooth'
-console.log(synth)
+var synthObject = new Tone.DuoSynth().toMaster()
+synthObject.voice0.oscillator.type = 'sawtooth'
+synthObject.voice1.oscillator.type = 'sawtooth'
+console.log(synthObject)
 var lfo = new Tone.LFO(0.125, 1, 1.5)
-lfo.connect(synth.harmonicity)
+lfo.connect(synthObject.harmonicity)
 
 
-var synth = new Tone.Synth()
-synth.oscillator.type = 'sawtooth'
+var synthObject = new Tone.Synth()
+synthObject.oscillator.type = 'sawtooth'
 var vibrato = new Tone.Vibrato()
 vibrato.toMaster()
-synth.connect(vibrato)
+synthObject.connect(vibrato)
 var lfo = new Tone.LFO(0.125, 0, 0.25)
 lfo.connect(vibrato.depth)
 

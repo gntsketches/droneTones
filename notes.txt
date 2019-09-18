@@ -1,7 +1,12 @@
 
-TODO
-    merge
-    mvc it
+TODO MVC
+    - view 'control' of html - eg: checkboxes. Should element be 'set' by view?
+    - https://stackoverflow.com/questions/4415904/business-logic-in-mvc
+    - init functions, in controller or model?
+        (will each m,v,c,a have its own init)
+    - processing of user input (eg: 'event.target.whatev') goes in controller?
+
+TODO OTHER
     get feedback
     put it up live
     ? "quick stop" checkbox (could add to UI next to a volume control)

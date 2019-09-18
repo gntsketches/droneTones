@@ -1,3 +1,5 @@
+// MODEL
+
 let DroneTones = {
 	// STATE
 	_started: false,
@@ -39,50 +41,62 @@ let DroneTones = {
 	},
 }
 
-// GENERAL FUNCTIONS
-
+// CONTROLLER
+	// change model
 DroneTones.setTunings = function(tuning) {
 	if (tuning==='minus') {
 		this._tuning -= 1
 	} else if (tuning==='plus') {
 		this._tuning += 1
 	}
+	// change view
 	document.querySelector('#tuning_value').innerHTML = this._tuning
 }
 
+// CONTROLLER
 DroneTones.start = function() {
+	// change model
 	this._started = true
+	// change view
 	this._startStopButton.innerHTML = 'Stop'
 	this._startStopButton.classList.add('pulse')
+	// change audio
 	Tone.context.resume()
+	// hmmm
 	DroneTones.startTimeouts()
 }
 
+// CONTROLLER
 DroneTones.stop = function() {
+	// change model
 	this._started = false
+	// change view
 	this._startStopButton.innerHTML = 'Play'
 	this._startStopButton.classList.remove('pulse')
-	// this.loop.stop()
+	// synthNests is in Model?
 	this._synthNests.forEach((nest, nestNumber) => {
-		// console.log('timeout in stop', nest.timeout)
+		// change audio
 		clearTimeout(nest.timeout)
-		// assign a faster release value?
 		nest.synthObject.triggerRelease()
-		// same code as in 'fall' timeout... abstract to a function to make more DRY?
+		// (...same code as in 'fall' timeout... abstract to a function to make more DRY?)
+		// change view
 		DroneTones._intervalSelectors[nestNumber].style.transitionDuration = nest.fall + 's'
 		DroneTones._intervalSelectors[nestNumber].classList.remove('glow')
 	})
 }
 
-DroneTones.changeActiveSynthOptions = function(e) {
-	// if there's only one checked, prevent it from changing to false and check the toggle DOM element
+// CONTROLLER
+DroneTones.changeActiveSynthOptions = function(e) {  // if there's only one checked, prevent it from changing to false and check the toggle DOM element
+	// change model
 	if (DroneTones.getChosenSynthOptions().length === 1 && e.target.checked === false) {
 		DroneTones._synthOptionToggleCorrespondence[e.target.name].checked = true
 	} else {
+		// change view
 		this._activeSynthOptions[e.target.name] = e.target.checked
 	}
 }
 
+// MODEL - business logic
 DroneTones.getChosenSynthOptions = function() {
 	const synthOptions = DroneTones._activeSynthOptions
 	const chosenSynthOptions = []
@@ -92,15 +106,21 @@ DroneTones.getChosenSynthOptions = function() {
 	return chosenSynthOptions
 };
 
+// CONTROLLER
 DroneTones.changePartialsRanges = function(e) {
+	// change model
 	this._partialsRanges[e.target.name] = parseInt(e.target.value, 10)
 }
 
+// CONTROLLER
 DroneTones.changeClustersDensitySetting = function(e) {
+	// change model
 	this._clustersDensitySetting = parseFloat(e.target.value)
 }
 
+// CONTROLLER
 DroneTones.changeEffectSetting = function(e) {
+	// change model
 	const effect = e.target.name.split('-')[0]
 	const field = e.target.name.split('-')[1]
 	const value = field === 'on' ? e.target.checked : parseFloat(e.target.value)
@@ -108,6 +128,7 @@ DroneTones.changeEffectSetting = function(e) {
 	// console.log(this._effectSettings)
 }
 
+// CONTROLLER
 DroneTones.changeTimingSettings = function(e) {
 	const timingEl = e.target.name
 	console.log(timingEl);
@@ -115,6 +136,7 @@ DroneTones.changeTimingSettings = function(e) {
 	this._timing[timingEl] = parseFloat(e.target.value)
 	console.log(this._timing)
 
+	// EACH HAS A change model AND A change view
 	if (timingEl==='riseMin' && this._timing['riseMin'] > this._timing['riseMax']) {
 		this._timing['riseMax'] = this._timing['riseMin']
 		this._riseMax.value = this._timing.riseMax

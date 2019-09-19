@@ -1,5 +1,9 @@
 
 TODO MVC
+    ??? Does Controller *send* events on, or just *receive* from user them to pass on?
+    - step-through code and comment
+    - https://www.taniarascia.com/javascript-mvc-todo-app/
+    - https://medium.com/@ToddZebert/a-walk-through-of-a-simple-javascript-mvc-implementation-c188a69138dc
     - view 'control' of html - eg: checkboxes. Should element be 'set' by view?
     - https://stackoverflow.com/questions/4415904/business-logic-in-mvc
     - init functions, in controller or model?
@@ -33,6 +37,8 @@ DETAILS
     ? "Options" page can become "Synths" for New Synthesizer Options
 
 
+// that's pretty. Root Sub P5 M2 P4 M6 with vibrato and filter
+// semi-neutral bittersweet Root Sub Root P5 M6 m7 8va Offs
 
 
 FUTURE PLAN

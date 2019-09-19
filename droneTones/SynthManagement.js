@@ -1,3 +1,6 @@
+// MODEL and also AUDIO
+  // interval and timeout to MODEL, ToneJS stuff to AUDIO
+  // might break up functions if they just accept "nest"
 DroneTones._synthNests = [
   {
     interval: 'Root',
@@ -65,8 +68,7 @@ DroneTones._synthNests = [
   },
 ]
 
-// that's pretty. Root Sub P5 M2 P4 M6 with vibrato and filter
-// semi-neutral bittersweet Root Sub Root P5 M6 m7 8va Off
+// AUDIO
 DroneTones.hookUpToneJS = function() {
   DroneTones._synthNests.forEach( nest => {
     nest.synthObject.connect(nest.vibrato)
@@ -78,6 +80,7 @@ DroneTones.hookUpToneJS = function() {
   })
 }
 
+// AUDIO i think
 DroneTones.setUpSynth = function(nest) {
   // console.log('nest', nest)
   nest.rise = getRandomInRange(DroneTones._timing.riseMin, DroneTones._timing.riseMax)
@@ -142,13 +145,12 @@ DroneTones.setUpSynth = function(nest) {
   nest.synthObject.envelope.releaseCurve = 'linear'
 }
 
-
+// CONTROLLER
+  // needs intervals from MODEL
 DroneTones.startTimeouts = () => {
-  // Tone.context.resume()
   const firstActiveSynthNumber = DroneTones._synthNests.findIndex((nest) => {
     return nest.interval !== 'Off'
   })
-  // console.log('first', firstActiveSynthNumber)
   if (firstActiveSynthNumber >= 0) {
     DroneTones.setUpSynth(DroneTones._synthNests[firstActiveSynthNumber])
     DroneTones.assignTimeout('rise', firstActiveSynthNumber)
@@ -162,6 +164,10 @@ DroneTones.startTimeouts = () => {
   }
 }
 
+// pretty sure it's still CONTROLLER
+  // needs intervals and timeouts from MODEL
+    // probably passed in as params...
+    // vs giving access to model? also needs _basePitch, _constants...
 DroneTones.assignTimeout = (phase, nestNumber) => {
   const nest = DroneTones._synthNests[nestNumber]
   switch (phase) {

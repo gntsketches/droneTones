@@ -2,10 +2,12 @@
 DroneTones.init = function() { // arrow function not working here, why?
 
   // INITIALIZE THE SYNTHS
+    // AUDIO
   DroneTones.hookUpToneJS()
 
 
   // CACHE THE DOM
+    // VIEW
   this._intervalChooser = document.querySelector('#interval_choosers')
   this._intervalSelectors = [].slice.call(this._intervalChooser.children)
 
@@ -41,7 +43,7 @@ DroneTones.init = function() { // arrow function not working here, why?
 
 
   // SET HTML VALUES FROM STATE
-
+    // VIEW
   this._intervalSelectors.forEach((select, index) => {
     select.value = DroneTones._synthNests[index].interval
   })
@@ -76,7 +78,12 @@ DroneTones.init = function() { // arrow function not working here, why?
 
 
   // ADD EVENT LISTENERS
-
+    // CONTROLLER? I think so, since that's what they are "doing",
+      // even though they are on HTML elements, which are part of the "view",
+      // the 'listening' function is really an aspect of controller
+      // some are directly manipulating STATE,
+      // so that should be be calling controllers to change the model...
+      // most call controller-esq functions like setTunings
   this._intervalSelectors.forEach((select, index) => {
     // maybe this function should be described elsewhere...
     select.addEventListener('change', (e) => {

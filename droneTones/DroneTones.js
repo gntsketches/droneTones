@@ -161,4 +161,5 @@ DroneTones.changeTimingSettings = function(e) {
 		this._timing['restMin'] = this._timing['restMax']
 		this._restMin.value = this._timing.restMin
 	}
-}
+
+} // *****************************************************************************

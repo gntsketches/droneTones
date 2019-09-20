@@ -135,7 +135,8 @@ DroneTones.setUpSynth = function(nest) {
       break
   }
 
-  // console.log(nest.synthObject.oscillator.partials)
+  // Keep - console display of type/partials is mentioned in docs
+  console.log(synthType, nest.synthObject.oscillator.partials)
 
   // pass these in with new rather than define them each time:
   nest.synthObject.envelope.decay = 0
@@ -205,7 +206,6 @@ DroneTones.assignTimeout = (phase, nestNumber) => {
       DroneTones._intervalSelectors[nestNumber].classList.remove('glow')
       break
   }
-}
-
+} // ************************************************************************
 
 // DroneTones.cancelTimeouts (clears all timeouts on ._synths)

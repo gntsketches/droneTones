@@ -57,8 +57,15 @@ class Model {
   //   localStorage.setItem('todos', JSON.stringify(todos))
   // }
 
-  setStarted(started) {
-    this._started = started
+  start() {
+    this._started = true
+  }
+
+  stop() {
+    this._started = false
+    for (let i=0; i<8; i++) {
+      clearTimeout(this._synthTimings[i].timeout)
+    }
   }
 
   // MODEL - business logic

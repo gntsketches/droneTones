@@ -42,9 +42,15 @@ class View {
     this._startStopButton.classList.add('pulse')
   }
 
-  stop() {
+  stop(_synthTimings) {
     this._startStopButton.innerHTML = 'Play'
     this._startStopButton.classList.remove('pulse')
+
+    // (...same code as in 'fall' timeout... abstract to a function to make more DRY?)
+    this._intervalSelectors.forEach((selector, index) => {
+      selector.style.transitionDuration = _synthTimings[index].fall + 's'
+      selector.classList.remove('glow')
+    })
   }
 
 

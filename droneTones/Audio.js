@@ -70,6 +70,9 @@ class Audio {
 
   stop() {
     console.log('audio stopping')
+    this._synthNests.forEach((nest, index) => {
+      nest.synthObject.triggerRelease()
+    })
   }
 
 }

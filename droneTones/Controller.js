@@ -20,26 +20,16 @@ class Controller {
   }
 
   start() {
-    this.model.setStarted(true)
+    this.model.start()
     this.view.start()
     this.audio.start()
     this.startTimeouts()
   }
 
   stop() {
-    this.model.setStarted(false)
-    this.view.stop()
+    this.model.stop()
+    this.view.stop(this.model._synthTimings)
     this.audio.stop()
-
-    // ???._synthNests.forEach((nest, nestNumber) => {
-    //   // change audio
-    //   clearTimeout(nest.timeout)
-    //   nest.synthObject.triggerRelease()
-    //   // (...same code as in 'fall' timeout... abstract to a function to make more DRY?)
-    //   // change view
-    //   DroneTones._intervalSelectors[nestNumber].style.transitionDuration = nest.fall + 's'
-    //   DroneTones._intervalSelectors[nestNumber].classList.remove('glow')
-    // })
   }
 
   startTimeouts() {

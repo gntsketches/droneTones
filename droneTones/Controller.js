@@ -60,13 +60,15 @@ class Controller {
   }
 
   setUpSynth(synthIndex) {
+    const settings = this.model._settings
     const timings = this.model._synthTimings[synthIndex]
     const nest = this.audio._synthNests[synthIndex]
-    timings.rise = getRandomInRange(DroneTones._timing.riseMin, DroneTones._timing.riseMax)
-    timings.fall = getRandomInRange(DroneTones._timing.fallMin, DroneTones._timing.fallMax)
-    timings.rest = getRandomInRange(DroneTones._timing.restMin, DroneTones._timing.restMax)
+    console.log(nest)
+    timings.rise = getRandomInRange(settings._timing.riseMin, settings._timing.riseMax)
+    timings.fall = getRandomInRange(settings._timing.fallMin, settings._timing.fallMax)
+    timings.rest = getRandomInRange(settings._timing.restMin, settings._timing.restMax)
 
-    const vibratoSettings = this.model._effectSettings['vibrato']
+    const vibratoSettings = this.model._settings._effectSettings['vibrato']
     nest.vibrato.frequency.value = Math.random() * vibratoSettings.rate // frequency, 5
     nest.vibrato.depth.value = Math.random() * vibratoSettings.depth // normal range, 0.1, is fine.
     nest.vibrato.wet.value = vibratoSettings['on'] ? Math.random() : 0 // Math.random() // /2 + 0.5 // normal range
@@ -76,7 +78,7 @@ class Controller {
     // console.log(nest.vibrato.depth.value)
     // console.log('vibrato on?', nest.vibrato.wet.value)
 
-    const filterSettings = this.model._effectSettings['filter']
+    const filterSettings = this.model._settings._effectSettings['filter']
     nest.filter.frequency.value = Math.random() * filterSettings.rate
     nest.filter.depth.value = Math.random() * filterSettings.depth // normal range
     nest.filter.octaves = Math.random() * 5 // different?
@@ -94,23 +96,23 @@ class Controller {
     switch (synthType) {
       case 'Sawtooth':
         nest.synthObject.oscillator.type = 'sawtooth'
-        nest.synthObject.volume = -6
+        nest.synthObject.volume.value = -6
         break
       case 'FullStops':
         nest.synthObject.oscillator.partials = DroneTones.partialsOptions[synthType]()
-        nest.synthObject.volume = -6
+        nest.synthObject.volume.value = -6
         break
       case 'RandomStops':
         nest.synthObject.oscillator.partials = DroneTones.partialsOptions[synthType]()
-        nest.synthObject.volume = 0
+        nest.synthObject.volume.value = 0
         break
       case 'Clusters':
         nest.synthObject.oscillator.partials = DroneTones.partialsOptions[synthType]()
-        nest.synthObject.volume = -6
+        nest.synthObject.volume.value = -6
         break
       default:
         nest.synthObject.oscillator.partials = DroneTones.partialsOptions[synthType]()
-        nest.synthObject.volume = -12
+        nest.synthObject.volume.value = -12
         break
     }
 
@@ -128,7 +130,8 @@ class Controller {
   assignTimeout = (phase, synthIndex) => {
     const timings = this.model._synthTimings[synthIndex]
     const nest = this.audio._synthNests[synthIndex]
-    const interval = this.model._synthIntervals[synthIndex]
+    const settings = this.model._settings
+    const interval = this.model._settings._synthIntervals[synthIndex]
     switch (phase) {
       case 'rest':
         this.setUpSynth(synthIndex)
@@ -142,11 +145,13 @@ class Controller {
       case 'rise':
         if (interval === 'Off') { return }
         // console.log('rise', nest.rise)
-        const detune = DroneTones.constants.intervalToDetune[nest.interval] + this.model._settings._tuning
+        const detune = DroneTones.constants.intervalToDetune[interval] + settings._tuning
+          console.log(detune)
         nest.synthObject.detune.value = detune
         nest.synthObject.envelope.attack = timings.rise
         nest.synthObject.envelope.release = timings.fall
-        nest.synthObject.triggerAttack(this.model._settings._basePitch)
+          console.log(settings._basePitch)
+        nest.synthObject.triggerAttack(settings._basePitch)
         timings.timeout = setTimeout(()=>{
           this.assignTimeout('fall', synthIndex)
         }, 1000 * nest.rise)

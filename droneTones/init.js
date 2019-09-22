@@ -6,40 +6,6 @@ DroneTones.init = function() { // arrow function not working here, why?
   DroneTones.hookUpToneJS()
 
 
-  // CACHE THE DOM
-    // VIEW
-  this._intervalChooser = document.querySelector('#interval_choosers')
-  this._intervalSelectors = [].slice.call(this._intervalChooser.children)
-
-  this._basePitchSelect = document.querySelector('#base_pitch')
-  this._tuningMinus = document.querySelector('#tuning_minus')
-  this._tuningPlus = document.querySelector('#tuning_plus')
-  this._startStopButton = document.querySelector('#start_stop')
-
-  this._toggleSawtooth = document.querySelector('#toggleSawtooth')
-  this._toggleFullStops = document.querySelector('#toggleFullStops')
-  this._toggleRandomStops = document.querySelector('#toggleRandomStops')
-  this._toggleClusters = document.querySelector('#toggleClusters')
-
-  this._fullStopsRange = document.querySelector('#fullStopsRange')
-  this._randomStopsRange = document.querySelector('#randomStopsRange')
-  this._clustersRange = document.querySelector('#clustersRange')
-  this._clustersDensity = document.querySelector('#clustersDensity')
-
-  this._toggleVibrato = document.querySelector('#toggleVibrato')
-  this._toggleFilter = document.querySelector('#toggleFilter')
-
-  this._vibratoRate = document.querySelector('#vibratoRate')
-  this._filterRate = document.querySelector('#filterRate')
-  this._vibratoDepth = document.querySelector('#vibratoDepth')
-  this._filterDepth = document.querySelector('#filterDepth')
-
-  this._riseMin = document.querySelector('#riseMin')
-  this._riseMax = document.querySelector('#riseMax')
-  this._fallMin = document.querySelector('#fallMin')
-  this._fallMax = document.querySelector('#fallMax')
-  this._restMin = document.querySelector('#restMin')
-  this._restMax = document.querySelector('#restMax')
 
 
   // SET HTML VALUES FROM STATE
@@ -77,13 +43,22 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._restMax.value = this._timing.restMax
 
 
-  // ADD EVENT LISTENERS
-    // CONTROLLER? I think so, since that's what they are "doing",
-      // even though they are on HTML elements, which are part of the "view",
-      // the 'listening' function is really an aspect of controller
-      // some are directly manipulating STATE,
-      // so that should be be calling controllers to change the model...
-      // most call controller-esq functions like setTunings
+  /*
+  ADD EVENT LISTENERS
+    CONTROLLER? I think so, since that's what they are "doing",
+      even though they are on HTML elements, which are part of the "view",
+      the 'listening' function is really an aspect of controller
+      some are directly manipulating STATE,
+      so that should be be calling controllers to change the model...
+      most call controller-esq functions like setTunings
+    Not so fast. Lately in reading, it's looking like the View "is" the UI
+      so in Tania's MVC, listeners are defined in View, but pass their data to handlers from the Controller
+      since you're querying the DOM here, would it really make sense to define them elsewhere?
+    OR, maybe you're right after all.
+      a) it's easy to attach to the View from the Controller,
+      b) you're checking to model to change things conditionally
+   */
+
   this._intervalSelectors.forEach((select, index) => {
     // maybe this function should be described elsewhere...
     select.addEventListener('change', (e) => {

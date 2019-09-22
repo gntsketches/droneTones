@@ -1,45 +1,3 @@
-// MODEL
-
-let DroneTones = {
-	// STATE
-	_started: false,
-	_counter: 0,
-	_basePitch: 'G2',
-	_tuning: 0,
-	_timing: {
-		'riseMin': 4,
-		'riseMax': 8,
-		'fallMin': 4,
-		'fallMax': 8,
-		'restMin': 2,
-		'restMax': 6,
-	},
-	_startStopButton: null,
-	_activeSynthOptions: {
-		'Sawtooth': true,
-		'FullStops': false,
-		'RandomStops': false,
-		'Clusters': false,
-	},
-	_partialsRanges: {
-		'fullStops': 20,
-		'randomStops': 3,
-		'clusters': 20,
-	},
-	_clustersDensitySetting: 0.2,
-	_effectSettings: {
-		'vibrato': {
-			'on': true,
-			'rate': 0.5,
-			'depth': 0.5,
-		},
-		'filter': {
-			'on': true,
-			'rate': 0.5,
-			'depth': 0.5,
-		},
-	},
-}
 
 // CONTROLLER
 	// change model
@@ -53,37 +11,8 @@ DroneTones.setTunings = function(tuning) {
 	document.querySelector('#tuning_value').innerHTML = this._tuning
 }
 
-// CONTROLLER
-DroneTones.start = function() {
-	// change model
-	this._started = true
-	// change view
-	this._startStopButton.innerHTML = 'Stop'
-	this._startStopButton.classList.add('pulse')
-	// change audio
-	Tone.context.resume()
-	// hmmm
-	DroneTones.startTimeouts()
-}
 
-// CONTROLLER
-DroneTones.stop = function() {
-	// change model
-	this._started = false
-	// change view
-	this._startStopButton.innerHTML = 'Play'
-	this._startStopButton.classList.remove('pulse')
-	// synthNests is in Model?
-	this._synthNests.forEach((nest, nestNumber) => {
-		// change audio
-		clearTimeout(nest.timeout)
-		nest.synthObject.triggerRelease()
-		// (...same code as in 'fall' timeout... abstract to a function to make more DRY?)
-		// change view
-		DroneTones._intervalSelectors[nestNumber].style.transitionDuration = nest.fall + 's'
-		DroneTones._intervalSelectors[nestNumber].classList.remove('glow')
-	})
-}
+
 
 // CONTROLLER
 DroneTones.changeActiveSynthOptions = function(e) {  // if there's only one checked, prevent it from changing to false and check the toggle DOM element
@@ -95,16 +24,6 @@ DroneTones.changeActiveSynthOptions = function(e) {  // if there's only one chec
 		this._activeSynthOptions[e.target.name] = e.target.checked
 	}
 }
-
-// MODEL - business logic
-DroneTones.getChosenSynthOptions = function() {
-	const synthOptions = DroneTones._activeSynthOptions
-	const chosenSynthOptions = []
-	for (const key in synthOptions) {
-		if (synthOptions[key] === true) { chosenSynthOptions.push(key) }
-	}
-	return chosenSynthOptions
-};
 
 // CONTROLLER
 DroneTones.changePartialsRanges = function(e) {

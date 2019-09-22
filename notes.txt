@@ -1,16 +1,19 @@
 
 TODO MVC
-    ??? Does Controller *send* events on, or just *receive* from user them to pass on?
-        "The model never touches the view. The view never touches the model. The controller connects them."
-        vs. the diagram on the wikipedia, which suggests that the model "controls" the view
-    - step-through code and comment
-    - https://www.taniarascia.com/javascript-mvc-todo-app/
-    - https://medium.com/@ToddZebert/a-walk-through-of-a-simple-javascript-mvc-implementation-c188a69138dc
-    - view 'control' of html - eg: checkboxes. Should element be 'set' by view?
-    - https://stackoverflow.com/questions/4415904/business-logic-in-mvc
+    - let's start with start/stop but no audio...
     - init functions, in controller or model?
         (will each m,v,c,a have its own init)
     - processing of user input (eg: 'event.target.whatev') goes in controller?
+
+TODO MVC STUDY
+    https://www.awwwards.com/build-a-simple-javascript-app-the-mvc-way.html
+    - https://stackoverflow.com/questions/4415904/business-logic-in-mvc
+    - view 'control' of html - eg: checkboxes. Should element be 'set' by view?
+    https://stackoverflow.com/questions/2056/what-are-mvp-and-mvc-and-what-is-the-difference
+    https://www.codeproject.com/Articles/288928/Differences-between-MVC-and-MVP-for-Beginners
+    https://www.bacancytechnology.com/blog/mvc-vs-mvp-vs-mvvm
+
+
 
 TODO OTHER
     get feedback

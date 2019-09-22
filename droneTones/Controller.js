@@ -63,7 +63,6 @@ class Controller {
     const settings = this.model._settings
     const timings = this.model._synthTimings[synthIndex]
     const nest = this.audio._synthNests[synthIndex]
-    console.log(nest)
     timings.rise = getRandomInRange(settings._timing.riseMin, settings._timing.riseMax)
     timings.fall = getRandomInRange(settings._timing.fallMin, settings._timing.fallMax)
     timings.rest = getRandomInRange(settings._timing.restMin, settings._timing.restMax)
@@ -92,7 +91,6 @@ class Controller {
 
     const chosenSynthOptions = this.model.getChosenSynthOptions()
     const synthType = chosenSynthOptions[Math.floor(Math.random() * chosenSynthOptions.length)]
-    // console.log('setUpSynth synthType', synthType)
     switch (synthType) {
       case 'Sawtooth':
         nest.synthObject.oscillator.type = 'sawtooth'
@@ -117,7 +115,7 @@ class Controller {
     }
 
     // Keep - console display of type/partials is mentioned in docs
-    console.log(synthType, nest.synthObject.oscillator.partials)
+    // console.log(synthType, nest.synthObject.oscillator.partials)
 
     // pass these in with new rather than define them each time:
     nest.synthObject.envelope.decay = 0
@@ -128,6 +126,7 @@ class Controller {
   }
 
   assignTimeout = (phase, synthIndex) => {
+      console.log(phase)
     const timings = this.model._synthTimings[synthIndex]
     const nest = this.audio._synthNests[synthIndex]
     const settings = this.model._settings
@@ -135,27 +134,24 @@ class Controller {
     switch (phase) {
       case 'rest':
         this.setUpSynth(synthIndex)
-        // console.log('rest', nest.rest)
         if (interval === 'Off') {
-          timings.timeout = setTimeout(()=> { this.assignTimeout('rest', synthIndex) }, 1000 * nest.rest)
+          timings.timeout = setTimeout(()=> { this.assignTimeout('rest', synthIndex) }, 1000 * timings.rest)
         } else {
-          timings.timeout = setTimeout(()=> { this.assignTimeout('rise', synthIndex) }, 1000 * nest.rest)
+          timings.timeout = setTimeout(()=> { this.assignTimeout('rise', synthIndex) }, 1000 * timings.rest)
         }
         break
       case 'rise':
         if (interval === 'Off') { return }
         // console.log('rise', nest.rise)
         const detune = DroneTones.constants.intervalToDetune[interval] + settings._tuning
-          console.log(detune)
         nest.synthObject.detune.value = detune
         nest.synthObject.envelope.attack = timings.rise
         nest.synthObject.envelope.release = timings.fall
-          console.log(settings._basePitch)
         nest.synthObject.triggerAttack(settings._basePitch)
         timings.timeout = setTimeout(()=>{
           this.assignTimeout('fall', synthIndex)
-        }, 1000 * nest.rise)
-        this.view._intervalSelectors[synthIndex].style.transitionDuration = nest.rise + 's'
+        }, 1000 * timings.rise)
+        this.view._intervalSelectors[synthIndex].style.transitionDuration = timings.rise + 's'
         this.view._intervalSelectors[synthIndex].classList.add('glow')
         break
       case 'fall':
@@ -164,8 +160,8 @@ class Controller {
         nest.synthObject.triggerRelease()
         timings.timeout = setTimeout(()=>{
           this.assignTimeout('rest', synthIndex)
-        }, 1000 * nest.fall)
-        this.view._intervalSelectors[synthIndex].style.transitionDuration = nest.fall + 's'
+        }, 1000 * timings.fall)
+        this.view._intervalSelectors[synthIndex].style.transitionDuration = timings.fall + 's'
         this.view._intervalSelectors[synthIndex].classList.remove('glow')
         break
     }

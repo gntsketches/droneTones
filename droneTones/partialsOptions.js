@@ -1,4 +1,6 @@
 // AUDIO, receives ranges/cluster density from state
+const DroneTones = {}
+
 DroneTones.partialsOptions = {
 
   FullStops(){

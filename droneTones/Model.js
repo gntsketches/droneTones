@@ -35,14 +35,17 @@ const settingsDefaults = {
       'depth': 0.5,
     },
   },
+  _synthIntervals: [
+    'Root', 'Sub', 'Root', 'P5', 'Off', 'Off', 'Off', 'Off'
+  ]
 }
 
 
 class Model {
   constructor() {
-    this._settings = JSON.parse(localStorage.getItem('droneTonesState')) || settingsDefaults
+    this._settings = JSON.parse(localStorage.getItem('droneTonesSettings')) || settingsDefaults
     this._started = false
-    this._timeouts = new Array(8)  // initializing array length since indexes are keys. (hmm, what happens if you set arr[5] on an empty array?)
+    this._synthTimings = [{},{}, {},{}, {},{}, {},{}]  // timeout, rise, fall, rest
 
     // bindTodoListChanged(callback) {
     //   this.onTodoListChanged = callback

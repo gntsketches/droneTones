@@ -82,13 +82,6 @@ DroneTones.init = function() { // arrow function not working here, why?
     this.setTunings('plus')
   })
 
-  this._startStopButton.addEventListener('click', (e) => {
-    if (this._started === false) {
-      this.start()
-    } else {
-      this.stop()
-    }
-  })
 
   this._toggleSawtooth.addEventListener('change', (e) => {
     this.changeActiveSynthOptions(e)

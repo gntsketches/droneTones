@@ -1,6 +1,7 @@
 
 TODO MVC
-    - let's start with start/stop but no audio...
+    - Intervals in model._settings, timeouts, rise, fall & rest all on model.state
+        - View and Audio receive model to read those
     - init functions, in controller or model?
         (will each m,v,c,a have its own init)
     - processing of user input (eg: 'event.target.whatev') goes in controller?

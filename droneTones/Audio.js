@@ -1,68 +1,50 @@
 
 class Audio {
   constructor() {
-    // interval and timeout to MODEL, ToneJS stuff to AUDIO
-    // might break up functions if they just accept "nest"
     this._synthNests = [
       {
-        interval: 'Root',
-        timeout: null,
         synthObject: new Tone.Synth(),
         vibrato: new Tone.Vibrato(),
         filter: new Tone.AutoFilter(),
         gain: new Tone.Gain(),
       },
       {
-        interval: 'Sub',
-        timeout: null,
         synthObject: new Tone.Synth(),
         vibrato: new Tone.Vibrato(),
         filter: new Tone.AutoFilter(),
         gain: new Tone.Gain(),
       },
       {
-        interval: 'Root',
-        timeout: null,
         synthObject: new Tone.Synth(),
         vibrato: new Tone.Vibrato(),
         filter: new Tone.AutoFilter(),
         gain: new Tone.Gain(),
       },
       {
-        interval: 'P5',
-        timeout: null,
         synthObject: new Tone.Synth(),
         vibrato: new Tone.Vibrato(),
         filter: new Tone.AutoFilter(),
         gain: new Tone.Gain(),
       },
       {
-        interval: 'Off',
-        timeout: null,
         synthObject: new Tone.Synth(),
         vibrato: new Tone.Vibrato(),
         filter: new Tone.AutoFilter(),
         gain: new Tone.Gain(),
       },
       {
-        interval: 'Off',
-        timeout: null,
         synthObject: new Tone.Synth(),
         vibrato: new Tone.Vibrato(),
         filter: new Tone.AutoFilter(),
         gain: new Tone.Gain(),
       },
       {
-        interval: 'Off',
-        timeout: null,
         synthObject: new Tone.Synth(),
         vibrato: new Tone.Vibrato(),
         filter: new Tone.AutoFilter(),
         gain: new Tone.Gain(),
       },
       {
-        interval: 'Off',
-        timeout: null,
         synthObject: new Tone.Synth(),
         vibrato: new Tone.Vibrato(),
         filter: new Tone.AutoFilter(),
@@ -83,8 +65,6 @@ class Audio {
 
   start() {
     Tone.context.resume()
-    // hmmm
-    // DroneTones.startTimeouts()
     console.log('audio starting')
   }
 

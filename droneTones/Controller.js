@@ -13,6 +13,15 @@ class Controller {
         this.stop()
       }
     })
+
+    this.view._tuningMinus.addEventListener('click', () => {
+      this.setTuning('minus')
+    })
+
+    this.view._tuningPlus.addEventListener('click', () => {
+      this.setTuning('plus')
+    })
+
   }
 
   init() {
@@ -28,9 +37,15 @@ class Controller {
 
   stop() {
     this.model.stop()
-    this.view.stop(this.model._synthTimings)
+    this.view.stop()
     this.audio.stop()
   }
+
+  setTuning(tuning) {
+    this.model.setTuning(tuning)
+    this.view.setTuningView()
+  }
+
 
   startTimeouts() {
     const firstActiveSynthNumber = this.model._settings._synthIntervals.findIndex(interval => {
@@ -116,7 +131,6 @@ class Controller {
   }
 
   assignTimeout = (phase, synthIndex) => {
-      console.log(phase)
     const timings = this.model._synthTimings[synthIndex]
     const nest = this.audio._synthNests[synthIndex]
     const settings = this.model._settings

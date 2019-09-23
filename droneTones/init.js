@@ -3,19 +3,14 @@ DroneTones.init = function() { // arrow function not working here, why?
 
   // INITIALIZE THE SYNTHS
     // AUDIO
-  DroneTones.hookUpToneJS()
 
 
 
 
   // SET HTML VALUES FROM STATE
     // VIEW
-  this._intervalSelectors.forEach((select, index) => {
-    select.value = DroneTones._synthNests[index].interval
-  })
 
-  this._basePitchSelect.value = this._basePitch
-  this.setTunings()
+
 
   this._toggleSawtooth.checked = this._activeSynthOptions.Sawtooth
   this._toggleFullStops.checked = this._activeSynthOptions.FullStops
@@ -70,17 +65,12 @@ DroneTones.init = function() { // arrow function not working here, why?
     })
   })
 
+
   this._basePitchSelect.addEventListener('change', (e) => {
     this._basePitch = e.target.value
   })
 
-  this._tuningMinus.addEventListener('click', () => {
-    this.setTunings('minus')
-  })
 
-  this._tuningPlus.addEventListener('click', () => {
-    this.setTunings('plus')
-  })
 
 
   this._toggleSawtooth.addEventListener('change', (e) => {

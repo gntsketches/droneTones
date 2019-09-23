@@ -1,11 +1,16 @@
 
 class View {
-  constructor() {
+  constructor(model) {
+
+    this.model = model
+    const settings = this.model._settings
+
     // CACHE THE DOM
     this._intervalChooser = document.querySelector('#interval_choosers')
     this._intervalSelectors = [].slice.call(this._intervalChooser.children)
 
     this._basePitchSelect = document.querySelector('#base_pitch')
+    this._tuningValue = document.querySelector('#tuning_value')
     this._tuningMinus = document.querySelector('#tuning_minus')
     this._tuningPlus = document.querySelector('#tuning_plus')
     this._startStopButton = document.querySelector('#start_stop')
@@ -35,24 +40,35 @@ class View {
     this._restMin = document.querySelector('#restMin')
     this._restMax = document.querySelector('#restMax')
 
+    // SET HTML VALUES FROM STATE
+    this._intervalSelectors.forEach((select, index) => {
+      select.value = settings._synthIntervals[index]
+    })
+    this._basePitchSelect.value = settings._basePitch
+    this.setTuningView()
+
   }
+
 
   start() {
     this._startStopButton.innerHTML = 'Stop'
     this._startStopButton.classList.add('pulse')
   }
 
-  stop(_synthTimings) {
+  stop() {
     this._startStopButton.innerHTML = 'Play'
     this._startStopButton.classList.remove('pulse')
 
     // (...same code as in 'fall' timeout... abstract to a function to make more DRY?)
     this._intervalSelectors.forEach((selector, index) => {
-      selector.style.transitionDuration = _synthTimings[index].fall + 's'
+      selector.style.transitionDuration = this.model._synthTimings[index].fall + 's'
       selector.classList.remove('glow')
     })
   }
 
+  setTuningView() {
+    this._tuningValue.innerHTML = this.model._settings._tuning
+  }
 
 
 }

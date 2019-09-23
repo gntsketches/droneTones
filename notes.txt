@@ -1,6 +1,9 @@
 https://youtrack.jetbrains.com/issue/VIM-1802
+"nextstand"
+portable usb monitor and stand?
 
 TODO MVC
+    - NEXT: init.js interval selectors & base pitch selector
     - Intervals in model._settings, timeouts, rise, fall & rest all on model.state
         - View and Audio receive model to read those
     - init functions, in controller or model?
@@ -9,6 +12,7 @@ TODO MVC
 
 TODO MVC STUDY
     https://www.awwwards.com/build-a-simple-javascript-app-the-mvc-way.html
+        compare with Tania's - eg she avoids .bind
     - https://stackoverflow.com/questions/4415904/business-logic-in-mvc
     - view 'control' of html - eg: checkboxes. Should element be 'set' by view?
     https://stackoverflow.com/questions/2056/what-are-mvp-and-mvc-and-what-is-the-difference

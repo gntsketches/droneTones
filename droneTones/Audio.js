@@ -1,6 +1,9 @@
 
 class Audio {
-  constructor() {
+  constructor(model) {
+
+    this.model = model
+
     this._synthNests = [
       {
         synthObject: new Tone.Synth(),

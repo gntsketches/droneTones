@@ -1,7 +1,7 @@
 const settingsDefaults = {
   // _counter: 0,  // don't think that's in use...
   _basePitch: 'G2',
-  _tuning: 0,
+  _tuning: 1,
   _timing: {
     'riseMin': 4,
     'riseMax': 8,
@@ -76,7 +76,15 @@ class Model {
       if (synthOptions[key] === true) { chosenSynthOptions.push(key) }
     }
     return chosenSynthOptions
-  };
+  }
+
+  setTuning = function(tuning) {
+    if (tuning === 'minus') {
+      this._settings._tuning -= 1
+    } else if (tuning === 'plus') {
+      this._settings._tuning += 1
+    }
+  }
 
 
-}
+} // END MODEL ************************************************************************************

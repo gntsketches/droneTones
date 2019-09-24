@@ -78,6 +78,39 @@ class Audio {
     })
   }
 
+  getPartials(type) {
+    const settings = this.model._settings
+    let partials = []
+    let range
+    switch (type) {
+      case 'FullStops':
+        range = settings._partialsRanges['fullStops']
+        for (let i = 0; i < range; i++) {
+          partials.push(1)
+        }
+        return partials
+      case 'RandomStops':
+        range = settings._partialsRanges['randomStops']
+        for (let i = 0; i < range; i++) {
+          partials.push(Math.random())
+        }
+        return partials
+    case'Clusters':
+      const rand = Math.random
+      partials = [rand(), rand(), rand(), rand(), rand()]
+      range = settings._partialsRanges['clusters']
+      for (let i = 0; i < range; i++) {
+        let num = 0
+        if (Math.random() < DroneTones._clustersDensity) {
+          num = rand()
+        }
+        // for (let j = 0; j < Math.round[getRandomInRange(3,5)]; j++) {
+        for (let j = 0; j < 5; j++) {
+          partials = [...partials, num]
+        }
+      }
+      return partials
+    }
+  }
 
-
-}
+} // END AUDIO ***********************************************************************************************

@@ -191,20 +191,16 @@ class Controller {
         nest.synthObject.volume.value = -6
         break
       case 'FullStops':
-        nest.synthObject.oscillator.partials = DroneTones.partialsOptions[synthType]()
+        nest.synthObject.oscillator.partials = this.audio.getPartials(synthType)
         nest.synthObject.volume.value = -6
         break
       case 'RandomStops':
-        nest.synthObject.oscillator.partials = DroneTones.partialsOptions[synthType]()
+        nest.synthObject.oscillator.partials = this.audio.getPartials(synthType)
         nest.synthObject.volume.value = 0
         break
       case 'Clusters':
-        nest.synthObject.oscillator.partials = DroneTones.partialsOptions[synthType]()
+        nest.synthObject.oscillator.partials = this.audio.getPartials(synthType)
         nest.synthObject.volume.value = -6
-        break
-      default:
-        nest.synthObject.oscillator.partials = DroneTones.partialsOptions[synthType]()
-        nest.synthObject.volume.value = -12
         break
     }
 

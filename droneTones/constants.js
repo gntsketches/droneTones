@@ -1,3 +1,5 @@
+DroneTones = {}
+
 DroneTones.constants = {
 
   selectOptions: [

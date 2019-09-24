@@ -3,8 +3,8 @@ https://youtrack.jetbrains.com/issue/VIM-1802
 portable usb monitor and stand?
 
 TODO MVC
-    next test different synth types
-        need to set up partialsOptions
+    amend that last commit, but what about push? https://www.atlassian.com/git/tutorials/rewriting-history
+    clusters density doesn't seem to be working
     (will each m,v,c,a have its own init?)
 
 TODO MVC STUDY

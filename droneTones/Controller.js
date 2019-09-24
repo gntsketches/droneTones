@@ -6,6 +6,8 @@ class Controller {
     this.audio = audio
     console.log(audio)
 
+    // SET UP EVENT LISTENERS ***********************************
+
     this.view._startStopButton.addEventListener('click', (e) => {
       if (this.model._started === false) {
         this.start()
@@ -21,6 +23,48 @@ class Controller {
     this.view._tuningPlus.addEventListener('click', () => {
       this.setTuning('plus')
     })
+
+    this.view._intervalSelectors.forEach((select, index) => {
+      select.addEventListener('change', (e) => {
+        this.model.setAnInterval(index, e.target.value)
+        if (this.model._started && e.target.value === 'Off') {
+          this.assignTimeout('fall', index)
+        }
+      })
+    })
+
+    this.view._basePitchSelect.addEventListener('change', (e) => {
+      this.model.setBasePitch(e.target.value)
+    })
+
+    this.view._toggleSawtooth.addEventListener('change', (e) => {
+      this.changeActiveSynthOptions(e)
+    })
+    this.view._toggleFullStops.addEventListener('change', (e) => {
+      this.changeActiveSynthOptions(e)
+    })
+    this.view._toggleRandomStops.addEventListener('change', (e) => {
+      this.changeActiveSynthOptions(e)
+    })
+    this.view._toggleClusters.addEventListener('change', (e) => {
+      this.changeActiveSynthOptions(e)
+    })
+
+    this.view._fullStopsRange.addEventListener('change', (e) => {
+      this.changePartialsRanges(e)
+    })
+    this.view._randomStopsRange.addEventListener('change', (e) => {
+      this.changePartialsRanges(e)
+    })
+    this.view._clustersRange.addEventListener('change', (e) => {
+      this.changePartialsRanges(e)
+    })
+
+    this.view._clustersDensity.addEventListener('change', (e) => {
+      this.changeClustersDensity(e)
+    })
+
+    this.init()
 
   }
 
@@ -46,6 +90,22 @@ class Controller {
     this.view.setTuningView()
   }
 
+  changeActiveSynthOptions(e) {  // if there's only one checked, prevent it from changing to false and check the toggle DOM element
+    if (this.model.getChosenSynthOptions().length === 1 && e.target.checked === false) {
+      this.view._synthOptionToggleCorrespondence[e.target.name].checked = true
+    } else {
+      this.model.setActiveSynthOptions(e.target.name, e.target.checked)
+    }
+  }
+
+  changePartialsRanges(e) {
+    this.model.setPartialsRanges(e.target.name, e.target.value)
+  }
+
+  changeClustersDensity(e) {
+    this.model.setClustersDensity(e.target.value)
+  }
+  // ENGINE *********************************************************************************
 
   startTimeouts() {
     const firstActiveSynthNumber = this.model._settings._synthIntervals.findIndex(interval => {
@@ -120,7 +180,7 @@ class Controller {
     }
 
     // Keep - console display of type/partials is mentioned in docs
-    // console.log(synthType, nest.synthObject.oscillator.partials)
+    console.log(synthType, nest.synthObject.oscillator.partials)
 
     // pass these in with new rather than define them each time:
     nest.synthObject.envelope.decay = 0

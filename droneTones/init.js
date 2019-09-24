@@ -4,38 +4,8 @@ DroneTones.init = function() { // arrow function not working here, why?
   // INITIALIZE THE SYNTHS
     // AUDIO
 
-
-
-
   // SET HTML VALUES FROM STATE
     // VIEW
-
-
-
-  this._toggleSawtooth.checked = this._activeSynthOptions.Sawtooth
-  this._toggleFullStops.checked = this._activeSynthOptions.FullStops
-  this._toggleRandomStops.checked = this._activeSynthOptions.RandomStops
-  this._toggleClusters.checked = this._activeSynthOptions.Clusters
-
-  this._fullStopsRange.value = this._partialsRanges['fullStops']
-  this._randomStopsRange.value = this._partialsRanges['randomStops']
-  this._clustersRange.value = this._partialsRanges['clusters']
-  this._clustersDensity.value = this._clustersDensitySetting
-
-  this._toggleVibrato.checked = this._effectSettings['vibrato']['on']
-  this._toggleFilter.checked = this._effectSettings['filter']['on']
-
-  this._vibratoRate.value = this._effectSettings['vibrato']['rate']
-  this._filterRate.value = this._effectSettings['filter']['rate']
-  this._vibratoDepth.value = this._effectSettings['vibrato']['depth']
-  this._filterDepth.value = this._effectSettings['filter']['depth']
-
-  this._riseMin.value = this._timing.riseMin
-  this._riseMax.value = this._timing.riseMax
-  this._fallMin.value = this._timing.fallMin
-  this._fallMax.value = this._timing.fallMax
-  this._restMin.value = this._timing.restMin
-  this._restMax.value = this._timing.restMax
 
 
   /*
@@ -54,57 +24,14 @@ DroneTones.init = function() { // arrow function not working here, why?
       b) you're checking to model to change things conditionally
    */
 
-  this._intervalSelectors.forEach((select, index) => {
-    // maybe this function should be described elsewhere...
-    select.addEventListener('change', (e) => {
-      const nest = DroneTones._synthNests[index]
-      nest.interval = e.target.value
-      if (DroneTones._started && e.target.value === 'Off') {
-        DroneTones.assignTimeout('fall', index)
-      }
-    })
-  })
-
-
-  this._basePitchSelect.addEventListener('change', (e) => {
-    this._basePitch = e.target.value
-  })
 
 
 
 
-  this._toggleSawtooth.addEventListener('change', (e) => {
-    this.changeActiveSynthOptions(e)
-  })
-  this._toggleFullStops.addEventListener('change', (e) => {
-    this.changeActiveSynthOptions(e)
-  })
-  this._toggleRandomStops.addEventListener('change', (e) => {
-    this.changeActiveSynthOptions(e)
-  })
-  this._toggleClusters.addEventListener('change', (e) => {
-    this.changeActiveSynthOptions(e)
-  })
 
-  DroneTones._synthOptionToggleCorrespondence = {
-    'Sawtooth': DroneTones._toggleSawtooth,
-    'FullStops': DroneTones._toggleFullStops,
-    'RandomStops': DroneTones._toggleRandomStops,
-    'Clusters': DroneTones._toggleClusters,
-  },
 
-  this._fullStopsRange.addEventListener('change', (e) => {
-    this.changePartialsRanges(e)
-  })
-  this._randomStopsRange.addEventListener('change', (e) => {
-    this.changePartialsRanges(e)
-  })
-  this._clustersRange.addEventListener('change', (e) => {
-    this.changePartialsRanges(e)
-  })
-  this._clustersDensity.addEventListener('change', (e) => {
-    this.changeClustersDensitySetting(e)
-  })
+
+
 
   this._toggleVibrato.addEventListener('change', (e) => {
     this.changeEffectSetting(e)
@@ -112,6 +39,8 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._toggleFilter.addEventListener('change', (e) => {
     this.changeEffectSetting(e)
   })
+
+
 
   this._vibratoRate.addEventListener('change', (e) => {
     this.changeEffectSetting(e)
@@ -125,6 +54,10 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._filterDepth.addEventListener('change', (e) => {
     this.changeEffectSetting(e)
   })
+
+
+
+
 
   this._riseMin.addEventListener('change', (e) => {
     this.changeTimingSettings(e)
@@ -144,6 +77,8 @@ DroneTones.init = function() { // arrow function not working here, why?
   this._restMax.addEventListener('change', (e) => {
     this.changeTimingSettings(e)
   })
+
+
 
   // https://www.reddit.com/r/chrome/comments/ca8uxk/windowaddeventlistener_suddenly_not_working/
   window.addEventListener('keydown', function(e){

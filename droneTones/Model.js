@@ -22,7 +22,7 @@ const settingsDefaults = {
     'randomStops': 3,
     'clusters': 20,
   },
-  _clustersDensitySetting: 0.2,
+  _clustersDensity: 0.2,
   _effectSettings: {
     'vibrato': {
       'on': true,
@@ -78,12 +78,32 @@ class Model {
     return chosenSynthOptions
   }
 
-  setTuning = function(tuning) {
+  setTuning(tuning) {
     if (tuning === 'minus') {
       this._settings._tuning -= 1
     } else if (tuning === 'plus') {
       this._settings._tuning += 1
     }
+  }
+
+  setAnInterval(index, value) {
+    this._settings._synthIntervals[index] = value
+  }
+
+  setBasePitch(value) {
+    this._settings._basePitch = value
+  }
+
+  setActiveSynthOptions(name, checked) {
+    this._settings._activeSynthOptions[name] = checked
+  }
+
+  setPartialsRanges(name, value) {
+    this._settings._partialsRanges[name] = parseInt(value, 10)
+  }
+
+  setClustersDensity(value) {
+    this._settings._clustersDensity = parseFloat(value)
   }
 
 

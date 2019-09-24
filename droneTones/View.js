@@ -6,8 +6,8 @@ class View {
     const settings = this.model._settings
 
     // CACHE THE DOM
-    this._intervalChooser = document.querySelector('#interval_choosers')
-    this._intervalSelectors = [].slice.call(this._intervalChooser.children)
+    this._intervalChoosers = document.querySelector('#interval_choosers')
+    this._intervalSelectors = [].slice.call(this._intervalChoosers.children)
 
     this._basePitchSelect = document.querySelector('#base_pitch')
     this._tuningValue = document.querySelector('#tuning_value')
@@ -19,6 +19,13 @@ class View {
     this._toggleFullStops = document.querySelector('#toggleFullStops')
     this._toggleRandomStops = document.querySelector('#toggleRandomStops')
     this._toggleClusters = document.querySelector('#toggleClusters')
+
+    this._synthOptionToggleCorrespondence = {
+      'Sawtooth': this._toggleSawtooth,
+      'FullStops': this._toggleFullStops,
+      'RandomStops': this._toggleRandomStops,
+      'Clusters': this._toggleClusters,
+    }
 
     this._fullStopsRange = document.querySelector('#fullStopsRange')
     this._randomStopsRange = document.querySelector('#randomStopsRange')
@@ -47,6 +54,30 @@ class View {
     this._basePitchSelect.value = settings._basePitch
     this.setTuningView()
 
+    this._toggleSawtooth.checked = settings._activeSynthOptions.Sawtooth
+    this._toggleFullStops.checked = settings._activeSynthOptions.FullStops
+    this._toggleRandomStops.checked = settings._activeSynthOptions.RandomStops
+    this._toggleClusters.checked = settings._activeSynthOptions.Clusters
+
+    // this._fullStopsRange.value = this._partialsRanges['fullStops']
+    // this._randomStopsRange.value = this._partialsRanges['randomStops']
+    // this._clustersRange.value = this._partialsRanges['clusters']
+    // this._clustersDensity.value = this._clustersDensitySetting
+    //
+    // this._toggleVibrato.checked = this._effectSettings['vibrato']['on']
+    // this._toggleFilter.checked = this._effectSettings['filter']['on']
+    //
+    // this._vibratoRate.value = this._effectSettings['vibrato']['rate']
+    // this._filterRate.value = this._effectSettings['filter']['rate']
+    // this._vibratoDepth.value = this._effectSettings['vibrato']['depth']
+    // this._filterDepth.value = this._effectSettings['filter']['depth']
+    //
+    // this._riseMin.value = this._timing.riseMin
+    // this._riseMax.value = this._timing.riseMax
+    // this._fallMin.value = this._timing.fallMin
+    // this._fallMax.value = this._timing.fallMax
+    // this._restMin.value = this._timing.restMin
+    // this._restMax.value = this._timing.restMax
   }
 
 

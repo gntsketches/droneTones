@@ -106,5 +106,12 @@ class Model {
     this._settings._clustersDensity = parseFloat(value)
   }
 
+  setEffectSetting(e) {
+    // note how this receives the event, while other Model functions get value, etc.
+    const effect = e.target.name.split('-')[0]
+    const field = e.target.name.split('-')[1]
+    const value = field === 'on' ? e.target.checked : parseFloat(e.target.value)
+    this._settings._effectSettings[effect][field] = value
+  }
 
 } // END MODEL ************************************************************************************

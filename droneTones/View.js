@@ -59,25 +59,25 @@ class View {
     this._toggleRandomStops.checked = settings._activeSynthOptions.RandomStops
     this._toggleClusters.checked = settings._activeSynthOptions.Clusters
 
-    // this._fullStopsRange.value = this._partialsRanges['fullStops']
-    // this._randomStopsRange.value = this._partialsRanges['randomStops']
-    // this._clustersRange.value = this._partialsRanges['clusters']
-    // this._clustersDensity.value = this._clustersDensitySetting
-    //
-    // this._toggleVibrato.checked = this._effectSettings['vibrato']['on']
-    // this._toggleFilter.checked = this._effectSettings['filter']['on']
-    //
-    // this._vibratoRate.value = this._effectSettings['vibrato']['rate']
-    // this._filterRate.value = this._effectSettings['filter']['rate']
-    // this._vibratoDepth.value = this._effectSettings['vibrato']['depth']
-    // this._filterDepth.value = this._effectSettings['filter']['depth']
-    //
-    // this._riseMin.value = this._timing.riseMin
-    // this._riseMax.value = this._timing.riseMax
-    // this._fallMin.value = this._timing.fallMin
-    // this._fallMax.value = this._timing.fallMax
-    // this._restMin.value = this._timing.restMin
-    // this._restMax.value = this._timing.restMax
+    this._fullStopsRange.value = settings._partialsRanges['fullStops']
+    this._randomStopsRange.value = settings._partialsRanges['randomStops']
+    this._clustersRange.value = settings._partialsRanges['clusters']
+    this._clustersDensity.value = settings._clustersDensity
+
+    this._toggleVibrato.checked = settings._effectSettings['vibrato']['on']
+    this._toggleFilter.checked = settings._effectSettings['filter']['on']
+
+    this._vibratoRate.value = settings._effectSettings['vibrato']['rate']
+    this._filterRate.value = settings._effectSettings['filter']['rate']
+    this._vibratoDepth.value = settings._effectSettings['vibrato']['depth']
+    this._filterDepth.value = settings._effectSettings['filter']['depth']
+
+    this._riseMin.value = settings._timing.riseMin
+    this._riseMax.value = settings._timing.riseMax
+    this._fallMin.value = settings._timing.fallMin
+    this._fallMax.value = settings._timing.fallMax
+    this._restMin.value = settings._timing.restMin
+    this._restMax.value = settings._timing.restMax
   }
 
 

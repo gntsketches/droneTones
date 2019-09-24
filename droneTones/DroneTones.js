@@ -9,14 +9,6 @@
 
 
 // CONTROLLER
-DroneTones.changeEffectSetting = function(e) {
-	// change model
-	const effect = e.target.name.split('-')[0]
-	const field = e.target.name.split('-')[1]
-	const value = field === 'on' ? e.target.checked : parseFloat(e.target.value)
-	this._effectSettings[effect][field] = value
-	// console.log(this._effectSettings)
-}
 
 
 

@@ -64,6 +64,27 @@ class Controller {
       this.changeClustersDensity(e)
     })
 
+    this.view._toggleVibrato.addEventListener('change', (e) => {
+      this.changeEffectSetting(e)
+    })
+    this.view._toggleFilter.addEventListener('change', (e) => {
+      this.changeEffectSetting(e)
+    })
+
+    this.view._vibratoRate.addEventListener('change', (e) => {
+      this.changeEffectSetting(e)
+    })
+    this.view._filterRate.addEventListener('change', (e) => {
+      this.changeEffectSetting(e)
+    })
+    this.view._vibratoDepth.addEventListener('change', (e) => {
+      this.changeEffectSetting(e)
+    })
+    this.view._filterDepth.addEventListener('change', (e) => {
+      this.changeEffectSetting(e)
+    })
+
+
     this.init()
 
   }
@@ -105,6 +126,14 @@ class Controller {
   changeClustersDensity(e) {
     this.model.setClustersDensity(e.target.value)
   }
+
+  changeEffectSetting(e) {
+    this.model.setEffectSetting(e)
+  }
+
+
+
+
   // ENGINE *********************************************************************************
 
   startTimeouts() {

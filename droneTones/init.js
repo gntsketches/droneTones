@@ -27,38 +27,6 @@ DroneTones.init = function() { // arrow function not working here, why?
 
 
 
-
-
-
-
-
-
-  this._toggleVibrato.addEventListener('change', (e) => {
-    this.changeEffectSetting(e)
-  })
-  this._toggleFilter.addEventListener('change', (e) => {
-    this.changeEffectSetting(e)
-  })
-
-
-
-  this._vibratoRate.addEventListener('change', (e) => {
-    this.changeEffectSetting(e)
-  })
-  this._filterRate.addEventListener('change', (e) => {
-    this.changeEffectSetting(e)
-  })
-  this._vibratoDepth.addEventListener('change', (e) => {
-    this.changeEffectSetting(e)
-  })
-  this._filterDepth.addEventListener('change', (e) => {
-    this.changeEffectSetting(e)
-  })
-
-
-
-
-
   this._riseMin.addEventListener('change', (e) => {
     this.changeTimingSettings(e)
   })

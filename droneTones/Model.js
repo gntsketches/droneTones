@@ -1,7 +1,7 @@
 const settingsDefaults = {
   // _counter: 0,  // don't think that's in use...
   _basePitch: 'G2',
-  _tuning: 1,
+  _tuning: 0,
   _timing: {
     'riseMin': 4,
     'riseMax': 8,
@@ -84,6 +84,7 @@ class Model {
     } else if (tuning === 'plus') {
       this._settings._tuning += 1
     }
+    console.log(this._settings)
   }
 
   setAnInterval(index, value) {
@@ -112,6 +113,10 @@ class Model {
     const field = e.target.name.split('-')[1]
     const value = field === 'on' ? e.target.checked : parseFloat(e.target.value)
     this._settings._effectSettings[effect][field] = value
+  }
+
+  setTiming(phaseRange, value) {
+    this._settings._timing[phaseRange] = parseFloat(value)
   }
 
 } // END MODEL ************************************************************************************

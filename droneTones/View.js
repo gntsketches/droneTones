@@ -101,5 +101,14 @@ class View {
     this._tuningValue.innerHTML = this.model._settings._tuning
   }
 
+  setTimingView(phaseRange, value) {
+    const map = {
+      'riseMin': this._riseMin, 'riseMax': this._riseMax,
+      'fallMin': this._fallMin, 'fallMax': this._fallMax,
+      'restMin': this._restMin, 'restMax': this._restMax,
+    }
+    map[phaseRange].value = value
+  }
+
 
 }

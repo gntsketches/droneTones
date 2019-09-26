@@ -3,8 +3,10 @@ https://youtrack.jetbrains.com/issue/VIM-1802
 portable usb monitor and stand?
 
 TODO MVC
-    amend that last commit, but what about push? https://www.atlassian.com/git/tutorials/rewriting-history
+    where to put constants?
+    where would the keypress event listener go in the mvc?
     clusters density doesn't seem to be working
+    persistence
     (will each m,v,c,a have its own init?)
 
 TODO MVC STUDY
@@ -15,8 +17,14 @@ TODO MVC STUDY
     https://stackoverflow.com/questions/2056/what-are-mvp-and-mvc-and-what-is-the-difference
     https://www.codeproject.com/Articles/288928/Differences-between-MVC-and-MVP-for-Beginners
     https://www.bacancytechnology.com/blog/mvc-vs-mvp-vs-mvvm
-
-
+    Seo: in this case because the event listeners are defined on controller, you can't just switch the view out
+        like say if you were going to do it in Node and use Electron. Or on canvas element.
+        Think in terms of "portability" - or "un-plugability" each architectural "block" should not be referencing the semantic context of the other block.
+        So "semantically", the controller should only refer to itself - not to any other "library" like HTML
+        when you pass data around, that data should stand on it's own without needing any additional information about it.
+            unless there is a agreed-upon convention for deliberately doing so.
+        OR, note how in the model I am utilizing the event. this couples it to the DOM.
+        hmm: explicit vs implict ... ness...
 
 TODO OTHER
     would sound pretty badass if it could go hella lower

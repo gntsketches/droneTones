@@ -101,7 +101,7 @@ class Audio {
       range = settings._partialsRanges['clusters']
       for (let i = 0; i < range; i++) {
         let num = 0
-        if (Math.random() < DroneTones._clustersDensity) {
+        if (Math.random() < settings._clustersDensity) {
           num = rand()
         }
         // for (let j = 0; j < Math.round[getRandomInRange(3,5)]; j++) {

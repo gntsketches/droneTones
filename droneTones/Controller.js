@@ -84,6 +84,36 @@ class Controller {
       this.changeEffectSetting(e)
     })
 
+    this.view._riseMin.addEventListener('change', (e) => {
+      this.changeTimingSettings(e)
+    })
+    this.view._riseMax.addEventListener('change', (e) => {
+      this.changeTimingSettings(e)
+    })
+    this.view._fallMin.addEventListener('change', (e) => {
+      this.changeTimingSettings(e)
+    })
+    this.view._fallMax.addEventListener('change', (e) => {
+      this.changeTimingSettings(e)
+    })
+    this.view._restMin.addEventListener('change', (e) => {
+      this.changeTimingSettings(e)
+    })
+    this.view._restMax.addEventListener('change', (e) => {
+      this.changeTimingSettings(e)
+    })
+
+    window.addEventListener('keydown', function(e){
+      console.log('this', this, 'e', e)
+      if (e.key===' ' && this.model._started) {
+        e.preventDefault()
+        this.stop()
+      } else if (e.key===' ') {
+        e.preventDefault()
+        this.start()
+      }
+    }.bind(this)) // .bind and arrow functions both ok :)
+
 
     this.init()
 
@@ -131,8 +161,43 @@ class Controller {
     this.model.setEffectSetting(e)
   }
 
+  changeTimingSettings = function(e) {
+    const timing = this.model._settings._timing
+    const phaseRange = e.target.name
 
+    this.model.setTiming(phaseRange, e.target.value)
+    console.log(timing)
 
+    if (phaseRange === 'riseMin' && timing['riseMin'] > timing['riseMax']) {
+      this.model.setTiming('riseMax', timing['riseMin'])
+      this.view.setTimingView('riseMax', timing['riseMax'])
+    }
+
+    if (phaseRange === 'riseMax' && timing['riseMax'] < timing['riseMin']) {
+      this.model.setTiming('riseMin', timing['riseMax'])
+      this.view.setTimingView('riseMin', timing['riseMin'])
+    }
+
+    if (phaseRange === 'fallMin' && timing['fallMin'] > timing['fallMax']) {
+      this.model.setTiming('fallMax', timing['fallMin'])
+      this.view.setTimingView('fallMax', timing['fallMax'])
+    }
+
+    if (phaseRange === 'fallMax' && timing['fallMax'] < timing['fallMin']) {
+      this.model.setTiming('fallMin', timing['fallMax'])
+      this.view.setTimingView('fallMin', timing['fallMin'])
+    }
+
+    if (phaseRange === 'restMin' && timing['restMin'] > timing['restMax']) {
+      this.model.setTiming('restMax', timing['restMin'])
+      this.view.setTimingView('restMax', timing['restMax'])
+    }
+
+    if (phaseRange === 'restMax' && timing['restMax'] < timing['restMin']) {
+      this.model.setTiming('restMin', timing['restMax'])
+      this.view.setTimingView('restMin', timing['restMin'])
+    }
+  }
 
   // ENGINE *********************************************************************************
 

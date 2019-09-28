@@ -52,11 +52,11 @@ class Model {
     // }
   }
 
-  // _commit(todos) {
-  //   this.onTodoListChanged(todos)
-  //   localStorage.setItem('todos', JSON.stringify(todos))
-  // }
+  _commitToLocalStorage(todos) {
+    localStorage.setItem('droneTonesSettings', JSON.stringify(this._settings))
+  }
 
+  // START/STOP
   start() {
     this._started = true
   }
@@ -68,7 +68,7 @@ class Model {
     }
   }
 
-  // MODEL - business logic
+  // GETTERS
   getChosenSynthOptions() {
     const synthOptions = this._settings._activeSynthOptions
     const chosenSynthOptions = []
@@ -78,6 +78,15 @@ class Model {
     return chosenSynthOptions
   }
 
+  // SETTERS
+  setAnInterval(index, value) {
+    this._settings._synthIntervals[index] = value
+  }
+
+  setBasePitch(value) {
+    this._settings._basePitch = value
+  }
+
   setTuning(tuning) {
     if (tuning === 'minus') {
       this._settings._tuning -= 1
@@ -85,14 +94,6 @@ class Model {
       this._settings._tuning += 1
     }
     console.log(this._settings)
-  }
-
-  setAnInterval(index, value) {
-    this._settings._synthIntervals[index] = value
-  }
-
-  setBasePitch(value) {
-    this._settings._basePitch = value
   }
 
   setActiveSynthOptions(name, checked) {
@@ -105,6 +106,7 @@ class Model {
 
   setClustersDensity(value) {
     this._settings._clustersDensity = parseFloat(value)
+    console.log(this._settings._clustersDensity)
   }
 
   setEffectSetting(e) {
@@ -117,6 +119,10 @@ class Model {
 
   setTiming(phaseRange, value) {
     this._settings._timing[phaseRange] = parseFloat(value)
+  }
+
+  resetSettings() {
+    this._settings = settingsDefaults
   }
 
 } // END MODEL ************************************************************************************

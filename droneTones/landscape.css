@@ -52,8 +52,14 @@
     }
 
     .options-block.timing {
-        margin-bottom: 0;
+        /*margin-bottom: 0;*/
     }
+
+    .reset {
+        margin-bottom: 1vh;
+    }
+
+
 
     /*** ABOUT *****************************************************/
 

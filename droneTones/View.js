@@ -47,6 +47,8 @@ class View {
     this._restMin = document.querySelector('#restMin')
     this._restMax = document.querySelector('#restMax')
 
+    this._reset = document.querySelector('#reset')
+
     // SET HTML VALUES FROM STATE
     this._intervalSelectors.forEach((select, index) => {
       select.value = settings._synthIntervals[index]
@@ -78,8 +80,48 @@ class View {
     this._fallMax.value = settings._timing.fallMax
     this._restMin.value = settings._timing.restMin
     this._restMax.value = settings._timing.restMax
+
   }
 
+  // BIND STUFF
+
+  bindIntervalSelectors(handler) {
+    this._intervalSelectors.forEach((select, index) => {
+      select.addEventListener('change', (e) => { handler(index, e.target.value) })
+    })
+  }
+
+  bindBasePitchSelect(handler) {
+    this._basePitchSelect.addEventListener('change', event => { handler(event.target.value) })
+  }
+
+  bindTuners(handler) {
+    this._tuningMinus.addEventListener('click', () => { handler('minus') })
+    this._tuningPlus.addEventListener('click', () => { handler('plus') })
+  }
+
+  bindStartStop(handler) {
+    this._startStopButton.addEventListener('click', () => { handler() })
+  }
+
+  bindSynthToggles(handler) {
+    this._toggleSawtooth.addEventListener('change', e => { handler(e.target.name, e.target.checked) })
+    this._toggleFullStops.addEventListener('change', e => { handler(e.target.name, e.target.checked) })
+    this._toggleRandomStops.addEventListener('change', e => { handler(e.target.name, e.target.checked) })
+    this._toggleClusters.addEventListener('change', e => { handler(e.target.name, e.target.checked) })
+  }
+
+  bindPartialsRanges(handler) {
+    this._fullStopsRange.addEventListener('change', e => { handler(e.target.name, e.target.value) })
+    this._randomStopsRange.addEventListener('change', e => { handler(e.target.name, e.target.value) })
+    this._clustersRange.addEventListener('change', e => { handler(e.target.name, e.target.value) })
+  }
+
+  bindClustersDensity(handler) {
+    this._clustersDensity.addEventListener('change', e => { handler(e.target.value) })
+  }
+
+  // GENERAL FUNCTIONS
 
   start() {
     this._startStopButton.innerHTML = 'Stop'
@@ -100,6 +142,16 @@ class View {
   setTuningView() {
     this._tuningValue.innerHTML = this.model._settings._tuning
   }
+
+
+  processEffectEvent(e) {
+    const effect = e.target.name.split('-')[0]
+    const field = e.target.name.split('-')[1]
+    const value = field === 'on' ? e.target.checked : parseFloat(e.target.value)
+    // this._settings._effectSettings[effect][field] = value
+    return { effect: effect, field: field, value: value}
+  }
+
 
   setTimingView(phaseRange, value) {
     const map = {

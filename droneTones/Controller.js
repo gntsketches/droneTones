@@ -4,65 +4,21 @@ class Controller {
     this.model = model
     this.view = view
     this.audio = audio
-    console.log(audio)
 
     // SET UP EVENT LISTENERS ***********************************
 
-    this.view._startStopButton.addEventListener('click', (e) => {
-      if (this.model._started === false) {
-        this.start()
-      } else {
-        this.stop()
-      }
-    })
+    this.view.bindIntervalSelectors(this.changeInterval)
+    this.view.bindBasePitchSelect(this.changeBasePitch)
+    this.view.bindTuners(this.changeTuning)
+    this.view.bindStartStop(this.startStop)
+    this.view.bindSynthToggles(this.changeActiveSynthOptions)
+    this.view.bindPartialsRanges(this.changePartialsRanges)
+    this.view.bindClustersDensity(this.changeClustersDensity)
 
-    this.view._tuningMinus.addEventListener('click', () => {
-      this.setTuning('minus')
-    })
 
-    this.view._tuningPlus.addEventListener('click', () => {
-      this.setTuning('plus')
-    })
 
-    this.view._intervalSelectors.forEach((select, index) => {
-      select.addEventListener('change', (e) => {
-        this.model.setAnInterval(index, e.target.value)
-        if (this.model._started && e.target.value === 'Off') {
-          this.assignTimeout('fall', index)
-        }
-      })
-    })
 
-    this.view._basePitchSelect.addEventListener('change', (e) => {
-      this.model.setBasePitch(e.target.value)
-    })
 
-    this.view._toggleSawtooth.addEventListener('change', (e) => {
-      this.changeActiveSynthOptions(e)
-    })
-    this.view._toggleFullStops.addEventListener('change', (e) => {
-      this.changeActiveSynthOptions(e)
-    })
-    this.view._toggleRandomStops.addEventListener('change', (e) => {
-      this.changeActiveSynthOptions(e)
-    })
-    this.view._toggleClusters.addEventListener('change', (e) => {
-      this.changeActiveSynthOptions(e)
-    })
-
-    this.view._fullStopsRange.addEventListener('change', (e) => {
-      this.changePartialsRanges(e)
-    })
-    this.view._randomStopsRange.addEventListener('change', (e) => {
-      this.changePartialsRanges(e)
-    })
-    this.view._clustersRange.addEventListener('change', (e) => {
-      this.changePartialsRanges(e)
-    })
-
-    this.view._clustersDensity.addEventListener('change', (e) => {
-      this.changeClustersDensity(e)
-    })
 
     this.view._toggleVibrato.addEventListener('change', (e) => {
       this.changeEffectSetting(e)
@@ -104,7 +60,6 @@ class Controller {
     })
 
     window.addEventListener('keydown', function(e){
-      console.log('this', this, 'e', e)
       if (e.key===' ' && this.model._started) {
         e.preventDefault()
         this.stop()
@@ -123,45 +78,56 @@ class Controller {
     console.log('it inits')
   }
 
-  start() {
-    this.model.start()
-    this.view.start()
-    this.audio.start()
-    this.startTimeouts()
+  startStop = () => {
+    if (this.model._started === false) {
+      this.model.start()
+      this.view.start()
+      this.audio.start()
+      this.startTimeouts()
+    } else {
+      this.model.stop()
+      this.view.stop()
+      this.audio.stop()
+    }
   }
 
-  stop() {
-    this.model.stop()
-    this.view.stop()
-    this.audio.stop()
+  changeInterval = (index, value) => {
+    this.model.setAnInterval(index, value)
+    if (this.model._started && value === 'Off') {
+      this.assignTimeout('fall', index)
+    }
   }
 
-  setTuning(tuning) {
+  changeBasePitch = value => {
+    this.model.setBasePitch(value)
+  }
+
+  changeTuning = tuning => {
     this.model.setTuning(tuning)
     this.view.setTuningView()
   }
 
-  changeActiveSynthOptions(e) {  // if there's only one checked, prevent it from changing to false and check the toggle DOM element
-    if (this.model.getChosenSynthOptions().length === 1 && e.target.checked === false) {
-      this.view._synthOptionToggleCorrespondence[e.target.name].checked = true
+  changeActiveSynthOptions = (name, checked) => {  // if there's only one checked, prevent it from changing to false and check the toggle DOM element
+    if (this.model.getChosenSynthOptions().length === 1 && checked === false) {
+      this.view._synthOptionToggleCorrespondence[name].checked = true
     } else {
-      this.model.setActiveSynthOptions(e.target.name, e.target.checked)
+      this.model.setActiveSynthOptions(name, checked)
     }
   }
 
-  changePartialsRanges(e) {
-    this.model.setPartialsRanges(e.target.name, e.target.value)
+  changePartialsRanges = (name, value) => {
+    this.model.setPartialsRanges(name, value)
   }
 
-  changeClustersDensity(e) {
-    this.model.setClustersDensity(e.target.value)
+  changeClustersDensity = value => {
+    this.model.setClustersDensity(value)
   }
 
-  changeEffectSetting(e) {
+  changeEffectSetting = e => {
     this.model.setEffectSetting(e)
   }
 
-  changeTimingSettings = function(e) {
+  changeTimingSettings = e => {
     const timing = this.model._settings._timing
     const phaseRange = e.target.name
 
@@ -270,7 +236,7 @@ class Controller {
     }
 
     // Keep - console display of type/partials is mentioned in docs
-    console.log(synthType, nest.synthObject.oscillator.partials)
+    // console.log(synthType, nest.synthObject.oscillator.partials)
 
     // pass these in with new rather than define them each time:
     nest.synthObject.envelope.decay = 0

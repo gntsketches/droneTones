@@ -43,7 +43,7 @@ const settingsDefaults = {
 
 class Model {
   constructor() {
-    this._settings = JSON.parse(localStorage.getItem('droneTonesSettings')) || settingsDefaults
+    this._settings = JSON.parse(localStorage.getItem('droneTonesSettings')) || JSON.parse(JSON.stringify(settingsDefaults))
     this._started = false
     this._synthTimings = [{},{}, {},{}, {},{}, {},{}]  // timeout, rise, fall, rest
 
@@ -106,14 +106,9 @@ class Model {
 
   setClustersDensity(value) {
     this._settings._clustersDensity = parseFloat(value)
-    console.log(this._settings._clustersDensity)
   }
 
-  setEffectSetting(e) {
-    // note how this receives the event, while other Model functions get value, etc.
-    const effect = e.target.name.split('-')[0]
-    const field = e.target.name.split('-')[1]
-    const value = field === 'on' ? e.target.checked : parseFloat(e.target.value)
+  setEffectSetting({ effect, field, value }) {
     this._settings._effectSettings[effect][field] = value
   }
 
@@ -122,7 +117,9 @@ class Model {
   }
 
   resetSettings() {
-    this._settings = settingsDefaults
+    console.log(this._settings)
+    this._settings = JSON.parse(JSON.stringify(settingsDefaults))
+    console.log(this._settings)
   }
 
 } // END MODEL ************************************************************************************

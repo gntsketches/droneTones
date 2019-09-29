@@ -14,50 +14,9 @@ class Controller {
     this.view.bindSynthToggles(this.changeActiveSynthOptions)
     this.view.bindPartialsRanges(this.changePartialsRanges)
     this.view.bindClustersDensity(this.changeClustersDensity)
-
-
-
-
-
-
-    this.view._toggleVibrato.addEventListener('change', (e) => {
-      this.changeEffectSetting(e)
-    })
-    this.view._toggleFilter.addEventListener('change', (e) => {
-      this.changeEffectSetting(e)
-    })
-
-    this.view._vibratoRate.addEventListener('change', (e) => {
-      this.changeEffectSetting(e)
-    })
-    this.view._filterRate.addEventListener('change', (e) => {
-      this.changeEffectSetting(e)
-    })
-    this.view._vibratoDepth.addEventListener('change', (e) => {
-      this.changeEffectSetting(e)
-    })
-    this.view._filterDepth.addEventListener('change', (e) => {
-      this.changeEffectSetting(e)
-    })
-
-    this.view._riseMin.addEventListener('change', (e) => {
-      this.changeTimingSettings(e)
-    })
-    this.view._riseMax.addEventListener('change', (e) => {
-      this.changeTimingSettings(e)
-    })
-    this.view._fallMin.addEventListener('change', (e) => {
-      this.changeTimingSettings(e)
-    })
-    this.view._fallMax.addEventListener('change', (e) => {
-      this.changeTimingSettings(e)
-    })
-    this.view._restMin.addEventListener('change', (e) => {
-      this.changeTimingSettings(e)
-    })
-    this.view._restMax.addEventListener('change', (e) => {
-      this.changeTimingSettings(e)
-    })
+    this.view.bindEffectControls(this.changeEffectSetting)
+    this.view.bindTimingControls(this.changeTimingSettings)
+    this.view.bindReset(this.verifyReset)
 
     window.addEventListener('keydown', function(e){
       if (e.key===' ' && this.model._started) {
@@ -123,16 +82,13 @@ class Controller {
     this.model.setClustersDensity(value)
   }
 
-  changeEffectSetting = e => {
-    this.model.setEffectSetting(e)
+  changeEffectSetting = payload => {
+    this.model.setEffectSetting(payload)
   }
 
-  changeTimingSettings = e => {
+  changeTimingSettings = (phaseRange, value) => {
     const timing = this.model._settings._timing
-    const phaseRange = e.target.name
-
-    this.model.setTiming(phaseRange, e.target.value)
-    console.log(timing)
+    this.model.setTiming(phaseRange, value)
 
     if (phaseRange === 'riseMin' && timing['riseMin'] > timing['riseMax']) {
       this.model.setTiming('riseMax', timing['riseMin'])
@@ -163,6 +119,13 @@ class Controller {
       this.model.setTiming('restMin', timing['restMax'])
       this.view.setTimingView('restMin', timing['restMin'])
     }
+  }
+
+  verifyReset = () => {
+    const doReset = confirm('Reset default settings?')
+    if (!doReset) { return }
+    this.model.resetSettings()
+    this.view.updateElementsFromState()
   }
 
   // ENGINE *********************************************************************************

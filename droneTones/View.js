@@ -3,7 +3,6 @@ class View {
   constructor(model) {
 
     this.model = model
-    const settings = this.model._settings
 
     // CACHE THE DOM
     this._intervalChoosers = document.querySelector('#interval_choosers')
@@ -49,7 +48,13 @@ class View {
 
     this._reset = document.querySelector('#reset')
 
-    // SET HTML VALUES FROM STATE
+    this.updateElementsFromState()
+
+  }
+
+  updateElementsFromState() {
+    const settings = this.model._settings
+
     this._intervalSelectors.forEach((select, index) => {
       select.value = settings._synthIntervals[index]
     })
@@ -121,6 +126,34 @@ class View {
     this._clustersDensity.addEventListener('change', e => { handler(e.target.value) })
   }
 
+  bindEffectControls(handler) {
+    function processEffectEvent(e) {
+      const effect = e.target.name.split('-')[0]
+      const field = e.target.name.split('-')[1]
+      const value = field === 'on' ? e.target.checked : parseFloat(e.target.value)
+      return { effect: effect, field: field, value: value}
+    }
+    this._toggleVibrato.addEventListener('change', (e) => { handler(processEffectEvent(e)) })
+    this._toggleFilter.addEventListener('change', (e) => { handler(processEffectEvent(e)) })
+    this._vibratoRate.addEventListener('change', (e) => { handler(processEffectEvent(e)) })
+    this._filterRate.addEventListener('change', (e) => { handler(processEffectEvent(e)) })
+    this._vibratoDepth.addEventListener('change', (e) => { handler(processEffectEvent(e)) })
+    this._filterDepth.addEventListener('change', (e) => { handler(processEffectEvent(e)) })
+  }
+
+  bindTimingControls(handler) {
+    this._riseMin.addEventListener('change', (e) => { handler(e.target.name, e.target.value) })
+    this._riseMax.addEventListener('change', (e) => { handler(e.target.name, e.target.value) })
+    this._fallMin.addEventListener('change', (e) => { handler(e.target.name, e.target.value) })
+    this._fallMax.addEventListener('change', (e) => { handler(e.target.name, e.target.value) })
+    this._restMin.addEventListener('change', (e) => { handler(e.target.name, e.target.value) })
+    this._restMax.addEventListener('change', (e) => { handler(e.target.name, e.target.value) })
+  }
+
+  bindReset(handler) {
+    this._reset.addEventListener('click', () => { handler() })
+  }
+
   // GENERAL FUNCTIONS
 
   start() {
@@ -143,16 +176,6 @@ class View {
     this._tuningValue.innerHTML = this.model._settings._tuning
   }
 
-
-  processEffectEvent(e) {
-    const effect = e.target.name.split('-')[0]
-    const field = e.target.name.split('-')[1]
-    const value = field === 'on' ? e.target.checked : parseFloat(e.target.value)
-    // this._settings._effectSettings[effect][field] = value
-    return { effect: effect, field: field, value: value}
-  }
-
-
   setTimingView(phaseRange, value) {
     const map = {
       'riseMin': this._riseMin, 'riseMax': this._riseMax,
@@ -162,5 +185,4 @@ class View {
     map[phaseRange].value = value
   }
 
-
-}
+} // END VIEW ********************************************************************

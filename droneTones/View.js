@@ -185,4 +185,15 @@ class View {
     map[phaseRange].value = value
   }
 
+  glowIntervalSelectors(phase, synthIndex) {
+    const timings = this.model._synthTimings[synthIndex]
+    if (phase === 'rise') {
+      this._intervalSelectors[synthIndex].style.transitionDuration = timings.rise + 's'
+      this._intervalSelectors[synthIndex].classList.add('glow')
+    } else {
+      this._intervalSelectors[synthIndex].style.transitionDuration = timings.fall + 's'
+      this._intervalSelectors[synthIndex].classList.remove('glow')
+    }
+  }
+
 } // END VIEW ********************************************************************

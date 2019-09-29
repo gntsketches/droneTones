@@ -19,23 +19,14 @@ class Controller {
     this.view.bindReset(this.verifyReset)
 
     window.addEventListener('keydown', function(e){
-      if (e.key===' ' && this.model._started) {
+      if (e.key===' ') {
         e.preventDefault()
-        this.stop()
-      } else if (e.key===' ') {
-        e.preventDefault()
-        this.start()
+        this.startStop()
       }
     }.bind(this)) // .bind and arrow functions both ok :)
 
-
-    this.init()
-
   }
 
-  init() {
-    console.log('it inits')
-  }
 
   startStop = () => {
     if (this.model._started === false) {
@@ -52,9 +43,6 @@ class Controller {
 
   changeInterval = (index, value) => {
     this.model.setAnInterval(index, value)
-    if (this.model._started && value === 'Off') {
-      this.assignTimeout('fall', index)
-    }
   }
 
   changeBasePitch = value => {
@@ -155,7 +143,7 @@ class Controller {
     timings.fall = getRandomInRange(settings._timing.fallMin, settings._timing.fallMax)
     timings.rest = getRandomInRange(settings._timing.restMin, settings._timing.restMax)
 
-    const vibratoSettings = this.model._settings._effectSettings['vibrato']
+    const vibratoSettings = settings._effectSettings['vibrato']
     nest.vibrato.frequency.value = Math.random() * vibratoSettings.rate // frequency, 5
     nest.vibrato.depth.value = Math.random() * vibratoSettings.depth // normal range, 0.1, is fine.
     nest.vibrato.wet.value = vibratoSettings['on'] ? Math.random() : 0 // Math.random() // /2 + 0.5 // normal range
@@ -165,7 +153,7 @@ class Controller {
     // console.log(nest.vibrato.depth.value)
     // console.log('vibrato on?', nest.vibrato.wet.value)
 
-    const filterSettings = this.model._settings._effectSettings['filter']
+    const filterSettings = settings._effectSettings['filter']
     nest.filter.frequency.value = Math.random() * filterSettings.rate
     nest.filter.depth.value = Math.random() * filterSettings.depth // normal range
     nest.filter.octaves = Math.random() * 5 // different?
@@ -211,12 +199,10 @@ class Controller {
 
   assignTimeout = (phase, synthIndex) => {
     const timings = this.model._synthTimings[synthIndex]
-    const nest = this.audio._synthNests[synthIndex]
-    const settings = this.model._settings
     const interval = this.model._settings._synthIntervals[synthIndex]
     switch (phase) {
       case 'rest':
-        this.setUpSynth(synthIndex)
+        this.setUpSynth(synthIndex) // do this in rise instead?
         if (interval === 'Off') {
           timings.timeout = setTimeout(()=> { this.assignTimeout('rest', synthIndex) }, 1000 * timings.rest)
         } else {
@@ -224,28 +210,22 @@ class Controller {
         }
         break
       case 'rise':
-        if (interval === 'Off') { return }
+        if (interval === 'Off') {
+          timings.timeout = setTimeout(()=> { this.assignTimeout('rest', synthIndex) }, 1000 * timings.rest)
+        } // this had been just "return", but seems like that removes the timeout from the flow
         // console.log('rise', nest.rise)
-        const detune = DroneTones.constants.intervalToDetune[interval] + settings._tuning
-        nest.synthObject.detune.value = detune
-        nest.synthObject.envelope.attack = timings.rise
-        nest.synthObject.envelope.release = timings.fall
-        nest.synthObject.triggerAttack(settings._basePitch)
-        timings.timeout = setTimeout(()=>{
-          this.assignTimeout('fall', synthIndex)
-        }, 1000 * timings.rise)
-        this.view._intervalSelectors[synthIndex].style.transitionDuration = timings.rise + 's'
-        this.view._intervalSelectors[synthIndex].classList.add('glow')
+        this.audio.setSynthParameters(synthIndex, 'detune')
+        this.audio.setSynthParameters(synthIndex, 'attack')
+        this.audio.setSynthParameters(synthIndex, 'release')
+        this.audio.triggerAttack(synthIndex)
+        timings.timeout = setTimeout(()=> { this.assignTimeout('fall', synthIndex) }, 1000 * timings.rise)
+        this.view.glowIntervalSelectors('rise', synthIndex)
         break
       case 'fall':
-        // clearTimeout(nest.timeout)
         // console.log('fall', nest.fall)
-        nest.synthObject.triggerRelease()
-        timings.timeout = setTimeout(()=>{
-          this.assignTimeout('rest', synthIndex)
-        }, 1000 * timings.fall)
-        this.view._intervalSelectors[synthIndex].style.transitionDuration = timings.fall + 's'
-        this.view._intervalSelectors[synthIndex].classList.remove('glow')
+        this.audio.triggerRelease(synthIndex)
+        timings.timeout = setTimeout(()=> { this.assignTimeout('rest', synthIndex) }, 1000 * timings.fall)
+        this.view.glowIntervalSelectors('fall', synthIndex)
         break
     }
   }

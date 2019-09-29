@@ -2,13 +2,13 @@ https://youtrack.jetbrains.com/issue/VIM-1802
 "nextstand"
 portable usb monitor and stand?
 
+
 TODO MVC
-    engine has some non-mvc grabbing Audio or View, like need Audio function playSynth, stopSynth
+    MVC the setUpSynths
     persistence seems to be working. spend some time testing it out tho.
-    where to put constants?
     where would the keypress event listener go in the mvc?
 
-TODO MVC STUDY
+TODO MVC STUDjsdffksdjdkjhsdfkjhsdkjjkkjhjkjfjh
     https://www.awwwards.com/build-a-simple-javascript-app-the-mvc-way.html
         compare with Tania's - eg she avoids .bind
     - https://stackoverflow.com/questions/4415904/business-logic-in-mvc
@@ -24,6 +24,8 @@ TODO MVC STUDY
             unless there is a agreed-upon convention for deliberately doing so.
         OR, note how in the model I am utilizing the event. this couples it to the DOM.
         hmm: explicit vs implict ... ness...
+    ? re MVC meta-issue:
+        decoupling/MVC isolation: 'synthNests' requires an index passed - data structure must still be consistent to "plug in a new Audio"
 
 TODO OTHER
     would sound pretty badass if it could go hella lower
@@ -111,3 +113,6 @@ CODE ALTERNATIVES
             const chosenSynthOptions = Object.keys(synthOptions)
             .filter(synthName => synthOptions[synthName] === true) // can reference array as argument
 
+  selectOptions: [
+    'Off', 'Sub', 'Root', 'm1', 'M2', 'm3', 'M3', 'P4', '#4/b5', 'P5', 'm6', 'M6', 'm7', 'M7', '8va'
+  ],

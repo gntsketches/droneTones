@@ -78,6 +78,32 @@ class Audio {
     })
   }
 
+  setSynthParameters(synthIndex, param) {
+    const settings = this.model._settings
+    const timings = this.model._synthTimings[synthIndex]
+    switch (param) {
+      case 'detune':
+        const interval = settings._synthIntervals[synthIndex]
+        const detune = this.model._intervalToDetune[interval] + settings._tuning
+        this._synthNests[synthIndex].synthObject.detune.value = detune
+        break
+      case 'attack':
+        this._synthNests[synthIndex].synthObject.envelope.attack = timings.rise
+        break
+      case 'release':
+        this._synthNests[synthIndex].synthObject.envelope.release = timings.fall
+        break
+    }
+  }
+
+  triggerAttack(synthIndex) {
+    this._synthNests[synthIndex].synthObject.triggerAttack(this.model._settings._basePitch)
+  }
+
+  triggerRelease(synthIndex) {
+    this._synthNests[synthIndex].synthObject.triggerRelease()
+  }
+
   getPartials(type) {
     const settings = this.model._settings
     let partials = []

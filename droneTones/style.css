@@ -347,6 +347,7 @@ label.options-block__checkbox-container {
     font-size: 1.8vh;
     background: chocolate;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 

@@ -20,7 +20,7 @@ const settingsDefaults = {
   _partialsRanges: {
     'fullStops': 20,
     'randomStops': 3,
-    'clusters': 20,
+    'clusters': 10,
   },
   _clustersDensity: 0.2,
   _effectSettings: {
@@ -43,6 +43,7 @@ const settingsDefaults = {
 
 class Model {
   constructor() {
+    this. _intervalToDetune = { 'Sub': -1200, 'Root': 0, 'm2': 100, 'M2': 200, 'm3': 300, 'M3': 400, 'P4': 500, '#4/b5': 600, 'P5': 700, 'm6': 800, 'M6': 900, 'm7': 1000, 'M7': 1100, '8va': 1200 }
     this._settings = JSON.parse(localStorage.getItem('droneTonesSettings')) || JSON.parse(JSON.stringify(settingsDefaults))
     this._started = false
     this._synthTimings = [{},{}, {},{}, {},{}, {},{}]  // timeout, rise, fall, rest
@@ -63,6 +64,7 @@ class Model {
     for (let i=0; i<8; i++) {
       clearTimeout(this._synthTimings[i].timeout)
     }
+    console.log(this._synthTimings)
   }
 
   // GETTERS

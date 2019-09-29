@@ -47,12 +47,9 @@ class Model {
     this._started = false
     this._synthTimings = [{},{}, {},{}, {},{}, {},{}]  // timeout, rise, fall, rest
 
-    // bindTodoListChanged(callback) {
-    //   this.onTodoListChanged = callback
-    // }
   }
 
-  _commitToLocalStorage(todos) {
+  _commitToLocalStorage() {
     localStorage.setItem('droneTonesSettings', JSON.stringify(this._settings))
   }
 
@@ -81,10 +78,12 @@ class Model {
   // SETTERS
   setAnInterval(index, value) {
     this._settings._synthIntervals[index] = value
+    this._commitToLocalStorage()
   }
 
   setBasePitch(value) {
     this._settings._basePitch = value
+    this._commitToLocalStorage()
   }
 
   setTuning(tuning) {
@@ -93,33 +92,37 @@ class Model {
     } else if (tuning === 'plus') {
       this._settings._tuning += 1
     }
-    console.log(this._settings)
+    this._commitToLocalStorage()
   }
 
   setActiveSynthOptions(name, checked) {
     this._settings._activeSynthOptions[name] = checked
+    this._commitToLocalStorage()
   }
 
   setPartialsRanges(name, value) {
     this._settings._partialsRanges[name] = parseInt(value, 10)
+    this._commitToLocalStorage()
   }
 
   setClustersDensity(value) {
     this._settings._clustersDensity = parseFloat(value)
+    this._commitToLocalStorage()
   }
 
   setEffectSetting({ effect, field, value }) {
     this._settings._effectSettings[effect][field] = value
+    this._commitToLocalStorage()
   }
 
   setTiming(phaseRange, value) {
     this._settings._timing[phaseRange] = parseFloat(value)
+    this._commitToLocalStorage()
   }
 
   resetSettings() {
-    console.log(this._settings)
     this._settings = JSON.parse(JSON.stringify(settingsDefaults))
-    console.log(this._settings)
+    this._commitToLocalStorage()
   }
 
 } // END MODEL ************************************************************************************

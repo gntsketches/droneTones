@@ -3,13 +3,10 @@ https://youtrack.jetbrains.com/issue/VIM-1802
 portable usb monitor and stand?
 
 TODO MVC
-    first two event listeners call model directly
+    engine has some non-mvc grabbing Audio or View, like need Audio function playSynth, stopSynth
+    persistence seems to be working. spend some time testing it out tho.
     where to put constants?
     where would the keypress event listener go in the mvc?
-    clusters density doesn't seem to be working
-    persistence
-    engine has some non-mvc grabbing Audio or View, like need Audio function playSynth, stopSynth
-    (will each m,v,c,a have its own init?)
 
 TODO MVC STUDY
     https://www.awwwards.com/build-a-simple-javascript-app-the-mvc-way.html

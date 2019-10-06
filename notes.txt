@@ -4,8 +4,7 @@ portable usb monitor and stand?
 
 
 TODO MVC
-    timeouts in assignTimeouts should be assigned in model
-    persistence seems to be working. spend some time testing it out tho.
+    time to comb over everything and get feedback
     where would the keypress event listener go in the mvc?
 
 TODO MVC STUDjsdffksdjdkjhsdfkjhsdkjjkkjhjkjfjh

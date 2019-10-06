@@ -157,27 +157,27 @@ class Controller {
       case 'rest':
         this.setUpSynth(synthIndex) // do this in rise instead?
         if (interval === 'Off') {
-          timings.timeout = setTimeout(()=> { this.assignTimeout('rest', synthIndex) }, 1000 * timings.rest)
+          this.model.setSynthTimeout(synthIndex, setTimeout(()=> { this.assignTimeout('rest', synthIndex) }, 1000 * timings.rest))
         } else {
-          timings.timeout = setTimeout(()=> { this.assignTimeout('rise', synthIndex) }, 1000 * timings.rest)
+          this.model.setSynthTimeout(synthIndex, setTimeout(()=> { this.assignTimeout('rise', synthIndex) }, 1000 * timings.rest))
         }
         break
       case 'rise':
         if (interval === 'Off') {
-          timings.timeout = setTimeout(()=> { this.assignTimeout('rest', synthIndex) }, 1000 * timings.rest)
+          this.model.setSynthTimeout(synthIndex, setTimeout(()=> { this.assignTimeout('rest', synthIndex) }, 1000 * timings.rest))
         } // this had been just "return", but seems like that removes the timeout from the flow
         // console.log('rise', nest.rise)
         this.audio.assignSynthParameter(synthIndex, 'detune')
         this.audio.assignSynthParameter(synthIndex, 'attack')
         this.audio.assignSynthParameter(synthIndex, 'release')
         this.audio.triggerAttack(synthIndex)
-        timings.timeout = setTimeout(()=> { this.assignTimeout('fall', synthIndex) }, 1000 * timings.rise)
+        this.model.setSynthTimeout(synthIndex, setTimeout(()=> { this.assignTimeout('fall', synthIndex) }, 1000 * timings.rest))
         this.view.glowIntervalSelectors('rise', synthIndex)
         break
       case 'fall':
         // console.log('fall', nest.fall)
         this.audio.triggerRelease(synthIndex)
-        timings.timeout = setTimeout(()=> { this.assignTimeout('rest', synthIndex) }, 1000 * timings.fall)
+        this.model.setSynthTimeout(synthIndex, setTimeout(()=> { this.assignTimeout('rest', synthIndex) }, 1000 * timings.rest))
         this.view.glowIntervalSelectors('fall', synthIndex)
         break
     }

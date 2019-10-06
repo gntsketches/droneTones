@@ -47,6 +47,7 @@ class Model {
     this._settings = JSON.parse(localStorage.getItem('droneTonesSettings')) || JSON.parse(JSON.stringify(settingsDefaults))
     this._started = false
     this._synthTimings = [{},{}, {},{}, {},{}, {},{}]  // timeout, rise, fall, rest
+    this._synthTimeouts = new Array(8)
 
   }
 
@@ -62,9 +63,8 @@ class Model {
   stop() {
     this._started = false
     for (let i=0; i<8; i++) {
-      clearTimeout(this._synthTimings[i].timeout)
+      clearTimeout(this._synthTimeouts[i])
     }
-    console.log(this._synthTimings)
   }
 
   // GETTERS
@@ -125,6 +125,11 @@ class Model {
   setSynthTimingsPhase(synthIndex, phase) {
     const settings = this._settings
     this._synthTimings[synthIndex][phase] = getRandomInRange(settings._timing.riseMin, settings._timing.riseMax)
+  }
+
+  setSynthTimeout(synthIndex, timeoutFunc) {
+    this._synthTimeouts[synthIndex] = timeoutFunc
+    // console.log('synthTimeouts', this._synthTimeouts)
   }
 
   resetSettings() {

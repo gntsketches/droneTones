@@ -340,7 +340,7 @@ label.options-block__checkbox-container {
 
 .reset {
     box-sizing: border-box;
-    width: 50%;
+    min-width: 50%;
     padding: 1vh 2vw;
     margin: 0 0 7vh 0;
     text-align: center;

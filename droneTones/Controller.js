@@ -110,7 +110,7 @@ class Controller {
   }
 
   verifyReset = () => {
-    const doReset = confirm('Reset default settings?')
+    const doReset = confirm("Reset DroneTones' default settings?")
     if (!doReset) { return }
     this.model.resetSettings()
     this.view.updateElementsFromState()
@@ -136,65 +136,18 @@ class Controller {
   }
 
   setUpSynth(synthIndex) {
-    const settings = this.model._settings
-    const timings = this.model._synthTimings[synthIndex]
-    const nest = this.audio._synthNests[synthIndex]
-    timings.rise = getRandomInRange(settings._timing.riseMin, settings._timing.riseMax)
-    timings.fall = getRandomInRange(settings._timing.fallMin, settings._timing.fallMax)
-    timings.rest = getRandomInRange(settings._timing.restMin, settings._timing.restMax)
+    this.model.setSynthTimingsPhase(synthIndex, 'rise')
+    this.model.setSynthTimingsPhase(synthIndex, 'fall')
+    this.model.setSynthTimingsPhase(synthIndex, 'rest')
 
-    const vibratoSettings = settings._effectSettings['vibrato']
-    nest.vibrato.frequency.value = Math.random() * vibratoSettings.rate // frequency, 5
-    nest.vibrato.depth.value = Math.random() * vibratoSettings.depth // normal range, 0.1, is fine.
-    nest.vibrato.wet.value = vibratoSettings['on'] ? Math.random() : 0 // Math.random() // /2 + 0.5 // normal range
-
-    // console.log('vibrato')
-    // console.log(nest.vibrato.frequency.value)
-    // console.log(nest.vibrato.depth.value)
-    // console.log('vibrato on?', nest.vibrato.wet.value)
-
-    const filterSettings = settings._effectSettings['filter']
-    nest.filter.frequency.value = Math.random() * filterSettings.rate
-    nest.filter.depth.value = Math.random() * filterSettings.depth // normal range
-    nest.filter.octaves = Math.random() * 5 // different?
-    nest.filter.wet.value = filterSettings['on'] ? Math.random() : 0 //  /2 + 0.5// normal range
-
-    // console.log('filter')
-    // console.log(nest.filter.frequency.value)
-    // console.log(nest.filter.depth.value)
-    // console.log(nest.filter.octaves)
-    // console.log('filter on?', nest.filter.wet.value)
+    this.audio.assignSynthEffect(synthIndex, 'vibrato')
+    this.audio.assignSynthEffect(synthIndex, 'filter')
 
     const chosenSynthOptions = this.model.getChosenSynthOptions()
     const synthType = chosenSynthOptions[Math.floor(Math.random() * chosenSynthOptions.length)]
-    switch (synthType) {
-      case 'Sawtooth':
-        nest.synthObject.oscillator.type = 'sawtooth'
-        nest.synthObject.volume.value = -6
-        break
-      case 'FullStops':
-        nest.synthObject.oscillator.partials = this.audio.getPartials(synthType)
-        nest.synthObject.volume.value = -6
-        break
-      case 'RandomStops':
-        nest.synthObject.oscillator.partials = this.audio.getPartials(synthType)
-        nest.synthObject.volume.value = 0
-        break
-      case 'Clusters':
-        nest.synthObject.oscillator.partials = this.audio.getPartials(synthType)
-        nest.synthObject.volume.value = -6
-        break
-    }
-
+    this.audio.assignSynthType(synthIndex, synthType)
     // Keep - console display of type/partials is mentioned in docs
     // console.log(synthType, nest.synthObject.oscillator.partials)
-
-    // pass these in with new rather than define them each time:
-    nest.synthObject.envelope.decay = 0
-    nest.synthObject.envelope.sustain = 1
-    nest.synthObject.envelope.attackCurve = 'linear' // was using 'linear because 'exponential' previously gave error "time constant must be geater than zero at t.Signal.t.Param.setTargetAtTime (Tone.min.js:1) at t.Signal.t.Param.exponentialApproachValueAtTime (Tone.min.js:1)at t.Signal.t.Param.targetRampTo (Tone.min.js:1) at t.AmplitudeEnvelope.t.Envelope.triggerAttack (Tone.min.js:1) at t.Synth._triggerEnvelopeAttack (Tone.min.js:1) at t.Synth.t.Monophonic.triggerAttack (Tone.min.js:1) at t.Synth.t.Instrument.triggerAttackRelease (Tone.min.js:1) at t.Loop.callback (DroneTones.js:31) at t.Loop._tick (Tone.min.js:1) at t.Event._tick (Tone.min.js:1)
-    nest.synthObject.envelope.decayCurve = 'exponential'
-    nest.synthObject.envelope.releaseCurve = 'linear'
   }
 
   assignTimeout = (phase, synthIndex) => {
@@ -214,9 +167,9 @@ class Controller {
           timings.timeout = setTimeout(()=> { this.assignTimeout('rest', synthIndex) }, 1000 * timings.rest)
         } // this had been just "return", but seems like that removes the timeout from the flow
         // console.log('rise', nest.rise)
-        this.audio.setSynthParameters(synthIndex, 'detune')
-        this.audio.setSynthParameters(synthIndex, 'attack')
-        this.audio.setSynthParameters(synthIndex, 'release')
+        this.audio.assignSynthParameter(synthIndex, 'detune')
+        this.audio.assignSynthParameter(synthIndex, 'attack')
+        this.audio.assignSynthParameter(synthIndex, 'release')
         this.audio.triggerAttack(synthIndex)
         timings.timeout = setTimeout(()=> { this.assignTimeout('fall', synthIndex) }, 1000 * timings.rise)
         this.view.glowIntervalSelectors('rise', synthIndex)
@@ -229,7 +182,6 @@ class Controller {
         break
     }
   }
-
 
 
 } // END CONTROLLER *************************************************************************************

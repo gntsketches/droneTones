@@ -122,6 +122,11 @@ class Model {
     this._commitToLocalStorage()
   }
 
+  setSynthTimingsPhase(synthIndex, phase) {
+    const settings = this._settings
+    this._synthTimings[synthIndex][phase] = getRandomInRange(settings._timing.riseMin, settings._timing.riseMax)
+  }
+
   resetSettings() {
     this._settings = JSON.parse(JSON.stringify(settingsDefaults))
     this._commitToLocalStorage()

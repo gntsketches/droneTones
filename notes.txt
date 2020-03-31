@@ -3,13 +3,15 @@ https://youtrack.jetbrains.com/issue/VIM-1802
 portable usb monitor and stand?
 
 
+https://github.com/meleyal/drone.coffee/tree/master/app
+http://matt-diamond.com/drone.html
+
 TODO MVC
     time to comb over everything and get feedback
     where would the keypress event listener go in the mvc?
+    DroneTones - could rest min be lower than actual release time?
 
-TODO MVC STUDjsdffksdjdkjhsdfkjhsdkjjkkjhjkjfjh
-    https://www.awwwards.com/build-a-simple-javascript-app-the-mvc-way.html
-        compare with Tania's - eg she avoids .bind
+TODO MVC STUDY
     - https://stackoverflow.com/questions/4415904/business-logic-in-mvc
     - view 'control' of html - eg: checkboxes. Should element be 'set' by view?
     https://stackoverflow.com/questions/2056/what-are-mvp-and-mvc-and-what-is-the-difference
